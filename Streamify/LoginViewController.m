@@ -7,6 +7,9 @@
 //
 
 #import "LoginViewController.h"
+#import "LoginService.h"
+#import "SpotifyService.h"
+#import "User.h"
 
 const CGFloat kBufferCenterYLoginContainer = 70;
 const double kAnimationDuration = 0.3;
@@ -16,6 +19,7 @@ const double kAnimationDuration = 0.3;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintContainerCenterY;
+@property (strong, nonatomic) SpotifyService *spotifyService;
 
 @end
 
@@ -25,8 +29,16 @@ const double kAnimationDuration = 0.3;
   [super viewDidLoad];
   self.usernameTextField.delegate = self;
   self.passwordTextField.delegate = self;
+  
+  self.spotifyService = [SpotifyService sharedService];
 }
-- (IBAction)loginFacebookPressed:(UIButton *)sender {
+- (IBAction)loginSpotifyPressed:(UIButton *)sender {
+  [LoginService loginWithSpotify:^{
+    [self.spotifyService getUserProfile:^(User *user) {
+      NSLog(@"%@", user.displayName);
+      [self performSegueWithIdentifier:@"ShowMyPlaylists" sender:self];
+    }];
+  }];
 }
 - (IBAction)loginPressed:(UIButton *)sender {
   [self performSegueWithIdentifier:@"ShowMyPlaylists" sender:self];

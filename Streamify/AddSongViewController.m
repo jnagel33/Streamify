@@ -7,15 +7,49 @@
 //
 
 #import "AddSongViewController.h"
+#import "SpotifyService.h"
 
-@interface AddSongViewController ()
+@interface AddSongViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+
+@property(weak,nonatomic)IBOutlet UITableView *tableView;
+@property(strong,nonatomic)NSArray *tracks;
+@property(strong,nonatomic)SpotifyService *spotifyService;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
 
 @implementation AddSongViewController
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
   [super viewDidLoad];
+  self.tableView.delegate = self;
+  self.tableView.dataSource = self;
+  self.searchBar.delegate = self;
+  
+  self.spotifyService = [[SpotifyService alloc]init];
 }
+
+#pragma mark - UITableViewDataSource
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  return self.tracks.count;
+}
+
+//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//  
+//}
+
+#pragma mark - UISearchBarDelegate
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+  if (searchBar.text) {
+    [self.spotifyService getTracksFromSearchTerm:searchBar.text completionHandler:^(NSArray *tracks) {
+      NSLog(@"%@",tracks);
+    }];
+  }
+}
+
+
+
 
 @end

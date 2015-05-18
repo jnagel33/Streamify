@@ -31,16 +31,6 @@ const CGFloat kGlobalNavigationFontSize = 17;
   NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Avenir" size:kGlobalNavigationFontSize], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
   [[UINavigationBar appearance] setTitleTextAttributes:attributes];
   
-  
-  [[SPTAuth defaultInstance]setClientID:kClientID];
-  [[SPTAuth defaultInstance]setRedirectURL:[NSURL URLWithString:@"streamify://callback"]];
-  [[SPTAuth defaultInstance]setRequestedScopes:@[SPTAuthStreamingScope, SPTAuthUserLibraryReadScope]];
-  
-  NSURL *loginURL = [[SPTAuth defaultInstance]loginURL];
-  
-  [application performSelector:@selector(openURL:)withObject:loginURL afterDelay:0.1];
-  
-  
   return YES;
 }
 
@@ -56,24 +46,24 @@ const CGFloat kGlobalNavigationFontSize = 17;
         return;
       }
       NSLog(@"%@",session.accessToken);
-      NSString *urlStr = [NSString stringWithFormat:@"https://api.spotify.com/v1/me/tracks"];
-      NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-      [request setValue:[NSString stringWithFormat:@"Bearer %@",session.accessToken ] forHTTPHeaderField:@"Authorization"];
-      NSURLSessionDataTask *task = [[NSURLSession sharedSession]dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSLog(@"%@",data);
-        
-        
-        NSDictionary *savedTracksInfo = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        NSArray *tracks = savedTracksInfo[@"items"];
-        for (NSDictionary *track in tracks) {
-          NSDictionary *trackInfo = track[@"track"];
-//          NSDictionary *album = trackInfo[@"album"];
-//          NSString *name = album[@"name"];
-          NSString *uri = trackInfo[@"uri"];
-          [self playUsingSession:session withTrack:uri];
-        }
-      }];
-      [task resume];
+//      NSString *urlStr = [NSString stringWithFormat:@"https://api.spotify.com/v1/me/tracks"];
+//      NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+//      [request setValue:[NSString stringWithFormat:@"Bearer %@",session.accessToken ] forHTTPHeaderField:@"Authorization"];
+//      NSURLSessionDataTask *task = [[NSURLSession sharedSession]dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//        NSLog(@"%@",data);
+//        
+//        
+//        NSDictionary *savedTracksInfo = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//        NSArray *tracks = savedTracksInfo[@"items"];
+//        for (NSDictionary *track in tracks) {
+//          NSDictionary *trackInfo = track[@"track"];
+////          NSDictionary *album = trackInfo[@"album"];
+////          NSString *name = album[@"name"];
+//          NSString *uri = trackInfo[@"uri"];
+//          [self playUsingSession:session withTrack:uri];
+//        }
+//      }];
+//      [task resume];
       
       
       
