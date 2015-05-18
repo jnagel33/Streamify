@@ -26,7 +26,8 @@
   for (NSDictionary *item in items) {
     NSDictionary *album = item[@"album"];
     NSArray *albumArtworkItems = album[@"images"];
-    NSString *albumArtworkURL = albumArtworkItems[1];
+    NSDictionary *albumArtworkURLItem = albumArtworkItems[1];
+    NSString *albumArtworkURL = albumArtworkURLItem[@"url"];
     NSString *albumName = album[@"name"];
     NSArray *artists = item[@"artists"];
     NSDictionary *artist = artists[0];

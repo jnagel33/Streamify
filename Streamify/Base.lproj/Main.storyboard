@@ -254,9 +254,59 @@
                                     <constraint firstAttribute="height" constant="40" id="ud0-ut-8Gh"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="oDu-J2-BBA">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="78" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="oDu-J2-BBA">
                                 <rect key="frame" x="0.0" y="148" width="600" height="452"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" rowHeight="76" id="6pw-Ob-IXp" customClass="SongTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6pw-Ob-IXp" id="N8m-AO-JrJ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dgA-yW-vtN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="75" id="71w-o7-j50"/>
+                                                        <constraint firstAttribute="height" constant="75" id="Kgw-ZC-SzA"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TrackName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEC-LB-Nee">
+                                                    <rect key="frame" x="83" y="14" width="87" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEX-Lg-Q27">
+                                                    <rect key="frame" x="83" y="43" width="36" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.64939518039999999" green="0.93939537620000002" blue="0.031238322570000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="SEX-Lg-Q27" firstAttribute="top" secondItem="nEC-LB-Nee" secondAttribute="bottom" constant="8" id="0cZ-JH-tPw"/>
+                                                <constraint firstItem="nEC-LB-Nee" firstAttribute="top" secondItem="N8m-AO-JrJ" secondAttribute="topMargin" constant="6" id="7V1-Mn-OYq"/>
+                                                <constraint firstItem="SEX-Lg-Q27" firstAttribute="leading" secondItem="nEC-LB-Nee" secondAttribute="leading" id="K1d-VG-xrs"/>
+                                                <constraint firstItem="nEC-LB-Nee" firstAttribute="leading" secondItem="N8m-AO-JrJ" secondAttribute="leadingMargin" constant="75" id="MWc-Z8-w34"/>
+                                                <constraint firstAttribute="bottom" secondItem="dgA-yW-vtN" secondAttribute="bottom" id="OTu-yh-Z86"/>
+                                                <constraint firstItem="dgA-yW-vtN" firstAttribute="top" secondItem="N8m-AO-JrJ" secondAttribute="top" id="bcR-V9-ewM"/>
+                                                <constraint firstItem="dgA-yW-vtN" firstAttribute="leading" secondItem="N8m-AO-JrJ" secondAttribute="leading" id="s04-lV-q8r"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="OTu-yh-Z86"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="albumArtworkImageView" destination="dgA-yW-vtN" id="Jyw-4q-O5X"/>
+                                            <outlet property="artistNameLabel" destination="SEX-Lg-Q27" id="Sb6-yi-4OS"/>
+                                            <outlet property="trackNameLabel" destination="nEC-LB-Nee" id="6dR-E3-pI1"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

@@ -8,6 +8,7 @@
 
 #import "AddSongViewController.h"
 #import "SpotifyService.h"
+#import "SongTableViewCell.h"
 
 @interface AddSongViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
@@ -35,16 +36,20 @@
   return self.tracks.count;
 }
 
-//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//  
-//}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  SongTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SongCell" forIndexPath:indexPath];
+  Song *song = self.tracks[indexPath.row];
+  [cell configureCell:song];
+  return cell;
+}
 
 #pragma mark - UISearchBarDelegate
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
   if (searchBar.text) {
     [self.spotifyService getTracksFromSearchTerm:searchBar.text completionHandler:^(NSArray *tracks) {
-      NSLog(@"%@",tracks);
+      self.tracks = tracks;
+      [self.tableView reloadData];
     }];
   }
 }
