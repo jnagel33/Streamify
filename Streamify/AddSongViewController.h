@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddSongViewControllerDelegate.h"
 
 @interface AddSongViewController : UIViewController
+
+@property (weak,nonatomic) id<AddSongViewControllerDelegate> delegate;
 
 @end

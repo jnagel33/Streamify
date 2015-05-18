@@ -16,9 +16,6 @@ const CGFloat kGlobalNavigationFontSize = 17;
 
 @interface AppDelegate ()
 
-@property(nonatomic,strong)SPTSession *session;
-@property(nonatomic,strong)SPTAudioStreamingController *player;
-
 @end
 
 @implementation AppDelegate
@@ -39,6 +36,7 @@ const CGFloat kGlobalNavigationFontSize = 17;
   if ([[SPTAuth defaultInstance]canHandleURL:url]) {
     [[SPTAuth defaultInstance]handleAuthCallbackWithTriggeredAuthURL:url callback:^(NSError *error, SPTSession *session) {
       
+      self.session = session;
       [[NSUserDefaults standardUserDefaults]setValue:session.accessToken forKey:@"token"];
       [[NSUserDefaults standardUserDefaults]synchronize];
       if (error != nil) {

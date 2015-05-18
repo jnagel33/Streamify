@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Spotify/Spotify.h>
 @class AFHTTPRequestOperationManager;
 @class AFURLSessionManager;
 @class User;
@@ -21,5 +22,11 @@
 -(void)getUserProfile: (void (^)(User *user))completionHandler;
 
 -(void)getTracksFromSearchTerm:(NSString *)searchTerm completionHandler:(void (^)(NSArray *tracks))completionHandler;
+
+-(void)playUsingSession:(SPTSession *)session AndPlayer:(SPTAudioStreamingController *)player withTrack:(NSString *)trackUri;
+
+-(void)loginApp:(NSString *)username AndPassword:(NSString *)password completionHandler:(void (^)(void))completionHandler;
+
+-(void)createUser:(NSString *)username AndPassword:(NSString *)password completionHandler:(void (^)(void))completionHandler;
 
 @end

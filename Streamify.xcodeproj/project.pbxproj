@@ -17,6 +17,8 @@
 		4321FBDB1B0A619300F2573B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBDA1B0A619300F2573B /* User.m */; };
 		4321FBDE1B0A61A800F2573B /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBDD1B0A61A800F2573B /* Song.m */; };
 		4321FBE11B0A693500F2573B /* SpotifyJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBE01B0A693500F2573B /* SpotifyJSONParser.m */; };
+		436927D81B0A95DE00D1AC17 /* PlaylistSongTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 436927D71B0A95DE00D1AC17 /* PlaylistSongTableViewCell.xib */; };
+		436927DB1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 436927DA1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m */; };
 		43CDF8291B0A7B0E00C2D880 /* SongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CDF8281B0A7B0E00C2D880 /* SongTableViewCell.m */; };
 		43CDF82C1B0A877000C2D880 /* ImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CDF82B1B0A877000C2D880 /* ImageService.m */; };
 		43CDF82F1B0A885D00C2D880 /* ImageResizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CDF82E1B0A885D00C2D880 /* ImageResizer.m */; };
@@ -70,6 +72,9 @@
 		4321FBDD1B0A61A800F2573B /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		4321FBDF1B0A693500F2573B /* SpotifyJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyJSONParser.h; sourceTree = "<group>"; };
 		4321FBE01B0A693500F2573B /* SpotifyJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyJSONParser.m; sourceTree = "<group>"; };
+		436927D71B0A95DE00D1AC17 /* PlaylistSongTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaylistSongTableViewCell.xib; sourceTree = "<group>"; };
+		436927D91B0A96DB00D1AC17 /* PlaylistSongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistSongTableViewCell.h; sourceTree = "<group>"; };
+		436927DA1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistSongTableViewCell.m; sourceTree = "<group>"; };
 		43CDF8271B0A7B0E00C2D880 /* SongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableViewCell.h; sourceTree = "<group>"; };
 		43CDF8281B0A7B0E00C2D880 /* SongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewCell.m; sourceTree = "<group>"; };
 		43CDF82A1B0A877000C2D880 /* ImageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageService.h; sourceTree = "<group>"; };
@@ -163,6 +168,7 @@
 				43CDF82B1B0A877000C2D880 /* ImageService.m */,
 				43CDF82D1B0A885D00C2D880 /* ImageResizer.h */,
 				43CDF82E1B0A885D00C2D880 /* ImageResizer.m */,
+				43CDF8301B0A8DF000C2D880 /* AddSongViewControllerDelegate.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -245,6 +251,9 @@
 				43E9C4441B09B5D1008EF44A /* PlaylistHeaderView.m */,
 				43E9C4401B09B481008EF44A /* StreamifyStyleKit.h */,
 				43E9C4411B09B481008EF44A /* StreamifyStyleKit.m */,
+				436927D71B0A95DE00D1AC17 /* PlaylistSongTableViewCell.xib */,
+				436927D91B0A96DB00D1AC17 /* PlaylistSongTableViewCell.h */,
+				436927DA1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -253,12 +262,11 @@
 			isa = PBXGroup;
 			children = (
 				43E9C4481B09C46B008EF44A /* PlaylistViewController.h */,
+				43E9C4491B09C46B008EF44A /* PlaylistViewController.m */,
 				43E9C44E1B09C786008EF44A /* AddPlaylistViewController.h */,
 				43E9C44F1B09C786008EF44A /* AddPlaylistViewController.m */,
 				43E9C44B1B09C4E4008EF44A /* AddSongViewController.h */,
 				43E9C44C1B09C4E4008EF44A /* AddSongViewController.m */,
-				43CDF8301B0A8DF000C2D880 /* AddSongViewControllerDelegate.h */,
-				43E9C4491B09C46B008EF44A /* PlaylistViewController.m */,
 				43E9C4311B099B55008EF44A /* MyPlaylistsViewController.h */,
 				43E9C4321B099B55008EF44A /* MyPlaylistsViewController.m */,
 				43E9C42E1B0995CD008EF44A /* LoginViewController.h */,
@@ -361,6 +369,7 @@
 			files = (
 				43E9C4371B09A1D9008EF44A /* HostedPlaylistTableViewCell.xib in Resources */,
 				43E9C4141B097DBA008EF44A /* Main.storyboard in Resources */,
+				436927D81B0A95DE00D1AC17 /* PlaylistSongTableViewCell.xib in Resources */,
 				43E9C4191B097DBA008EF44A /* LaunchScreen.xib in Resources */,
 				43E9C43F1B09A618008EF44A /* ContributorTableViewCell.xib in Resources */,
 				43E9C4161B097DBA008EF44A /* Images.xcassets in Resources */,
@@ -428,6 +437,7 @@
 				43E9C43A1B09A5C1008EF44A /* HostedPlaylistTableViewCell.m in Sources */,
 				43E9C4451B09B5D1008EF44A /* PlaylistHeaderView.m in Sources */,
 				43E9C4421B09B481008EF44A /* StreamifyStyleKit.m in Sources */,
+				436927DB1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m in Sources */,
 				43CDF82C1B0A877000C2D880 /* ImageService.m in Sources */,
 				43CDF8291B0A7B0E00C2D880 /* SongTableViewCell.m in Sources */,
 				43E9C4301B0995CD008EF44A /* LoginViewController.m in Sources */,

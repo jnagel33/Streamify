@@ -212,6 +212,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="P0a-mq-tbd" id="270-6C-N66"/>
                         <segue destination="1Um-J0-PVD" kind="show" identifier="SearchSongs" id="oGt-1w-NrF"/>
                     </connections>
                 </viewController>

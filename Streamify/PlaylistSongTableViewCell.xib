@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14E11f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="76" id="8dF-3S-yJj" customClass="PlaylistSongTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="376" height="76"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8dF-3S-yJj" id="cjP-4z-zAH">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zgf-Rk-HMl">
+                        <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="75" id="Oaa-PL-eeF"/>
+                            <constraint firstAttribute="height" constant="75" id="leE-ve-EuF"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="song" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xj6-Mk-cua">
+                        <rect key="frame" x="83" y="15" width="285" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOK-I9-fr4">
+                        <rect key="frame" x="83" y="39" width="285" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.64939518039999999" green="0.93939537620000002" blue="0.031238322570000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="Zgf-Rk-HMl" firstAttribute="leading" secondItem="cjP-4z-zAH" secondAttribute="leading" id="6HT-as-YDp"/>
+                    <constraint firstItem="Zgf-Rk-HMl" firstAttribute="top" secondItem="cjP-4z-zAH" secondAttribute="top" id="7qg-X1-0o6"/>
+                    <constraint firstItem="Xj6-Mk-cua" firstAttribute="trailing" secondItem="cjP-4z-zAH" secondAttribute="trailingMargin" id="7zF-hD-tSc"/>
+                    <constraint firstAttribute="bottom" secondItem="Zgf-Rk-HMl" secondAttribute="bottom" id="9rZ-Ir-lc3"/>
+                    <constraint firstItem="Xj6-Mk-cua" firstAttribute="leading" secondItem="Zgf-Rk-HMl" secondAttribute="trailing" constant="8" id="Wfi-ix-R9x"/>
+                    <constraint firstItem="Xj6-Mk-cua" firstAttribute="top" secondItem="cjP-4z-zAH" secondAttribute="topMargin" constant="7" id="h5Q-bC-UZC"/>
+                    <constraint firstItem="Xj6-Mk-cua" firstAttribute="leading" secondItem="oOK-I9-fr4" secondAttribute="leading" id="vbC-jH-q6T"/>
+                    <constraint firstItem="oOK-I9-fr4" firstAttribute="trailing" secondItem="cjP-4z-zAH" secondAttribute="trailingMargin" id="zKr-S2-eYt"/>
+                    <constraint firstItem="oOK-I9-fr4" firstAttribute="top" secondItem="Xj6-Mk-cua" secondAttribute="bottom" constant="3" id="zcI-yz-hez"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="albumArtworkImageView" destination="Zgf-Rk-HMl" id="buf-ja-CXl"/>
+                <outlet property="artistNameLabel" destination="oOK-I9-fr4" id="laR-cV-bOp"/>
+                <outlet property="trackNameLabel" destination="Xj6-Mk-cua" id="gHD-1i-ELY"/>
+            </connections>
+            <point key="canvasLocation" x="455" y="259"/>
+        </tableViewCell>
+    </objects>
+</document>

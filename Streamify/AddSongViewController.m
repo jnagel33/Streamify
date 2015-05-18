@@ -9,11 +9,12 @@
 #import "AddSongViewController.h"
 #import "SpotifyService.h"
 #import "SongTableViewCell.h"
+#import "AddSongViewControllerDelegate.h"
 
 @interface AddSongViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property(weak,nonatomic)IBOutlet UITableView *tableView;
-@property(strong,nonatomic)NSArray *tracks;
+@property(strong,nonatomic)NSArray *songs;
 @property(strong,nonatomic)SpotifyService *spotifyService;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
@@ -33,28 +34,35 @@
 #pragma mark - UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return self.tracks.count;
+  return self.songs.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   SongTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SongCell" forIndexPath:indexPath];
-  Song *song = self.tracks[indexPath.row];
+  Song *song = self.songs[indexPath.row];
   [cell configureCell:song];
   return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  [tableView deselectRowAtIndexPath:indexPath animated:true];
+  Song *song = self.songs[indexPath.row];
+  [self.delegate addSongToPlaylist:song];
+  [self.navigationController popViewControllerAnimated:true];
 }
 
 #pragma mark - UISearchBarDelegate
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+  [searchBar resignFirstResponder];
   if (searchBar.text) {
     [self.spotifyService getTracksFromSearchTerm:searchBar.text completionHandler:^(NSArray *tracks) {
-      self.tracks = tracks;
+      self.songs = tracks;
       [self.tableView reloadData];
     }];
   }
 }
-
-
-
 
 @end

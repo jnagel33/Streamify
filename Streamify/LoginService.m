@@ -10,6 +10,7 @@
 #import <Spotify/Spotify.h>
 #import "SpotifyKeys.h"
 #import "AppDelegate.h"
+#import "AFNetworking.h"
 
 @implementation LoginService
 

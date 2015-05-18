@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddSongViewControllerDelegate.h"
 
 @interface PlaylistViewController : UIViewController
 
