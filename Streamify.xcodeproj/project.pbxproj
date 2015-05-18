@@ -9,11 +9,21 @@
 /* Begin PBXBuildFile section */
 		43E9C40B1B097DBA008EF44A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C40A1B097DBA008EF44A /* main.m */; };
 		43E9C40E1B097DBA008EF44A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C40D1B097DBA008EF44A /* AppDelegate.m */; };
-		43E9C4111B097DBA008EF44A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C4101B097DBA008EF44A /* ViewController.m */; };
 		43E9C4141B097DBA008EF44A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E9C4121B097DBA008EF44A /* Main.storyboard */; };
 		43E9C4161B097DBA008EF44A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43E9C4151B097DBA008EF44A /* Images.xcassets */; };
 		43E9C4191B097DBA008EF44A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43E9C4171B097DBA008EF44A /* LaunchScreen.xib */; };
 		43E9C4251B097DBA008EF44A /* StreamifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C4241B097DBA008EF44A /* StreamifyTests.m */; };
+		43E9C4301B0995CD008EF44A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C42F1B0995CD008EF44A /* LoginViewController.m */; };
+		43E9C4331B099B55008EF44A /* MyPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C4321B099B55008EF44A /* MyPlaylistsViewController.m */; };
+		43E9C4371B09A1D9008EF44A /* HostedPlaylistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43E9C4361B09A1D9008EF44A /* HostedPlaylistTableViewCell.xib */; };
+		43E9C43A1B09A5C1008EF44A /* HostedPlaylistTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C4391B09A5C1008EF44A /* HostedPlaylistTableViewCell.m */; };
+		43E9C43E1B09A618008EF44A /* ContributorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C43C1B09A618008EF44A /* ContributorTableViewCell.m */; };
+		43E9C43F1B09A618008EF44A /* ContributorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43E9C43D1B09A618008EF44A /* ContributorTableViewCell.xib */; };
+		43E9C4421B09B481008EF44A /* StreamifyStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C4411B09B481008EF44A /* StreamifyStyleKit.m */; };
+		43E9C4451B09B5D1008EF44A /* PlaylistHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C4441B09B5D1008EF44A /* PlaylistHeaderView.m */; };
+		43E9C44A1B09C46B008EF44A /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C4491B09C46B008EF44A /* PlaylistViewController.m */; };
+		43E9C44D1B09C4E4008EF44A /* AddSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C44C1B09C4E4008EF44A /* AddSongViewController.m */; };
+		43E9C4501B09C786008EF44A /* AddPlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C44F1B09C786008EF44A /* AddPlaylistViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +42,32 @@
 		43E9C40A1B097DBA008EF44A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		43E9C40C1B097DBA008EF44A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		43E9C40D1B097DBA008EF44A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		43E9C40F1B097DBA008EF44A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		43E9C4101B097DBA008EF44A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		43E9C4131B097DBA008EF44A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43E9C4151B097DBA008EF44A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		43E9C4181B097DBA008EF44A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		43E9C41E1B097DBA008EF44A /* StreamifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StreamifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E9C4231B097DBA008EF44A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43E9C4241B097DBA008EF44A /* StreamifyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StreamifyTests.m; sourceTree = "<group>"; };
+		43E9C42E1B0995CD008EF44A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		43E9C42F1B0995CD008EF44A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		43E9C4311B099B55008EF44A /* MyPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPlaylistsViewController.h; sourceTree = "<group>"; };
+		43E9C4321B099B55008EF44A /* MyPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPlaylistsViewController.m; sourceTree = "<group>"; };
+		43E9C4361B09A1D9008EF44A /* HostedPlaylistTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HostedPlaylistTableViewCell.xib; sourceTree = "<group>"; };
+		43E9C4381B09A5C1008EF44A /* HostedPlaylistTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostedPlaylistTableViewCell.h; sourceTree = "<group>"; };
+		43E9C4391B09A5C1008EF44A /* HostedPlaylistTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostedPlaylistTableViewCell.m; sourceTree = "<group>"; };
+		43E9C43B1B09A618008EF44A /* ContributorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContributorTableViewCell.h; sourceTree = "<group>"; };
+		43E9C43C1B09A618008EF44A /* ContributorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContributorTableViewCell.m; sourceTree = "<group>"; };
+		43E9C43D1B09A618008EF44A /* ContributorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContributorTableViewCell.xib; sourceTree = "<group>"; };
+		43E9C4401B09B481008EF44A /* StreamifyStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamifyStyleKit.h; sourceTree = "<group>"; };
+		43E9C4411B09B481008EF44A /* StreamifyStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamifyStyleKit.m; sourceTree = "<group>"; };
+		43E9C4431B09B5D1008EF44A /* PlaylistHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistHeaderView.h; sourceTree = "<group>"; };
+		43E9C4441B09B5D1008EF44A /* PlaylistHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistHeaderView.m; sourceTree = "<group>"; };
+		43E9C4481B09C46B008EF44A /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
+		43E9C4491B09C46B008EF44A /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
+		43E9C44B1B09C4E4008EF44A /* AddSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSongViewController.h; sourceTree = "<group>"; };
+		43E9C44C1B09C4E4008EF44A /* AddSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSongViewController.m; sourceTree = "<group>"; };
+		43E9C44E1B09C786008EF44A /* AddPlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaylistViewController.h; sourceTree = "<group>"; };
+		43E9C44F1B09C786008EF44A /* AddPlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaylistViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,11 +111,9 @@
 			children = (
 				43E9C40C1B097DBA008EF44A /* AppDelegate.h */,
 				43E9C40D1B097DBA008EF44A /* AppDelegate.m */,
-				43E9C40F1B097DBA008EF44A /* ViewController.h */,
-				43E9C4101B097DBA008EF44A /* ViewController.m */,
-				43E9C4121B097DBA008EF44A /* Main.storyboard */,
+				43E9C4461B09B85B008EF44A /* View */,
+				43E9C4471B09B864008EF44A /* Controller */,
 				43E9C4151B097DBA008EF44A /* Images.xcassets */,
-				43E9C4171B097DBA008EF44A /* LaunchScreen.xib */,
 				43E9C4081B097DBA008EF44A /* Supporting Files */,
 			);
 			path = Streamify;
@@ -117,6 +143,42 @@
 				43E9C4231B097DBA008EF44A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		43E9C4461B09B85B008EF44A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				43E9C4171B097DBA008EF44A /* LaunchScreen.xib */,
+				43E9C4121B097DBA008EF44A /* Main.storyboard */,
+				43E9C4361B09A1D9008EF44A /* HostedPlaylistTableViewCell.xib */,
+				43E9C4381B09A5C1008EF44A /* HostedPlaylistTableViewCell.h */,
+				43E9C43B1B09A618008EF44A /* ContributorTableViewCell.h */,
+				43E9C43C1B09A618008EF44A /* ContributorTableViewCell.m */,
+				43E9C43D1B09A618008EF44A /* ContributorTableViewCell.xib */,
+				43E9C4391B09A5C1008EF44A /* HostedPlaylistTableViewCell.m */,
+				43E9C4431B09B5D1008EF44A /* PlaylistHeaderView.h */,
+				43E9C4441B09B5D1008EF44A /* PlaylistHeaderView.m */,
+				43E9C4401B09B481008EF44A /* StreamifyStyleKit.h */,
+				43E9C4411B09B481008EF44A /* StreamifyStyleKit.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		43E9C4471B09B864008EF44A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				43E9C4481B09C46B008EF44A /* PlaylistViewController.h */,
+				43E9C44E1B09C786008EF44A /* AddPlaylistViewController.h */,
+				43E9C44F1B09C786008EF44A /* AddPlaylistViewController.m */,
+				43E9C44B1B09C4E4008EF44A /* AddSongViewController.h */,
+				43E9C44C1B09C4E4008EF44A /* AddSongViewController.m */,
+				43E9C4491B09C46B008EF44A /* PlaylistViewController.m */,
+				43E9C4311B099B55008EF44A /* MyPlaylistsViewController.h */,
+				43E9C4321B099B55008EF44A /* MyPlaylistsViewController.m */,
+				43E9C42E1B0995CD008EF44A /* LoginViewController.h */,
+				43E9C42F1B0995CD008EF44A /* LoginViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,8 +261,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43E9C4371B09A1D9008EF44A /* HostedPlaylistTableViewCell.xib in Resources */,
 				43E9C4141B097DBA008EF44A /* Main.storyboard in Resources */,
 				43E9C4191B097DBA008EF44A /* LaunchScreen.xib in Resources */,
+				43E9C43F1B09A618008EF44A /* ContributorTableViewCell.xib in Resources */,
 				43E9C4161B097DBA008EF44A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,9 +283,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43E9C4111B097DBA008EF44A /* ViewController.m in Sources */,
+				43E9C4331B099B55008EF44A /* MyPlaylistsViewController.m in Sources */,
 				43E9C40E1B097DBA008EF44A /* AppDelegate.m in Sources */,
+				43E9C44A1B09C46B008EF44A /* PlaylistViewController.m in Sources */,
 				43E9C40B1B097DBA008EF44A /* main.m in Sources */,
+				43E9C43E1B09A618008EF44A /* ContributorTableViewCell.m in Sources */,
+				43E9C44D1B09C4E4008EF44A /* AddSongViewController.m in Sources */,
+				43E9C43A1B09A5C1008EF44A /* HostedPlaylistTableViewCell.m in Sources */,
+				43E9C4451B09B5D1008EF44A /* PlaylistHeaderView.m in Sources */,
+				43E9C4421B09B481008EF44A /* StreamifyStyleKit.m in Sources */,
+				43E9C4301B0995CD008EF44A /* LoginViewController.m in Sources */,
+				43E9C4501B09C786008EF44A /* AddPlaylistViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  AddSongViewController.h
 //  Streamify
 //
 //  Created by Josh Nagel on 5/17/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface AddSongViewController : UIViewController
 
 @end
-
