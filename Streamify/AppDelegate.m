@@ -10,6 +10,7 @@
 #import "StreamifyStyleKit.h"
 #import "AFNetworking.h"
 #import <Spotify/Spotify.h>
+#import "SpotifyKeys.h"
 
 const CGFloat kGlobalNavigationFontSize = 17;
 
@@ -31,7 +32,7 @@ const CGFloat kGlobalNavigationFontSize = 17;
   [[UINavigationBar appearance] setTitleTextAttributes:attributes];
   
   
-  [[SPTAuth defaultInstance]setClientID:@"487811b3c0014b2abc55ad470749533d"];
+  [[SPTAuth defaultInstance]setClientID:kClientID];
   [[SPTAuth defaultInstance]setRedirectURL:[NSURL URLWithString:@"streamify://callback"]];
   [[SPTAuth defaultInstance]setRequestedScopes:@[SPTAuthStreamingScope, SPTAuthUserLibraryReadScope]];
   
@@ -98,19 +99,17 @@ const CGFloat kGlobalNavigationFontSize = 17;
       return;
     }
     
-    NSURL *trackURI = [NSURL URLWithString:trackUri];
-    [self.player playURIs:@[ trackURI ] fromIndex:0 callback:^(NSError *error) {
-      if (error != nil) {
-        NSLog(@"*** Starting playback got error: %@", error);
-        return;
-      }
-    }];
-    //    [self.player queueURIs:@ clearQueue:<#(BOOL)#> callback:<#^(NSError *error)block#>]
-    //    [self.player que]
+//    NSURL *trackURI = [NSURL URLWithString:trackUri];
+//    [self.player playURIs:@[ trackURI ] fromIndex:0 callback:^(NSError *error) {
+//      if (error != nil) {
+//        NSLog(@"*** Starting playback got error: %@", error);
+//        return;
+//      }
+//    }];
+//        [self.player queueURIs:@ clearQueue:<#(BOOL)#> callback:<#^(NSError *error)block#>]
+//        [self.player que]
   }];
 }
-
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
   // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
