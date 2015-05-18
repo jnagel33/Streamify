@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4321FBC71B09D87700F2573B /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4321FBC61B09D87700F2573B /* Spotify.framework */; };
+		4321FBC91B09DAF600F2573B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4321FBC81B09DAF600F2573B /* AVFoundation.framework */; };
+		4321FBCB1B09DB0300F2573B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4321FBCA1B09DB0300F2573B /* SystemConfiguration.framework */; };
+		4321FBCE1B09DC0100F2573B /* SpotifyKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBCD1B09DC0100F2573B /* SpotifyKeys.m */; };
 		43E9C40B1B097DBA008EF44A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C40A1B097DBA008EF44A /* main.m */; };
 		43E9C40E1B097DBA008EF44A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C40D1B097DBA008EF44A /* AppDelegate.m */; };
 		43E9C4141B097DBA008EF44A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E9C4121B097DBA008EF44A /* Main.storyboard */; };
@@ -24,6 +28,7 @@
 		43E9C44A1B09C46B008EF44A /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C4491B09C46B008EF44A /* PlaylistViewController.m */; };
 		43E9C44D1B09C4E4008EF44A /* AddSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C44C1B09C4E4008EF44A /* AddSongViewController.m */; };
 		43E9C4501B09C786008EF44A /* AddPlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C44F1B09C786008EF44A /* AddPlaylistViewController.m */; };
+		ABB4B290386EFF2DC0D37F5B /* libPods-Streamify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 190E1D1FC10ED81E0F409FCB /* libPods-Streamify.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		190E1D1FC10ED81E0F409FCB /* libPods-Streamify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Streamify.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31B2B441651D0F7DF25DD03F /* Pods-Streamify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Streamify.release.xcconfig"; path = "Pods/Target Support Files/Pods-Streamify/Pods-Streamify.release.xcconfig"; sourceTree = "<group>"; };
+		4321FBC61B09D87700F2573B /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
+		4321FBC81B09DAF600F2573B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4321FBCA1B09DB0300F2573B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4321FBCC1B09DC0100F2573B /* SpotifyKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyKeys.h; sourceTree = "<group>"; };
+		4321FBCD1B09DC0100F2573B /* SpotifyKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyKeys.m; sourceTree = "<group>"; };
 		43E9C4051B097DBA008EF44A /* Streamify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streamify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E9C4091B097DBA008EF44A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43E9C40A1B097DBA008EF44A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -68,6 +80,7 @@
 		43E9C44C1B09C4E4008EF44A /* AddSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSongViewController.m; sourceTree = "<group>"; };
 		43E9C44E1B09C786008EF44A /* AddPlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaylistViewController.h; sourceTree = "<group>"; };
 		43E9C44F1B09C786008EF44A /* AddPlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaylistViewController.m; sourceTree = "<group>"; };
+		49E819D625B3E27534493D2B /* Pods-Streamify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Streamify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Streamify/Pods-Streamify.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +88,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4321FBCB1B09DB0300F2573B /* SystemConfiguration.framework in Frameworks */,
+				4321FBC91B09DAF600F2573B /* AVFoundation.framework in Frameworks */,
+				ABB4B290386EFF2DC0D37F5B /* libPods-Streamify.a in Frameworks */,
+				4321FBC71B09D87700F2573B /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,12 +105,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BCAAB8F70B9D40EF4F0B29C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				49E819D625B3E27534493D2B /* Pods-Streamify.debug.xcconfig */,
+				31B2B441651D0F7DF25DD03F /* Pods-Streamify.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4321FBCF1B09DC2600F2573B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4321FBCC1B09DC0100F2573B /* SpotifyKeys.h */,
+				4321FBCD1B09DC0100F2573B /* SpotifyKeys.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		43E9C3FC1B097DBA008EF44A = {
 			isa = PBXGroup;
 			children = (
+				4321FBC61B09D87700F2573B /* Spotify.framework */,
 				43E9C4071B097DBA008EF44A /* Streamify */,
 				43E9C4211B097DBA008EF44A /* StreamifyTests */,
 				43E9C4061B097DBA008EF44A /* Products */,
+				0BCAAB8F70B9D40EF4F0B29C /* Pods */,
+				B1BAB5541BF0F8B0C8A67099 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +149,7 @@
 			children = (
 				43E9C40C1B097DBA008EF44A /* AppDelegate.h */,
 				43E9C40D1B097DBA008EF44A /* AppDelegate.m */,
+				4321FBCF1B09DC2600F2573B /* Model */,
 				43E9C4461B09B85B008EF44A /* View */,
 				43E9C4471B09B864008EF44A /* Controller */,
 				43E9C4151B097DBA008EF44A /* Images.xcassets */,
@@ -181,6 +220,16 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		B1BAB5541BF0F8B0C8A67099 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4321FBCA1B09DB0300F2573B /* SystemConfiguration.framework */,
+				4321FBC81B09DAF600F2573B /* AVFoundation.framework */,
+				190E1D1FC10ED81E0F409FCB /* libPods-Streamify.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -188,9 +237,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43E9C4281B097DBA008EF44A /* Build configuration list for PBXNativeTarget "Streamify" */;
 			buildPhases = (
+				E60E0E0FA147BD8E9ABA9CFE /* Check Pods Manifest.lock */,
 				43E9C4011B097DBA008EF44A /* Sources */,
 				43E9C4021B097DBA008EF44A /* Frameworks */,
 				43E9C4031B097DBA008EF44A /* Resources */,
+				2719CD20F2607B3FE148BE7B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -278,6 +329,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2719CD20F2607B3FE148BE7B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Streamify/Pods-Streamify-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E60E0E0FA147BD8E9ABA9CFE /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		43E9C4011B097DBA008EF44A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -289,6 +373,7 @@
 				43E9C40B1B097DBA008EF44A /* main.m in Sources */,
 				43E9C43E1B09A618008EF44A /* ContributorTableViewCell.m in Sources */,
 				43E9C44D1B09C4E4008EF44A /* AddSongViewController.m in Sources */,
+				4321FBCE1B09DC0100F2573B /* SpotifyKeys.m in Sources */,
 				43E9C43A1B09A5C1008EF44A /* HostedPlaylistTableViewCell.m in Sources */,
 				43E9C4451B09B5D1008EF44A /* PlaylistHeaderView.m in Sources */,
 				43E9C4421B09B481008EF44A /* StreamifyStyleKit.m in Sources */,
@@ -419,8 +504,13 @@
 		};
 		43E9C4291B097DBA008EF44A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49E819D625B3E27534493D2B /* Pods-Streamify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Streamify/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -429,8 +519,13 @@
 		};
 		43E9C42A1B097DBA008EF44A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31B2B441651D0F7DF25DD03F /* Pods-Streamify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Streamify/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -490,6 +585,7 @@
 				43E9C42A1B097DBA008EF44A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		43E9C42B1B097DBA008EF44A /* Build configuration list for PBXNativeTarget "StreamifyTests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +594,7 @@
 				43E9C42D1B097DBA008EF44A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

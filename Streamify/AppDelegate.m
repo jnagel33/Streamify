@@ -8,8 +8,15 @@
 
 #import "AppDelegate.h"
 #import "StreamifyStyleKit.h"
+#import "AFNetworking.h"
+#import <Spotify/Spotify.h>
+
+const CGFloat kGlobalNavigationFontSize = 17;
 
 @interface AppDelegate ()
+
+@property(nonatomic,strong)SPTSession *session;
+@property(nonatomic,strong)SPTAudioStreamingController *player;
 
 @end
 
@@ -20,8 +27,90 @@
   
   [self.window setTintColor:[StreamifyStyleKit spotifyGreen]];
   
+  NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Avenir" size:kGlobalNavigationFontSize], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+  [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+  
+  
+  [[SPTAuth defaultInstance]setClientID:@"487811b3c0014b2abc55ad470749533d"];
+  [[SPTAuth defaultInstance]setRedirectURL:[NSURL URLWithString:@"streamify://callback"]];
+  [[SPTAuth defaultInstance]setRequestedScopes:@[SPTAuthStreamingScope, SPTAuthUserLibraryReadScope]];
+  
+  NSURL *loginURL = [[SPTAuth defaultInstance]loginURL];
+  
+  [application performSelector:@selector(openURL:)withObject:loginURL afterDelay:0.1];
+  
+  
   return YES;
 }
+
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+  if ([[SPTAuth defaultInstance]canHandleURL:url]) {
+    [[SPTAuth defaultInstance]handleAuthCallbackWithTriggeredAuthURL:url callback:^(NSError *error, SPTSession *session) {
+      
+      [[NSUserDefaults standardUserDefaults]setValue:session.accessToken forKey:@"token"];
+      [[NSUserDefaults standardUserDefaults]synchronize];
+      if (error != nil) {
+        NSLog(@"*** Auth error: %@", error);
+        return;
+      }
+      NSLog(@"%@",session.accessToken);
+      NSString *urlStr = [NSString stringWithFormat:@"https://api.spotify.com/v1/me/tracks"];
+      NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+      [request setValue:[NSString stringWithFormat:@"Bearer %@",session.accessToken ] forHTTPHeaderField:@"Authorization"];
+      NSURLSessionDataTask *task = [[NSURLSession sharedSession]dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSLog(@"%@",data);
+        
+        
+        NSDictionary *savedTracksInfo = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSArray *tracks = savedTracksInfo[@"items"];
+        for (NSDictionary *track in tracks) {
+          NSDictionary *trackInfo = track[@"track"];
+//          NSDictionary *album = trackInfo[@"album"];
+//          NSString *name = album[@"name"];
+          NSString *uri = trackInfo[@"uri"];
+          [self playUsingSession:session withTrack:uri];
+        }
+      }];
+      [task resume];
+      
+      
+      
+      // Call the -playUsingSession: method to play a track
+      //      [self playUsingSession:session];
+    }];
+    return YES;
+  }
+  
+  return NO;
+}
+
+-(void)playUsingSession:(SPTSession *)session withTrack:(NSString *)trackUri  {
+  
+  // Create a new player if needed
+  if (self.player == nil) {
+    self.player = [[SPTAudioStreamingController alloc] initWithClientId:[SPTAuth defaultInstance].clientID];
+  }
+  
+  [self.player loginWithSession:session callback:^(NSError *error) {
+    if (error != nil) {
+      NSLog(@"*** Logging in got error: %@", error);
+      return;
+    }
+    
+    NSURL *trackURI = [NSURL URLWithString:trackUri];
+    [self.player playURIs:@[ trackURI ] fromIndex:0 callback:^(NSError *error) {
+      if (error != nil) {
+        NSLog(@"*** Starting playback got error: %@", error);
+        return;
+      }
+    }];
+    //    [self.player queueURIs:@ clearQueue:<#(BOOL)#> callback:<#^(NSError *error)block#>]
+    //    [self.player que]
+  }];
+}
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
   // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
