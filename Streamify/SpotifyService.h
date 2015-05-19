@@ -23,8 +23,6 @@
 
 -(void)getTracksFromSearchTerm:(NSString *)searchTerm completionHandler:(void (^)(NSArray *tracks))completionHandler;
 
--(void)playUsingSession:(SPTSession *)session AndPlayer:(SPTAudioStreamingController *)player withTrack:(NSString *)trackUri;
-
 -(void)loginApp:(NSString *)username AndPassword:(NSString *)password completionHandler:(void (^)(void))completionHandler;
 
 -(void)createUser:(NSString *)username AndPassword:(NSString *)password completionHandler:(void (^)(void))completionHandler;

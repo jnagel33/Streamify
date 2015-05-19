@@ -10,6 +10,8 @@
 
 @interface LoginService : NSObject
 
-+(void)loginWithSpotify:(void (^)(void))completionHandler;
+-(void)loginWithSpotify:(void (^)(void))completionHandler;
+
+-(void)returnFromRedirect;
 
 @end

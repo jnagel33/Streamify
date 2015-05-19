@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class User;
 
 @interface Song : NSObject
 
@@ -17,6 +18,7 @@
 @property(strong,nonatomic)UIImage *albumArtwork;
 @property(strong,nonatomic)NSString *uri;
 @property(strong,nonatomic)NSNumber *duration;
+@property(strong,nonatomic)User *contributor;
 
 -(instancetype)initWithTrackName:(NSString *)trackName artistName:(NSString *)artistName albumName:(NSString *)albumName albumArtworkURL:(NSString *)albumArtworkURL uri:(NSString *)uri duration:(NSNumber *)duration;
 

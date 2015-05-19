@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 @class SPTSession;
 @class SPTAudioStreamingController;
+@class LoginService;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property(nonatomic,strong)SPTSession *session;
 @property(nonatomic,strong)SPTAudioStreamingController *player;
+@property(strong,nonatomic)LoginService *loginService;
 
 @end
 

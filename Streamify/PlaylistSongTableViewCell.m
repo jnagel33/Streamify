@@ -10,14 +10,18 @@
 #import "ImageService.h"
 #import "ImageResizer.h"
 #import "Song.h"
+#import "User.h"
+#import "StreamifyStyleKit.h"
 
-CGFloat const kArtworkPlaylistImageHeightWidth = 75;
+CGFloat const kArtworkPlaylistImageHeightWidth = 50;
+CGFloat const kProfilePlaylistImageHeightWidth = 50;
 
 @interface PlaylistSongTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *albumArtworkImageView;
 @property (weak, nonatomic) IBOutlet UILabel *trackNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *artistNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *contributorImageView;
 
 @end
 
@@ -27,6 +31,9 @@ CGFloat const kArtworkPlaylistImageHeightWidth = 75;
   self.albumArtworkImageView.image = nil;
   self.artistNameLabel.text = nil;
   self.trackNameLabel.text = nil;
+  self.contributorImageView.image = nil;
+  
+  self.artistNameLabel.textColor = [StreamifyStyleKit spotifyGreen];
   
   self.artistNameLabel.text = song.artistName;
   self.trackNameLabel.text = song.trackName;
@@ -37,6 +44,21 @@ CGFloat const kArtworkPlaylistImageHeightWidth = 75;
     UIImage *resizedImage = [ImageResizer resizeImage:artworkImage withSize:CGSizeMake(kArtworkPlaylistImageHeightWidth, kArtworkPlaylistImageHeightWidth)];
     song.albumArtwork = resizedImage;
     self.albumArtworkImageView.image = resizedImage;
+  }
+  
+  self.contributorImageView.layer.cornerRadius = kProfilePlaylistImageHeightWidth / 2;
+  self.contributorImageView.layer.masksToBounds = true;
+  if (song.contributor) {
+    if (song.contributor.profileImage) {
+      self.contributorImageView.image = song.contributor.profileImage;
+    } else {
+      if (song.contributor.profileImageURL) {
+        UIImage *profileImage = [[ImageService sharedService]getImageFromURL:song.contributor.profileImageURL];
+        UIImage *resizedImage = [ImageResizer resizeImage:profileImage withSize:CGSizeMake(kProfilePlaylistImageHeightWidth, kProfilePlaylistImageHeightWidth)];
+        song.contributor.profileImage = resizedImage;
+        self.contributorImageView.image = resizedImage;
+      }
+    }
   }
 }
 

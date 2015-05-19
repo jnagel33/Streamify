@@ -40,28 +40,6 @@
   return _sessionManager;
 }
 
--(void)playUsingSession:(SPTSession *)session AndPlayer:(SPTAudioStreamingController *)player withTrack:(NSString *)trackUri {
-  
-  // Create a new player if needed
-  if (player == nil) {
-    player = [[SPTAudioStreamingController alloc] initWithClientId:[SPTAuth defaultInstance].clientID];
-  }
-  
-  [player loginWithSession:session callback:^(NSError *error) {
-    if (error != nil) {
-      NSLog(@"*** Logging in got error: %@", error);
-      return;
-    }
-    NSURL *trackURI = [NSURL URLWithString:trackUri];
-    [player playURIs:@[ trackURI ] fromIndex:0 callback:^(NSError *error) {
-      if (error != nil) {
-        NSLog(@"*** Starting playback got error: %@", error);
-        return;
-      }
-    }];
-  }];
-}
-
 -(void)getUserProfile: (void (^)(User *user))completionHandler {
   NSString *token = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
   NSString *urlStr = [NSString stringWithFormat:@"https://api.spotify.com/v1/me"];
@@ -85,8 +63,9 @@
 }
 
 -(void)getTracksFromSearchTerm:(NSString *)searchTerm completionHandler:(void (^)(NSArray *tracks))completionHandler {
+  NSString *searchText = [searchTerm stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
   NSString *token = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
-  NSString *urlStr = [NSString stringWithFormat:@"https://api.spotify.com/v1/search?type=track&q=%@",searchTerm];
+  NSString *urlStr = [NSString stringWithFormat:@"https://api.spotify.com/v1/search?type=track&q=%@",searchText];
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
   if (token) {
     [request setValue:[NSString stringWithFormat:@"Bearer %@",token ] forHTTPHeaderField:@"Authorization"];
@@ -105,7 +84,7 @@
 }
 
 -(void)loginApp:(NSString *)username AndPassword:(NSString *)password completionHandler:(void (^)(void))completionHandler {
-  NSString *urlStr = @"http://streamify.herokuapp.com/api/user/sign_in";
+  NSString *urlStr = @"http://streamify-team.herokuapp.com/api/user/sign_in";
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
   NSDictionary *usernamePassword = @{@"username":username, @"password":password};
   NSError *error;
@@ -127,7 +106,7 @@
 }
 
 -(void)createUser:(NSString *)username AndPassword:(NSString *)password completionHandler:(void (^)(void))completionHandler {
-  NSString *urlStr = @"http://streamify.herokuapp.com/api/user/create_user";
+  NSString *urlStr = @"http://streamify-team.herokuapp.com/api/user/create_user";
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
   NSDictionary *usernamePassword = @{@"username":username, @"password":password};
   NSError *error;

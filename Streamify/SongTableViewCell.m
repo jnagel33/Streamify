@@ -10,6 +10,7 @@
 #import "Song.h"
 #import "ImageService.h"
 #import "ImageResizer.h"
+#import "StreamifyStyleKit.h"
 
 CGFloat const kArtworkImageHeightWidth = 75;
 
@@ -27,6 +28,8 @@ CGFloat const kArtworkImageHeightWidth = 75;
   self.albumArtworkImageView.image = nil;
   self.artistNameLabel.text = nil;
   self.trackNameLabel.text = nil;
+  
+  self.artistNameLabel.textColor = [StreamifyStyleKit spotifyGreen];
   
   self.artistNameLabel.text = song.artistName;
   self.trackNameLabel.text = song.trackName;

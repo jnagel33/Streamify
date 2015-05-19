@@ -15,7 +15,10 @@
 +(User *)getUserFromJSON:(NSDictionary *)info {
   NSString *displayName = info[@"display_name"];
   NSString *email = info[@"email"];
-  return [[User alloc]initWithDisplayName:displayName AndEmail:email WithUserType:nil];
+  NSArray *images = info[@"images"];
+  NSDictionary *image = images[0];
+  NSString *profileImageURL = image[@"url"];
+  return [[User alloc]initWithDisplayName:displayName AndEmail:email WithUserType:nil andProfileImageURL:profileImageURL];
 }
 
 +(NSArray *)getTracksFromJSON:(NSDictionary *)info {
@@ -26,7 +29,10 @@
   for (NSDictionary *item in items) {
     NSDictionary *album = item[@"album"];
     NSArray *albumArtworkItems = album[@"images"];
-    NSDictionary *albumArtworkURLItem = albumArtworkItems[1];
+    NSMutableDictionary *albumArtworkURLItem;
+    if (albumArtworkItems.count >= 2) {
+      albumArtworkURLItem = albumArtworkItems[1];
+    }
     NSString *albumArtworkURL = albumArtworkURLItem[@"url"];
     NSString *albumName = album[@"name"];
     NSArray *artists = item[@"artists"];

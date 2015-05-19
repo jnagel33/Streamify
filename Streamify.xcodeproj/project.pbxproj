@@ -17,7 +17,6 @@
 		4321FBDB1B0A619300F2573B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBDA1B0A619300F2573B /* User.m */; };
 		4321FBDE1B0A61A800F2573B /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBDD1B0A61A800F2573B /* Song.m */; };
 		4321FBE11B0A693500F2573B /* SpotifyJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBE01B0A693500F2573B /* SpotifyJSONParser.m */; };
-		436927D81B0A95DE00D1AC17 /* PlaylistSongTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 436927D71B0A95DE00D1AC17 /* PlaylistSongTableViewCell.xib */; };
 		436927DB1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 436927DA1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m */; };
 		43CDF8291B0A7B0E00C2D880 /* SongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CDF8281B0A7B0E00C2D880 /* SongTableViewCell.m */; };
 		43CDF82C1B0A877000C2D880 /* ImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CDF82B1B0A877000C2D880 /* ImageService.m */; };
@@ -72,7 +71,6 @@
 		4321FBDD1B0A61A800F2573B /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		4321FBDF1B0A693500F2573B /* SpotifyJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyJSONParser.h; sourceTree = "<group>"; };
 		4321FBE01B0A693500F2573B /* SpotifyJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyJSONParser.m; sourceTree = "<group>"; };
-		436927D71B0A95DE00D1AC17 /* PlaylistSongTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaylistSongTableViewCell.xib; sourceTree = "<group>"; };
 		436927D91B0A96DB00D1AC17 /* PlaylistSongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistSongTableViewCell.h; sourceTree = "<group>"; };
 		436927DA1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistSongTableViewCell.m; sourceTree = "<group>"; };
 		43CDF8271B0A7B0E00C2D880 /* SongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableViewCell.h; sourceTree = "<group>"; };
@@ -251,7 +249,6 @@
 				43E9C4441B09B5D1008EF44A /* PlaylistHeaderView.m */,
 				43E9C4401B09B481008EF44A /* StreamifyStyleKit.h */,
 				43E9C4411B09B481008EF44A /* StreamifyStyleKit.m */,
-				436927D71B0A95DE00D1AC17 /* PlaylistSongTableViewCell.xib */,
 				436927D91B0A96DB00D1AC17 /* PlaylistSongTableViewCell.h */,
 				436927DA1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m */,
 			);
@@ -369,7 +366,6 @@
 			files = (
 				43E9C4371B09A1D9008EF44A /* HostedPlaylistTableViewCell.xib in Resources */,
 				43E9C4141B097DBA008EF44A /* Main.storyboard in Resources */,
-				436927D81B0A95DE00D1AC17 /* PlaylistSongTableViewCell.xib in Resources */,
 				43E9C4191B097DBA008EF44A /* LaunchScreen.xib in Resources */,
 				43E9C43F1B09A618008EF44A /* ContributorTableViewCell.xib in Resources */,
 				43E9C4161B097DBA008EF44A /* Images.xcassets in Resources */,
