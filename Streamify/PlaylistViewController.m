@@ -13,6 +13,8 @@
 #import "SpotifyService.h"
 #import "AppDelegate.h"
 #import "User.h"
+#import "ImageService.h"
+#import "ImageResizer.h"
 
 @interface PlaylistViewController () <UITableViewDataSource, UITableViewDelegate, AddSongViewControllerDelegate, SPTAudioStreamingPlaybackDelegate>
 
@@ -21,11 +23,11 @@
 @property(strong,nonatomic)SpotifyService *spotifyService;
 @property(strong,nonatomic)SPTAudioStreamingController *player;
 @property(strong,nonatomic)SPTSession *session;
-@property(nonatomic)bool isPlaying;
+@property(nonatomic)NSInteger currentRowPlaying;
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailNowPlayingImageView;
 @property (weak, nonatomic) IBOutlet UILabel *trackNameNowPlayingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *artistNameNowPlayingLabel;
-@property (weak, nonatomic) IBOutlet UITableView *profileImageView;
+@property (weak, nonatomic) IBOutlet UIView *nowPlayingView;
 
 @end
 
@@ -36,6 +38,10 @@
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   
+  self.thumbnailNowPlayingImageView.image = nil;
+  self.trackNameNowPlayingLabel.text = nil;
+  self.artistNameNowPlayingLabel.text = nil;
+  
   AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
   self.session = appDelegate.session;
   [self createPlayer];
@@ -45,14 +51,21 @@
   //Remove later
   self.songs = [[NSMutableArray alloc]init];
 }
+
+-(void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(nowPlayingPressed:)];
+  [self.nowPlayingView addGestureRecognizer:tapGestureRecognizer];
+}
+
+-(void)nowPlayingPressed:(UIGestureRecognizer *)sender {
+//  [self performSegueWithIdentifier:@"ShowNowPlaying" sender:self];
+}
+
+
 - (IBAction)addSongPressed:(UIBarButtonItem *)sender {
   [self performSegueWithIdentifier:@"SearchSongs" sender:self];
 }
-
--(void)songChanged {
-  
-}
-
 
 -(void)createPlayer {
   self.player = [[SPTAudioStreamingController alloc] initWithClientId:[SPTAuth defaultInstance].clientID];
@@ -61,6 +74,7 @@
       NSLog(@"*** Logging in got error: %@", error);
       return;
     }
+    self.player.playbackDelegate = self;
   }];
 }
 
@@ -86,21 +100,28 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:true];
-  if (self.isPlaying) {
+  if (![self.player isPlaying]|| self.currentRowPlaying != indexPath.row) {
     NSMutableArray *playlistQueue = [[NSMutableArray alloc]init];
     
+    if ([self.player isPlaying]) {
+      [self.player stop:^(NSError *error) {
+        if (error != nil) {
+          NSLog(@"*** Stopping playback got error: %@", error);
+          return;
+        }
+      }];
+    }
     for (NSInteger i = indexPath.row; i < self.songs.count; i++) {
       Song *song = self.songs[i];
       NSURL *trackURI = [NSURL URLWithString:song.uri];
       [playlistQueue addObject:trackURI];
     }
-    
     [self.player playURIs:playlistQueue fromIndex:0 callback:^(NSError *error) {
       if (error != nil) {
         NSLog(@"*** Starting playback got error: %@", error);
         return;
       }
-      self.isPlaying = true;
+      self.currentRowPlaying = indexPath.row;
     }];
   } else {
     [self.player stop:^(NSError *error) {
@@ -108,7 +129,6 @@
         NSLog(@"*** Stopping playback got error: %@", error);
         return;
       }
-      self.isPlaying = false;
     }];
   }
 }
@@ -126,8 +146,31 @@
   song.contributor = user;
   [self.songs addObject:song];
   [self.tableView reloadData];
-  [self.player queueURIs:@[[NSURL URLWithString:song.uri]] clearQueue:false callback:nil];
+  if ([self.player isPlaying]) {
+    [self.player queueURIs:@[[NSURL URLWithString:song.uri]] clearQueue:false callback:nil];
+  }
   NSLog(@"%d", self.player.trackListSize);
+}
+
+//-(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didStartPlayingTrack:(NSURL *)trackUri {
+//  NSLog(@"%@", [trackUri relativeString]);
+//}
+
+-(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didStopPlayingTrack:(NSURL *)trackUri {
+  NSLog(@"%@", [trackUri relativeString]);
+}
+
+-(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangeToTrack:(NSDictionary *)trackMetadata {
+  NSLog(@"%@", trackMetadata);
+  self.trackNameNowPlayingLabel.text = trackMetadata[@"SPTAudioStreamingMetadataTrackName"];
+  self.artistNameNowPlayingLabel.text = trackMetadata[@"SPTAudioStreamingMetadataArtistName"];
+  for (Song *song in self.songs) {
+    NSString *albumName = trackMetadata[@"SPTAudioStreamingMetadataAlbumName"];
+    if ([song.albumName isEqualToString:albumName]) {
+      UIImage *resizedImage = [ImageResizer resizeImage:song.albumArtwork withSize:CGSizeMake(50, 50)];
+      self.thumbnailNowPlayingImageView.image = resizedImage;
+    }
+  }
 }
 
 @end

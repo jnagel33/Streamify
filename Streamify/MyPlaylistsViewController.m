@@ -29,6 +29,7 @@
                                  style:UIBarButtonItemStylePlain
                                  target:nil
                                  action:nil];
+  
   self.navigationItem.backBarButtonItem=backButton;
   
   UINib *cellNib = [UINib nibWithNibName:@"HostedPlaylistTableViewCell" bundle:[NSBundle mainBundle]];
@@ -38,7 +39,20 @@
   
 }
 - (IBAction)addPlaylistButton:(UIBarButtonItem *)sender {
-  [self performSegueWithIdentifier:@"CreatePlaylist" sender:self];
+  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Add a Playlist" message:nil preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    
+  }];
+  [alertController addAction:saveAction];
+  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    [self dismissViewControllerAnimated:true completion:nil];
+  }];
+  [alertController addAction:cancelAction];
+  
+  [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+    textField.placeholder = @"Enter new playlist name";
+  }];
+  [self presentViewController:alertController animated:true completion:nil];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

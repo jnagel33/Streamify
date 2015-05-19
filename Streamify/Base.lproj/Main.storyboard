@@ -270,7 +270,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="artistNameNowPlayingLabel" destination="28b-MA-Zlg" id="bUM-vp-YRf"/>
-                        <outlet property="profileImageView" destination="P0a-mq-tbd" id="Elf-FG-jh2"/>
+                        <outlet property="nowPlayingView" destination="qTw-9d-lVb" id="alR-wd-Vv9"/>
                         <outlet property="tableView" destination="P0a-mq-tbd" id="270-6C-N66"/>
                         <outlet property="thumbnailNowPlayingImageView" destination="9Yi-oI-0el" id="mBe-oh-cFE"/>
                         <outlet property="trackNameNowPlayingLabel" destination="BvS-cr-qNk" id="5O6-df-2yd"/>
@@ -297,27 +297,8 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hVo-nW-5eW">
-                                <rect key="frame" x="0.0" y="108" width="600" height="40"/>
-                                <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dfE-3j-qfj">
-                                        <rect key="frame" x="149" y="6" width="302" height="29"/>
-                                        <segments>
-                                            <segment title="Song" width="100"/>
-                                            <segment title="Artist" width="100"/>
-                                            <segment title="Album" width="100"/>
-                                        </segments>
-                                    </segmentedControl>
-                                </subviews>
-                                <color key="backgroundColor" red="0.20851934520000001" green="0.20851934520000001" blue="0.20851934520000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="dfE-3j-qfj" secondAttribute="centerY" id="TSY-Ix-MmG"/>
-                                    <constraint firstAttribute="centerX" secondItem="dfE-3j-qfj" secondAttribute="centerX" id="nqH-2z-vlD"/>
-                                    <constraint firstAttribute="height" constant="40" id="ud0-ut-8Gh"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="78" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="oDu-J2-BBA">
-                                <rect key="frame" x="0.0" y="148" width="600" height="452"/>
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -375,15 +356,12 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="oDu-J2-BBA" secondAttribute="trailing" id="Dd3-L4-Xek"/>
-                            <constraint firstItem="oDu-J2-BBA" firstAttribute="top" secondItem="hVo-nW-5eW" secondAttribute="bottom" id="Ish-yU-VTR"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hVo-nW-5eW" secondAttribute="trailing" constant="-16" id="N0i-jk-n4x"/>
                             <constraint firstItem="oDu-J2-BBA" firstAttribute="leading" secondItem="R53-1p-Ezw" secondAttribute="leading" id="OT4-qi-XKl"/>
                             <constraint firstItem="4Mo-6x-34p" firstAttribute="leading" secondItem="R53-1p-Ezw" secondAttribute="leadingMargin" constant="-16" id="R64-0l-NAS"/>
+                            <constraint firstItem="oDu-J2-BBA" firstAttribute="top" secondItem="4Mo-6x-34p" secondAttribute="bottom" id="f9t-09-fnY"/>
                             <constraint firstItem="em2-FK-K7Z" firstAttribute="top" secondItem="oDu-J2-BBA" secondAttribute="bottom" id="i5S-eW-5Wx"/>
-                            <constraint firstItem="hVo-nW-5eW" firstAttribute="leading" secondItem="R53-1p-Ezw" secondAttribute="leadingMargin" constant="-16" id="oHI-pD-5lY"/>
                             <constraint firstItem="4Mo-6x-34p" firstAttribute="top" secondItem="bYv-yc-XOj" secondAttribute="bottom" id="xEB-By-FB6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4Mo-6x-34p" secondAttribute="trailing" constant="-16" id="yBZ-zJ-UNK"/>
-                            <constraint firstItem="hVo-nW-5eW" firstAttribute="top" secondItem="4Mo-6x-34p" secondAttribute="bottom" id="zx1-C3-Eic"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="bpp-1b-iYa"/>
@@ -453,34 +431,12 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="6Ut-JW-kOT" id="cmy-ID-bKc"/>
-                        <segue destination="yC3-SN-hzr" kind="show" identifier="CreatePlaylist" id="KkG-3D-3Ca"/>
                         <segue destination="WFi-3T-IT5" kind="show" identifier="ShowPlaylist" id="r7g-Iz-aTo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3J-Qz-vr9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2356" y="238"/>
-        </scene>
-        <!--Create a Playlist-->
-        <scene sceneID="rbj-jS-Lfm">
-            <objects>
-                <viewController id="yC3-SN-hzr" customClass="AddPlaylistViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ejZ-IJ-hgo"/>
-                        <viewControllerLayoutGuide type="bottom" id="qfU-kQ-cgP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dYO-qa-Cgx">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Create a Playlist" id="vpF-I3-3mI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="mbQ-kB-NMH"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pjY-r4-lvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3140" y="318"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="H2M-Fd-ZTO">

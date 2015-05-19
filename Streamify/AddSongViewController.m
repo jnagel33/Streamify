@@ -28,6 +28,10 @@
   self.tableView.dataSource = self;
   self.searchBar.delegate = self;
   
+  
+  UITextField *searchField = [self.searchBar valueForKey:@"_searchField"];
+  searchField.textColor = [UIColor whiteColor];
+  
   self.spotifyService = [[SpotifyService alloc]init];
 }
 
