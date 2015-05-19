@@ -45,7 +45,6 @@
   }];
   [alertController addAction:saveAction];
   UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-    [self dismissViewControllerAnimated:true completion:nil];
   }];
   [alertController addAction:cancelAction];
   

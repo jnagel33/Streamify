@@ -40,23 +40,35 @@ CGFloat const kProfilePlaylistImageHeightWidth = 50;
   if (song.albumArtwork) {
     self.albumArtworkImageView.image = song.albumArtwork;
   } else {
+    self.albumArtworkImageView.transform = CGAffineTransformMakeScale(1.3, 1.3);
     UIImage *artworkImage = [[ImageService sharedService]getImageFromURL:song.albumArtworkURL];
     UIImage *resizedImage = [ImageResizer resizeImage:artworkImage withSize:CGSizeMake(kArtworkPlaylistImageHeightWidth, kArtworkPlaylistImageHeightWidth)];
     song.albumArtwork = resizedImage;
     self.albumArtworkImageView.image = resizedImage;
+    
+    self.albumArtworkImageView.alpha = 0;
+    [UIView animateWithDuration:0.3 animations:^{
+      self.albumArtworkImageView.alpha = 1;
+      self.albumArtworkImageView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    }];
   }
-  
   self.contributorImageView.layer.cornerRadius = kProfilePlaylistImageHeightWidth / 2;
   self.contributorImageView.layer.masksToBounds = true;
   if (song.contributor) {
     if (song.contributor.profileImage) {
       self.contributorImageView.image = song.contributor.profileImage;
     } else {
+      self.contributorImageView.transform = CGAffineTransformMakeScale(1.3, 1.3);
       if (song.contributor.profileImageURL) {
         UIImage *profileImage = [[ImageService sharedService]getImageFromURL:song.contributor.profileImageURL];
         UIImage *resizedImage = [ImageResizer resizeImage:profileImage withSize:CGSizeMake(kProfilePlaylistImageHeightWidth, kProfilePlaylistImageHeightWidth)];
         song.contributor.profileImage = resizedImage;
         self.contributorImageView.image = resizedImage;
+        self.contributorImageView.alpha = 0;
+        [UIView animateWithDuration:0.3 animations:^{
+          self.contributorImageView.alpha = 1;
+          self.contributorImageView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        }];
       }
     }
   }

@@ -10,7 +10,6 @@
 		4321FBC71B09D87700F2573B /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4321FBC61B09D87700F2573B /* Spotify.framework */; };
 		4321FBC91B09DAF600F2573B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4321FBC81B09DAF600F2573B /* AVFoundation.framework */; };
 		4321FBCB1B09DB0300F2573B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4321FBCA1B09DB0300F2573B /* SystemConfiguration.framework */; };
-		4321FBCE1B09DC0100F2573B /* SpotifyKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBCD1B09DC0100F2573B /* SpotifyKeys.m */; };
 		4321FBD21B0A542300F2573B /* LoginService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBD11B0A542300F2573B /* LoginService.m */; };
 		4321FBD51B0A5A7D00F2573B /* SpotifyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBD41B0A5A7D00F2573B /* SpotifyService.m */; };
 		4321FBD81B0A618600F2573B /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBD71B0A618600F2573B /* Playlist.m */; };
@@ -18,6 +17,11 @@
 		4321FBDE1B0A61A800F2573B /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBDD1B0A61A800F2573B /* Song.m */; };
 		4321FBE11B0A693500F2573B /* SpotifyJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBE01B0A693500F2573B /* SpotifyJSONParser.m */; };
 		436927DB1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 436927DA1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m */; };
+		436927DD1B0B26A000D1AC17 /* SpotifyKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 436927DC1B0B26A000D1AC17 /* SpotifyKeys.m */; };
+		436927E11B0B2D3000D1AC17 /* SearchingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 436927DF1B0B2D3000D1AC17 /* SearchingTableViewCell.m */; };
+		436927E21B0B2D3000D1AC17 /* SearchingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 436927E01B0B2D3000D1AC17 /* SearchingTableViewCell.xib */; };
+		436927E61B0B2ED900D1AC17 /* NoResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 436927E41B0B2ED900D1AC17 /* NoResultsTableViewCell.m */; };
+		436927E71B0B2ED900D1AC17 /* NoResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 436927E51B0B2ED900D1AC17 /* NoResultsTableViewCell.xib */; };
 		43CDF8291B0A7B0E00C2D880 /* SongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CDF8281B0A7B0E00C2D880 /* SongTableViewCell.m */; };
 		43CDF82C1B0A877000C2D880 /* ImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CDF82B1B0A877000C2D880 /* ImageService.m */; };
 		43CDF82F1B0A885D00C2D880 /* ImageResizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CDF82E1B0A885D00C2D880 /* ImageResizer.m */; };
@@ -58,7 +62,6 @@
 		4321FBC81B09DAF600F2573B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4321FBCA1B09DB0300F2573B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4321FBCC1B09DC0100F2573B /* SpotifyKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyKeys.h; sourceTree = "<group>"; };
-		4321FBCD1B09DC0100F2573B /* SpotifyKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyKeys.m; sourceTree = "<group>"; };
 		4321FBD01B0A542300F2573B /* LoginService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginService.h; sourceTree = "<group>"; };
 		4321FBD11B0A542300F2573B /* LoginService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginService.m; sourceTree = "<group>"; };
 		4321FBD31B0A5A7D00F2573B /* SpotifyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyService.h; sourceTree = "<group>"; };
@@ -73,6 +76,13 @@
 		4321FBE01B0A693500F2573B /* SpotifyJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyJSONParser.m; sourceTree = "<group>"; };
 		436927D91B0A96DB00D1AC17 /* PlaylistSongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistSongTableViewCell.h; sourceTree = "<group>"; };
 		436927DA1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistSongTableViewCell.m; sourceTree = "<group>"; };
+		436927DC1B0B26A000D1AC17 /* SpotifyKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyKeys.m; sourceTree = "<group>"; };
+		436927DE1B0B2D3000D1AC17 /* SearchingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchingTableViewCell.h; sourceTree = "<group>"; };
+		436927DF1B0B2D3000D1AC17 /* SearchingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchingTableViewCell.m; sourceTree = "<group>"; };
+		436927E01B0B2D3000D1AC17 /* SearchingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchingTableViewCell.xib; sourceTree = "<group>"; };
+		436927E31B0B2ED900D1AC17 /* NoResultsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoResultsTableViewCell.h; sourceTree = "<group>"; };
+		436927E41B0B2ED900D1AC17 /* NoResultsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoResultsTableViewCell.m; sourceTree = "<group>"; };
+		436927E51B0B2ED900D1AC17 /* NoResultsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoResultsTableViewCell.xib; sourceTree = "<group>"; };
 		43CDF8271B0A7B0E00C2D880 /* SongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableViewCell.h; sourceTree = "<group>"; };
 		43CDF8281B0A7B0E00C2D880 /* SongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewCell.m; sourceTree = "<group>"; };
 		43CDF82A1B0A877000C2D880 /* ImageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageService.h; sourceTree = "<group>"; };
@@ -151,7 +161,7 @@
 				4321FBD01B0A542300F2573B /* LoginService.h */,
 				4321FBD11B0A542300F2573B /* LoginService.m */,
 				4321FBCC1B09DC0100F2573B /* SpotifyKeys.h */,
-				4321FBCD1B09DC0100F2573B /* SpotifyKeys.m */,
+				436927DC1B0B26A000D1AC17 /* SpotifyKeys.m */,
 				4321FBD31B0A5A7D00F2573B /* SpotifyService.h */,
 				4321FBD41B0A5A7D00F2573B /* SpotifyService.m */,
 				4321FBD61B0A618600F2573B /* Playlist.h */,
@@ -237,6 +247,12 @@
 			children = (
 				43E9C4171B097DBA008EF44A /* LaunchScreen.xib */,
 				43E9C4121B097DBA008EF44A /* Main.storyboard */,
+				436927DE1B0B2D3000D1AC17 /* SearchingTableViewCell.h */,
+				436927DF1B0B2D3000D1AC17 /* SearchingTableViewCell.m */,
+				436927E01B0B2D3000D1AC17 /* SearchingTableViewCell.xib */,
+				436927E31B0B2ED900D1AC17 /* NoResultsTableViewCell.h */,
+				436927E41B0B2ED900D1AC17 /* NoResultsTableViewCell.m */,
+				436927E51B0B2ED900D1AC17 /* NoResultsTableViewCell.xib */,
 				43CDF8271B0A7B0E00C2D880 /* SongTableViewCell.h */,
 				43CDF8281B0A7B0E00C2D880 /* SongTableViewCell.m */,
 				43E9C4361B09A1D9008EF44A /* HostedPlaylistTableViewCell.xib */,
@@ -368,7 +384,9 @@
 				43E9C4141B097DBA008EF44A /* Main.storyboard in Resources */,
 				43E9C4191B097DBA008EF44A /* LaunchScreen.xib in Resources */,
 				43E9C43F1B09A618008EF44A /* ContributorTableViewCell.xib in Resources */,
+				436927E21B0B2D3000D1AC17 /* SearchingTableViewCell.xib in Resources */,
 				43E9C4161B097DBA008EF44A /* Images.xcassets in Resources */,
+				436927E71B0B2ED900D1AC17 /* NoResultsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				436927DD1B0B26A000D1AC17 /* SpotifyKeys.m in Sources */,
 				4321FBDB1B0A619300F2573B /* User.m in Sources */,
 				43E9C4331B099B55008EF44A /* MyPlaylistsViewController.m in Sources */,
 				43E9C40E1B097DBA008EF44A /* AppDelegate.m in Sources */,
@@ -429,7 +448,6 @@
 				43E9C40B1B097DBA008EF44A /* main.m in Sources */,
 				43E9C43E1B09A618008EF44A /* ContributorTableViewCell.m in Sources */,
 				43E9C44D1B09C4E4008EF44A /* AddSongViewController.m in Sources */,
-				4321FBCE1B09DC0100F2573B /* SpotifyKeys.m in Sources */,
 				43E9C43A1B09A5C1008EF44A /* HostedPlaylistTableViewCell.m in Sources */,
 				43E9C4451B09B5D1008EF44A /* PlaylistHeaderView.m in Sources */,
 				43E9C4421B09B481008EF44A /* StreamifyStyleKit.m in Sources */,
@@ -440,7 +458,9 @@
 				4321FBD51B0A5A7D00F2573B /* SpotifyService.m in Sources */,
 				4321FBDE1B0A61A800F2573B /* Song.m in Sources */,
 				43E9C4501B09C786008EF44A /* AddPlaylistViewController.m in Sources */,
+				436927E61B0B2ED900D1AC17 /* NoResultsTableViewCell.m in Sources */,
 				4321FBE11B0A693500F2573B /* SpotifyJSONParser.m in Sources */,
+				436927E11B0B2D3000D1AC17 /* SearchingTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

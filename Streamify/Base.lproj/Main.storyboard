@@ -170,14 +170,14 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odJ-LK-hfm">
-                                                    <rect key="frame" x="83" y="16" width="443" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="83" y="16" width="443" height="25"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSE-4M-o8N">
-                                                    <rect key="frame" x="83" y="45" width="443" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <rect key="frame" x="83" y="49" width="443" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                     <color key="textColor" red="0.64939518039999999" green="0.93939537620000002" blue="0.031238322570000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -224,14 +224,14 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28b-MA-Zlg">
-                                        <rect key="frame" x="58" y="25" width="36" height="25"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <rect key="frame" x="58" y="29" width="534" height="21"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                         <color key="textColor" red="0.64939518039999999" green="0.93939537620000002" blue="0.031238322570000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvS-cr-qNk">
-                                        <rect key="frame" x="58" y="4" width="89" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="58" y="4" width="534" height="25"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                         <color key="textColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -241,12 +241,14 @@
                                     <constraint firstItem="9Yi-oI-0el" firstAttribute="leading" secondItem="qTw-9d-lVb" secondAttribute="leading" id="H2E-mA-cAM"/>
                                     <constraint firstItem="BvS-cr-qNk" firstAttribute="leading" secondItem="9Yi-oI-0el" secondAttribute="trailing" constant="8" id="SWb-nf-EZZ"/>
                                     <constraint firstItem="28b-MA-Zlg" firstAttribute="top" secondItem="BvS-cr-qNk" secondAttribute="bottom" id="WRQ-sO-ScK"/>
+                                    <constraint firstAttribute="trailing" secondItem="BvS-cr-qNk" secondAttribute="trailing" constant="8" id="WbC-a2-QRa"/>
                                     <constraint firstAttribute="bottom" secondItem="28b-MA-Zlg" secondAttribute="bottom" id="a5w-Dx-A8Z"/>
                                     <constraint firstItem="9Yi-oI-0el" firstAttribute="top" secondItem="qTw-9d-lVb" secondAttribute="top" id="bZK-Bq-jBq"/>
                                     <constraint firstItem="BvS-cr-qNk" firstAttribute="top" secondItem="qTw-9d-lVb" secondAttribute="top" constant="4" id="d7Z-Rr-NWv"/>
                                     <constraint firstItem="BvS-cr-qNk" firstAttribute="leading" secondItem="28b-MA-Zlg" secondAttribute="leading" id="kaO-wg-2Qx"/>
                                     <constraint firstAttribute="bottom" secondItem="9Yi-oI-0el" secondAttribute="bottom" id="pgP-ku-XdC"/>
                                     <constraint firstAttribute="height" constant="50" id="ucS-MK-88u"/>
+                                    <constraint firstItem="28b-MA-Zlg" firstAttribute="trailing" secondItem="BvS-cr-qNk" secondAttribute="trailing" id="wNn-v4-gVI"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -431,12 +433,34 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="6Ut-JW-kOT" id="cmy-ID-bKc"/>
+                        <segue destination="yC3-SN-hzr" kind="show" identifier="CreatePlaylist" id="KkG-3D-3Ca"/>
                         <segue destination="WFi-3T-IT5" kind="show" identifier="ShowPlaylist" id="r7g-Iz-aTo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3J-Qz-vr9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2356" y="238"/>
+        </scene>
+        <!--Create a Playlist-->
+        <scene sceneID="rbj-jS-Lfm">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pjY-r4-lvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="yC3-SN-hzr" customClass="AddPlaylistViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ejZ-IJ-hgo"/>
+                        <viewControllerLayoutGuide type="bottom" id="qfU-kQ-cgP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dYO-qa-Cgx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create a Playlist" id="vpF-I3-3mI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="mbQ-kB-NMH"/>
+                    </navigationItem>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="3140" y="318"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="H2M-Fd-ZTO">

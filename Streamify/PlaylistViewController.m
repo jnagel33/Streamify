@@ -15,6 +15,7 @@
 #import "User.h"
 #import "ImageService.h"
 #import "ImageResizer.h"
+#import "StreamifyStyleKit.h"
 
 @interface PlaylistViewController () <UITableViewDataSource, UITableViewDelegate, AddSongViewControllerDelegate, SPTAudioStreamingPlaybackDelegate>
 
@@ -41,6 +42,7 @@
   self.thumbnailNowPlayingImageView.image = nil;
   self.trackNameNowPlayingLabel.text = nil;
   self.artistNameNowPlayingLabel.text = nil;
+  self.artistNameNowPlayingLabel.textColor = [StreamifyStyleKit spotifyGreen];
   
   AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
   self.session = appDelegate.session;
@@ -99,11 +101,32 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  [tableView deselectRowAtIndexPath:indexPath animated:true];
-  if (![self.player isPlaying]|| self.currentRowPlaying != indexPath.row) {
-    NSMutableArray *playlistQueue = [[NSMutableArray alloc]init];
-    
-    if ([self.player isPlaying]) {
+  if (self.songs.count != 0) {
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
+    if (![self.player isPlaying]|| self.currentRowPlaying != indexPath.row) {
+      NSMutableArray *playlistQueue = [[NSMutableArray alloc]init];
+      
+      if ([self.player isPlaying]) {
+        [self.player stop:^(NSError *error) {
+          if (error != nil) {
+            NSLog(@"*** Stopping playback got error: %@", error);
+            return;
+          }
+        }];
+      }
+      for (NSInteger i = indexPath.row; i < self.songs.count; i++) {
+        Song *song = self.songs[i];
+        NSURL *trackURI = [NSURL URLWithString:song.uri];
+        [playlistQueue addObject:trackURI];
+      }
+      [self.player playURIs:playlistQueue fromIndex:0 callback:^(NSError *error) {
+        if (error != nil) {
+          NSLog(@"*** Starting playback got error: %@", error);
+          return;
+        }
+        self.currentRowPlaying = indexPath.row;
+      }];
+    } else {
       [self.player stop:^(NSError *error) {
         if (error != nil) {
           NSLog(@"*** Stopping playback got error: %@", error);
@@ -111,25 +134,6 @@
         }
       }];
     }
-    for (NSInteger i = indexPath.row; i < self.songs.count; i++) {
-      Song *song = self.songs[i];
-      NSURL *trackURI = [NSURL URLWithString:song.uri];
-      [playlistQueue addObject:trackURI];
-    }
-    [self.player playURIs:playlistQueue fromIndex:0 callback:^(NSError *error) {
-      if (error != nil) {
-        NSLog(@"*** Starting playback got error: %@", error);
-        return;
-      }
-      self.currentRowPlaying = indexPath.row;
-    }];
-  } else {
-    [self.player stop:^(NSError *error) {
-      if (error != nil) {
-        NSLog(@"*** Stopping playback got error: %@", error);
-        return;
-      }
-    }];
   }
 }
 
@@ -152,10 +156,6 @@
   NSLog(@"%d", self.player.trackListSize);
 }
 
-//-(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didStartPlayingTrack:(NSURL *)trackUri {
-//  NSLog(@"%@", [trackUri relativeString]);
-//}
-
 -(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didStopPlayingTrack:(NSURL *)trackUri {
   NSLog(@"%@", [trackUri relativeString]);
 }
@@ -167,8 +167,14 @@
   for (Song *song in self.songs) {
     NSString *albumName = trackMetadata[@"SPTAudioStreamingMetadataAlbumName"];
     if ([song.albumName isEqualToString:albumName]) {
+      self.thumbnailNowPlayingImageView.transform = CGAffineTransformMakeScale(2, 2);
+      self.thumbnailNowPlayingImageView.alpha = 0;
       UIImage *resizedImage = [ImageResizer resizeImage:song.albumArtwork withSize:CGSizeMake(50, 50)];
       self.thumbnailNowPlayingImageView.image = resizedImage;
+      [UIView animateWithDuration:0.5 animations:^{
+        self.thumbnailNowPlayingImageView.transform = CGAffineTransformMakeScale(1, 1);
+        self.thumbnailNowPlayingImageView.alpha = 1;
+      }];
     }
   }
 }
