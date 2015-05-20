@@ -10,9 +10,9 @@
 
 @implementation User
 
--(instancetype)initWithDisplayName:(NSString *)displayName AndEmail:(NSString *)email WithUserType:(NSString *)userType andProfileImageURL:(NSString *)profileImageURL {
+-(instancetype)initWithUsername:(NSString *)username AndEmail:(NSString *)email WithUserType:(NSString *)userType andProfileImageURL:(NSString *)profileImageURL {
   if (self == [super init]) {
-    _displayName = displayName;
+    _username = username;
     _email = email;
     _userType = userType;
     _profileImageURL = profileImageURL;

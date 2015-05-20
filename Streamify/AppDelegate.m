@@ -41,23 +41,26 @@ const CGFloat kGlobalNavigationFontSize = 17;
   NSString *appToken = [[NSUserDefaults standardUserDefaults]valueForKey:@"appToken"];
   NSData *sessionData = [[NSUserDefaults standardUserDefaults]valueForKey:@"sessionData"];
   SPTSession *session = [NSKeyedUnarchiver unarchiveObjectWithData:sessionData];
-  if (session && session.isValid) {
+  if (session && session.isValid && appToken) {
     self.session = session;
     self.spotifyService = [SpotifyService sharedService];
     [self.spotifyService getUserProfile:^(User *user) {
-      NSLog(@"%@", user.displayName);
+      NSLog(@"%@", user.username);
       UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
       UINavigationController *myPlaylistsNavVC = [storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];
       MyPlaylistsViewController *myPlaylistsVC = myPlaylistsNavVC.viewControllers[0];
       myPlaylistsVC.currentUser = user;
       self.window.rootViewController = myPlaylistsNavVC;
     }];
+    return YES;
   } else if(appToken) {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     UINavigationController *myPlaylistsNavVC = [storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];
     self.window.rootViewController = myPlaylistsNavVC;
+    return YES;
+  } else {
+    return YES;
   }
-  return YES;
 }
 
 

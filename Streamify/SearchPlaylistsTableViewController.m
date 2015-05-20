@@ -13,6 +13,7 @@
 #import "SearchingTableViewCell.h"
 #import "NoResultsTableViewCell.h"
 #import "PlaylistViewController.h"
+#import "User.h"
 
 @interface SearchPlaylistsTableViewController () <UISearchBarDelegate>
 
@@ -33,6 +34,14 @@
   self.streamifyService = [StreamifyService sharedService];
   self.isLoading = false;
   self.hasSearched = false;
+  
+  UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                 initWithTitle:@"Back"
+                                 style:UIBarButtonItemStylePlain
+                                 target:nil
+                                 action:nil];
+  
+  self.navigationItem.backBarButtonItem = backButton;
   
   UITextField *searchField = [self.searchBar valueForKey:@"_searchField"];
   searchField.textColor = [UIColor whiteColor];

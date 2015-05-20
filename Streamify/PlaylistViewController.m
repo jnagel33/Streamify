@@ -17,19 +17,21 @@
 #import "ImageResizer.h"
 #import "StreamifyStyleKit.h"
 #import "Playlist.h"
+#import "StreamifyService.h"
 
 @interface PlaylistViewController () <UITableViewDataSource, UITableViewDelegate, AddSongViewControllerDelegate, SPTAudioStreamingPlaybackDelegate>
 
 @property(weak,nonatomic)IBOutlet UITableView *tableView;
 @property(strong,nonatomic)NSMutableArray *songs;
 @property(strong,nonatomic)SpotifyService *spotifyService;
+@property(strong,nonatomic)StreamifyService *streamifyService;
 @property(strong,nonatomic)SPTAudioStreamingController *player;
 @property(strong,nonatomic)SPTSession *session;
 @property(nonatomic)NSInteger currentRowPlaying;
-@property(weak, nonatomic)IBOutlet UIImageView *thumbnailNowPlayingImageView;
-@property(weak, nonatomic)IBOutlet UILabel *trackNameNowPlayingLabel;
-@property(weak, nonatomic)IBOutlet UILabel *artistNameNowPlayingLabel;
-@property(weak, nonatomic)IBOutlet UIView *nowPlayingView;
+@property(weak,nonatomic)IBOutlet UIImageView *thumbnailNowPlayingImageView;
+@property(weak,nonatomic)IBOutlet UILabel *trackNameNowPlayingLabel;
+@property(weak,nonatomic)IBOutlet UILabel *artistNameNowPlayingLabel;
+@property(weak,nonatomic)IBOutlet UIView *nowPlayingView;
 
 @end
 
@@ -39,6 +41,14 @@
   [super viewDidLoad];
   
   self.navigationItem.title = self.currentPlaylist.name;
+  
+  UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                 initWithTitle:@"Back"
+                                 style:UIBarButtonItemStylePlain
+                                 target:nil
+                                 action:nil];
+  
+  self.navigationItem.backBarButtonItem = backButton;
   
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
@@ -52,6 +62,7 @@
   self.session = appDelegate.session;
   [self createPlayer];
   
+  self.streamifyService = [StreamifyService sharedService];
   self.spotifyService = [SpotifyService sharedService];
   
   //Remove later
@@ -149,9 +160,14 @@
 }
 
 -(void)addSongToPlaylist:(Song *)song {
-  NSDictionary *currentUserData = [[NSUserDefaults standardUserDefaults]valueForKey:@"currentUserData"];
-  User *user = [[User alloc]initWithDisplayName:currentUserData[@"displayName"] AndEmail:nil WithUserType:nil andProfileImageURL:currentUserData[@"profileImageURL"]];
-  song.contributor = user;
+//  NSDictionary *currentUserData = [[NSUserDefaults standardUserDefaults]valueForKey:@"currentUserData"];
+//  User *user = [[User alloc]initWithDisplayName:currentUserData[@"displayName"] AndEmail:nil WithUserType:nil andProfileImageURL:currentUserData[@"profileImageURL"]];
+  song.contributor = self.currentUser;
+  
+  [self.streamifyService addSongToPlaylist:self.currentPlaylist.playlistID song:song.uri completionHandler:^(NSString *success) {
+    NSLog(@"%@",success);
+  }];
+  
   [self.songs addObject:song];
   [self.tableView reloadData];
   if ([self.player isPlaying]) {

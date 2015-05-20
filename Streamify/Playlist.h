@@ -11,7 +11,7 @@
 
 @interface Playlist : NSObject
 
-@property(strong,nonatomic)NSNumber *playlistID;
+@property(strong,nonatomic)NSString *playlistID;
 @property(strong,nonatomic)NSString *name;
 @property(strong,nonatomic)User *host;
 @property(strong,nonatomic)NSDate *dateCreated;

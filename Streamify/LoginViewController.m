@@ -46,13 +46,16 @@ const double kAnimationDuration = 0.3;
     [self.spotifyService getUserProfile:^(User *user) {
       [self.spotifyService getUserSavedTracks:^(NSArray *songs) {
         user.songs = songs;
-        NSLog(@"%@", user.displayName);
+        NSLog(@"%@", user.username);
         UINavigationController *myPlaylistsNavVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];
         MyPlaylistsViewController *myPlaylistsVC = myPlaylistsNavVC.viewControllers[0];
         myPlaylistsVC.currentUser = user;
-        NSDictionary *userInfo = @{@"displayName": user.displayName, @"profileImageURL":user.profileImageURL};
-        [[NSUserDefaults standardUserDefaults]setValue:userInfo forKey:@"currentUserData"];
-        [self presentViewController:myPlaylistsNavVC animated:true completion:nil];
+        [self.streamifyService createUser:user.username AndPassword:@"spotify" completionHandler:^(User *user) {
+          [self presentViewController:myPlaylistsNavVC animated:true completion:nil];
+        }];
+//        NSDictionary *userInfo = @{@"displayName": user.displayName, @"profileImageURL":user.profileImageURL};
+//        [[NSUserDefaults standardUserDefaults]setValue:userInfo forKey:@"currentUserData"];
+//        [self presentViewController:myPlaylistsNavVC animated:true completion:nil];
       }];
       
     }];

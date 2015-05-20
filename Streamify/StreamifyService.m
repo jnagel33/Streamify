@@ -54,7 +54,7 @@
         NSString *username = responseObject[@"username"];
         NSString *email = responseObject[@"email"];
         
-        User *user = [[User alloc]initWithDisplayName:username AndEmail:email WithUserType:@"App" andProfileImageURL:nil];
+        User *user = [[User alloc]initWithUsername:username AndEmail:email WithUserType:@"App" andProfileImageURL:nil];
         completionHandler(user);
       }];
     }
@@ -65,10 +65,10 @@
 -(void)createUser:(NSString *)username AndPassword:(NSString *)password completionHandler:(void (^)(User *user))completionHandler {
   NSString *urlStr = @"http://streamify-team.herokuapp.com/api/user/create_user";
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-  NSDictionary *usernamePassword = @{@"username":username, @"password":password};
+  NSDictionary *usernamePassword = @{@"username":@"wwwww", @"password":password};
   NSError *error;
   NSData *data = [NSJSONSerialization dataWithJSONObject:usernamePassword options:0 error:&error];
-//  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
   request.HTTPMethod = @"POST";
   request.HTTPBody = data;
   NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
@@ -86,7 +86,7 @@
         NSString *username = responseObject[@"username"];
         NSString *email = responseObject[@"email"];
         
-        User *user = [[User alloc]initWithDisplayName:username AndEmail:email WithUserType:@"App" andProfileImageURL:nil];
+        User *user = [[User alloc]initWithUsername:username AndEmail:email WithUserType:@"App" andProfileImageURL:nil];
         completionHandler(user);
       }];
     }
@@ -155,12 +155,12 @@
   [dataTask resume];
 }
 
--(void)addSongToPlaylist:(Playlist *)playlist completionHandler:(void (^)(NSString *success))completionHandler {
+-(void)addSongToPlaylist:(NSString *)playlistID song:(NSString *)songID completionHandler:(void (^)(NSString *success))completionHandler {
   NSString *appToken = [[NSUserDefaults standardUserDefaults]valueForKey:@"appToken"];
   NSString *urlStr = [NSString stringWithFormat:@"http://streamify-team.herokuapp.com/api/playlist"];
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
   
-  NSDictionary *playlistInfo = @{@"name":playlist.name, @"eat": appToken};
+  NSDictionary *playlistInfo = @{@"id":playlistID, @"song": songID, @"eat": appToken};
   NSError *error;
   NSData *data = [NSJSONSerialization dataWithJSONObject:playlistInfo options:0 error:&error];
   

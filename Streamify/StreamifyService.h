@@ -26,4 +26,6 @@
 
 -(void)addPlaylist:(Playlist *)playlist completionHandler:(void (^)(NSString *success))completionHandler;
 
+-(void)addSongToPlaylist:(NSString *)playlistID song:(NSString *)songID completionHandler:(void (^)(NSString *success))completionHandler;
+
 @end

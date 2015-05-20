@@ -53,7 +53,8 @@
   UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
     UITextField *playlistNameTextField = alertController.textFields[0];
 
-    Playlist *newPlaylist = [[Playlist alloc]initWithName:playlistNameTextField.text host:self.currentUser dateCreated:[NSDate date] songs:nil];
+    Playlist *newPlaylist = [[Playlist alloc]initWithID:nil name:playlistNameTextField.text host:self.currentUser dateCreated:[NSDate date] songs:nil];
+//    Playlist *newPlaylist = [[Playlist alloc]initWithName:playlistNameTextField.text host:self.currentUser dateCreated:[NSDate date] songs:nil];
     [self.playlists addObject:newPlaylist];
     [self.tableView reloadData];
     [self.streamifyService addPlaylist:newPlaylist completionHandler:^(NSString *success) {
@@ -136,8 +137,10 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([segue.identifier isEqualToString:@"SearchPlaylists"]) {
-    SearchPlaylistsTableViewController *searchPlaylistsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchPlaylistsVC"];
-    searchPlaylistsVC.currentUser = self.currentUser;
+    SearchPlaylistsTableViewController *destinationVC = segue.destinationViewController;
+    destinationVC.currentUser = self.currentUser;
+    
+//    SearchPlaylistsTableViewController *searchPlaylistsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchPlaylistsVC"];
   }
 }
 
