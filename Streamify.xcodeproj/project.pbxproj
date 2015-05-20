@@ -42,6 +42,9 @@
 		43E9C44A1B09C46B008EF44A /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C4491B09C46B008EF44A /* PlaylistViewController.m */; };
 		43E9C44D1B09C4E4008EF44A /* AddSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C44C1B09C4E4008EF44A /* AddSongViewController.m */; };
 		43E9C4501B09C786008EF44A /* AddPlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E9C44F1B09C786008EF44A /* AddPlaylistViewController.m */; };
+		43EA5A6A1B0BCC4200BE2546 /* SearchPlaylistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EA5A691B0BCC4200BE2546 /* SearchPlaylistsTableViewController.m */; };
+		43EA5A6D1B0BD7E300BE2546 /* StreamifyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EA5A6C1B0BD7E300BE2546 /* StreamifyService.m */; };
+		43EA5A701B0BE85500BE2546 /* StreamifyJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EA5A6F1B0BE85500BE2546 /* StreamifyJSONParser.m */; };
 		ABB4B290386EFF2DC0D37F5B /* libPods-Streamify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 190E1D1FC10ED81E0F409FCB /* libPods-Streamify.a */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +124,12 @@
 		43E9C44C1B09C4E4008EF44A /* AddSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSongViewController.m; sourceTree = "<group>"; };
 		43E9C44E1B09C786008EF44A /* AddPlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaylistViewController.h; sourceTree = "<group>"; };
 		43E9C44F1B09C786008EF44A /* AddPlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaylistViewController.m; sourceTree = "<group>"; };
+		43EA5A681B0BCC4200BE2546 /* SearchPlaylistsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPlaylistsTableViewController.h; sourceTree = "<group>"; };
+		43EA5A691B0BCC4200BE2546 /* SearchPlaylistsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPlaylistsTableViewController.m; sourceTree = "<group>"; };
+		43EA5A6B1B0BD7E300BE2546 /* StreamifyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamifyService.h; sourceTree = "<group>"; };
+		43EA5A6C1B0BD7E300BE2546 /* StreamifyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamifyService.m; sourceTree = "<group>"; };
+		43EA5A6E1B0BE85500BE2546 /* StreamifyJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamifyJSONParser.h; sourceTree = "<group>"; };
+		43EA5A6F1B0BE85500BE2546 /* StreamifyJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamifyJSONParser.m; sourceTree = "<group>"; };
 		49E819D625B3E27534493D2B /* Pods-Streamify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Streamify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Streamify/Pods-Streamify.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,6 +186,10 @@
 				43CDF82D1B0A885D00C2D880 /* ImageResizer.h */,
 				43CDF82E1B0A885D00C2D880 /* ImageResizer.m */,
 				43CDF8301B0A8DF000C2D880 /* AddSongViewControllerDelegate.h */,
+				43EA5A6B1B0BD7E300BE2546 /* StreamifyService.h */,
+				43EA5A6C1B0BD7E300BE2546 /* StreamifyService.m */,
+				43EA5A6E1B0BE85500BE2546 /* StreamifyJSONParser.h */,
+				43EA5A6F1B0BE85500BE2546 /* StreamifyJSONParser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -284,6 +297,8 @@
 				43E9C4321B099B55008EF44A /* MyPlaylistsViewController.m */,
 				43E9C42E1B0995CD008EF44A /* LoginViewController.h */,
 				43E9C42F1B0995CD008EF44A /* LoginViewController.m */,
+				43EA5A681B0BCC4200BE2546 /* SearchPlaylistsTableViewController.h */,
+				43EA5A691B0BCC4200BE2546 /* SearchPlaylistsTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -451,9 +466,12 @@
 				43E9C43A1B09A5C1008EF44A /* HostedPlaylistTableViewCell.m in Sources */,
 				43E9C4451B09B5D1008EF44A /* PlaylistHeaderView.m in Sources */,
 				43E9C4421B09B481008EF44A /* StreamifyStyleKit.m in Sources */,
+				43EA5A701B0BE85500BE2546 /* StreamifyJSONParser.m in Sources */,
 				436927DB1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m in Sources */,
 				43CDF82C1B0A877000C2D880 /* ImageService.m in Sources */,
+				43EA5A6D1B0BD7E300BE2546 /* StreamifyService.m in Sources */,
 				43CDF8291B0A7B0E00C2D880 /* SongTableViewCell.m in Sources */,
+				43EA5A6A1B0BCC4200BE2546 /* SearchPlaylistsTableViewController.m in Sources */,
 				43E9C4301B0995CD008EF44A /* LoginViewController.m in Sources */,
 				4321FBD51B0A5A7D00F2573B /* SpotifyService.m in Sources */,
 				4321FBDE1B0A61A800F2573B /* Song.m in Sources */,

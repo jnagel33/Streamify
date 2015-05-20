@@ -141,7 +141,7 @@
         <!--Playlist Name-->
         <scene sceneID="N2q-PB-7P6">
             <objects>
-                <viewController id="WFi-3T-IT5" customClass="PlaylistViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Playlist" id="WFi-3T-IT5" customClass="PlaylistViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5QV-6R-y6H"/>
                         <viewControllerLayoutGuide type="bottom" id="QxZ-mz-5rz"/>
@@ -388,26 +388,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6Ut-JW-kOT">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6Ut-JW-kOT">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SearchPlaylists" textLabel="P1H-OA-TA7" rowHeight="80" style="IBUITableViewCellStyleDefault" id="AJO-WQ-UlV">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AJO-WQ-UlV" id="Ucy-Rb-E2s">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Search Playlists" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P1H-OA-TA7">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TYb-oh-Tx1">
                                 <rect key="frame" x="0.0" y="550" width="600" height="50"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8W-I5-967">
-                                        <rect key="frame" x="157" y="5" width="287" height="40"/>
-                                        <state key="normal" image="StreamifyCreateUserButton">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="l8W-I5-967" secondAttribute="centerY" id="R8Y-hv-Ss2"/>
                                     <constraint firstAttribute="height" constant="50" id="gpD-kG-Cer"/>
-                                    <constraint firstAttribute="centerX" secondItem="l8W-I5-967" secondAttribute="centerX" id="pPt-O9-ken"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -433,34 +441,52 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="6Ut-JW-kOT" id="cmy-ID-bKc"/>
-                        <segue destination="yC3-SN-hzr" kind="show" identifier="CreatePlaylist" id="KkG-3D-3Ca"/>
                         <segue destination="WFi-3T-IT5" kind="show" identifier="ShowPlaylist" id="r7g-Iz-aTo"/>
+                        <segue destination="43s-MB-bNq" kind="show" identifier="SearchPlaylists" id="SRO-1P-a6U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3J-Qz-vr9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2356" y="238"/>
         </scene>
-        <!--Create a Playlist-->
-        <scene sceneID="rbj-jS-Lfm">
+        <!--Search Playlists-->
+        <scene sceneID="vxj-G4-gbb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pjY-r4-lvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="yC3-SN-hzr" customClass="AddPlaylistViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ejZ-IJ-hgo"/>
-                        <viewControllerLayoutGuide type="bottom" id="qfU-kQ-cgP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dYO-qa-Cgx">
+                <tableViewController storyboardIdentifier="SearchPlaylistsVC" id="43s-MB-bNq" customClass="SearchPlaylistsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ZOB-JS-5fx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Create a Playlist" id="vpF-I3-3mI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="mbQ-kB-NMH"/>
-                    </navigationItem>
-                </viewController>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" barStyle="black" id="aGy-PC-OK3">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotUsed" id="zz2-SX-K75">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zz2-SX-K75" id="IBg-lu-WbA">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="43s-MB-bNq" id="awf-7E-rA6"/>
+                            <outlet property="delegate" destination="43s-MB-bNq" id="DXg-TU-v1g"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Search Playlists" id="mJ6-Eb-toA"/>
+                    <connections>
+                        <outlet property="searchBar" destination="aGy-PC-OK3" id="mo2-tQ-XI0"/>
+                        <segue destination="WFi-3T-IT5" kind="show" identifier="SearchShowPlaylist" id="V3l-sw-uS5"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e8Q-XJ-HBb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3140" y="318"/>
+            <point key="canvasLocation" x="3189" y="395"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="H2M-Fd-ZTO">
@@ -487,4 +513,7 @@
         <image name="StreamifyLoginButton" width="287" height="40"/>
         <image name="StreamifySpotifyLoginButton" width="287" height="40"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="V3l-sw-uS5"/>
+    </inferredMetricsTieBreakers>
 </document>

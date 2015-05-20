@@ -15,6 +15,7 @@
 @property(strong,nonatomic)NSString *userType;
 @property(strong,nonatomic)NSString *profileImageURL;
 @property(strong,nonatomic)UIImage *profileImage;
+@property(strong,nonatomic)NSArray *songs;
 
 -(instancetype)initWithDisplayName:(NSString *)displayName AndEmail:(NSString *)email WithUserType:(NSString *)userType andProfileImageURL:(NSString *)profileImageURL;
 

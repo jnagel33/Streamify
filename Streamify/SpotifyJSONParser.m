@@ -18,7 +18,7 @@
   NSArray *images = info[@"images"];
   NSDictionary *image = images[0];
   NSString *profileImageURL = image[@"url"];
-  return [[User alloc]initWithDisplayName:displayName AndEmail:email WithUserType:nil andProfileImageURL:profileImageURL];
+  return [[User alloc]initWithDisplayName:displayName AndEmail:email WithUserType:@"Spotify" andProfileImageURL:profileImageURL];
 }
 
 +(NSArray *)getTracksFromJSON:(NSDictionary *)info {

@@ -7,6 +7,8 @@
 //
 
 #import "ContributorTableViewCell.h"
+#import "Playlist.h"
+#import "User.h"
 
 @interface ContributorTableViewCell ()
 
@@ -18,5 +20,15 @@
 @end
 
 @implementation ContributorTableViewCell
+
+-(void)configureCell:(Playlist *)playlist {
+  self.playlistNameLabel.text = nil;
+  self.numberOfSongsLabel.text = nil;
+  self.playlistCreator.text = nil;
+  
+  self.playlistNameLabel.text = playlist.name;
+  self.numberOfSongsLabel.text = playlist.host.displayName;
+  
+}
 
 @end

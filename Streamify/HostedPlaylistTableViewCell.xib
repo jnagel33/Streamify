@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14E11f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,20 +13,24 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wmt-c7-Wh1" id="4Ic-eW-yq4">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Playlist name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZC-I0-6az">
-                        <rect key="frame" x="8" y="28" width="102" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlist name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZC-I0-6az">
+                        <rect key="frame" x="8" y="28" width="99" height="24"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="# songs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9t9-MM-jsj">
-                        <rect key="frame" x="118" y="28" width="61" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="# songs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9t9-MM-jsj">
+                        <rect key="frame" x="115" y="29" width="196" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3FU-Vg-Tvx">
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3FU-Vg-Tvx">
                         <rect key="frame" x="319" y="24" width="54" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="54" id="BfZ-q2-dha"/>
+                            <constraint firstAttribute="height" constant="30" id="rbq-iA-0ZO"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                         <state key="normal" title="0" backgroundImage="SuggestionsView">
                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -34,13 +39,22 @@
                     </button>
                 </subviews>
                 <color key="backgroundColor" red="0.08056382275" green="0.08056382275" blue="0.08056382275" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="9t9-MM-jsj" firstAttribute="leading" secondItem="yZC-I0-6az" secondAttribute="trailing" constant="8" id="5LS-ZZ-tsE"/>
+                    <constraint firstAttribute="centerY" secondItem="yZC-I0-6az" secondAttribute="centerY" id="Hij-wg-OLZ"/>
+                    <constraint firstAttribute="centerY" secondItem="3FU-Vg-Tvx" secondAttribute="centerY" id="PI8-lF-98f"/>
+                    <constraint firstItem="3FU-Vg-Tvx" firstAttribute="leading" secondItem="9t9-MM-jsj" secondAttribute="trailing" constant="8" id="SIF-xU-Dg4"/>
+                    <constraint firstItem="yZC-I0-6az" firstAttribute="leading" secondItem="4Ic-eW-yq4" secondAttribute="leadingMargin" id="aLS-1u-UlA"/>
+                    <constraint firstAttribute="centerY" secondItem="9t9-MM-jsj" secondAttribute="centerY" id="tJI-cv-P2K"/>
+                    <constraint firstItem="3FU-Vg-Tvx" firstAttribute="trailing" secondItem="4Ic-eW-yq4" secondAttribute="trailingMargin" id="uWx-cd-OYl"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="numberOfSongsLabel" destination="9t9-MM-jsj" id="fmY-SQ-EWd"/>
                 <outlet property="pendingSuggestionsButton" destination="3FU-Vg-Tvx" id="qEK-Dg-d5p"/>
                 <outlet property="playlistNameLabel" destination="yZC-I0-6az" id="Kli-Zj-EdV"/>
             </connections>
-            <point key="canvasLocation" x="142.5" y="283.5"/>
+            <point key="canvasLocation" x="142.5" y="283"/>
         </tableViewCell>
     </objects>
     <resources>

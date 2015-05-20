@@ -1,37 +1,36 @@
 //
-//  AddSongViewController.m
+//  SearchPlaylistsTableViewController.m
 //  Streamify
 //
-//  Created by Josh Nagel on 5/17/15.
+//  Created by Josh Nagel on 5/19/15.
 //  Copyright (c) 2015 jnagel. All rights reserved.
 //
 
-#import "AddSongViewController.h"
-#import "SpotifyService.h"
-#import "SongTableViewCell.h"
-#import "AddSongViewControllerDelegate.h"
-#import "NoResultsTableViewCell.h"
+#import "SearchPlaylistsTableViewController.h"
+#import "ContributorTableViewCell.h"
+#import "StreamifyService.h"
+#import "Playlist.h"
 #import "SearchingTableViewCell.h"
+#import "NoResultsTableViewCell.h"
+#import "PlaylistViewController.h"
 
-@interface AddSongViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface SearchPlaylistsTableViewController () <UISearchBarDelegate>
 
-@property(weak,nonatomic)IBOutlet UITableView *tableView;
-@property(strong,nonatomic)NSArray *songs;
-@property(strong,nonatomic)SpotifyService *spotifyService;
+@property(strong,nonatomic)NSArray *playlists;
 @property(weak, nonatomic)IBOutlet UISearchBar *searchBar;
+@property(strong,nonatomic)StreamifyService *streamifyService;
 @property(nonatomic)bool isLoading;
 @property(nonatomic)bool hasSearched;
 
 @end
 
-@implementation AddSongViewController
+@implementation SearchPlaylistsTableViewController
 
--(void)viewDidLoad {
+- (void)viewDidLoad {
   [super viewDidLoad];
-  self.tableView.delegate = self;
-  self.tableView.dataSource = self;
   self.searchBar.delegate = self;
   
+  self.streamifyService = [StreamifyService sharedService];
   self.isLoading = false;
   self.hasSearched = false;
   
@@ -42,17 +41,17 @@
   [self.tableView registerNib:cellNib forCellReuseIdentifier:@"NoResultsCell"];
   cellNib = [UINib nibWithNibName:@"SearchingTableViewCell" bundle:[NSBundle mainBundle]];
   [self.tableView registerNib:cellNib forCellReuseIdentifier:@"SearchingCell"];
-  
-  self.spotifyService = [SpotifyService sharedService];
+  cellNib = [UINib nibWithNibName:@"ContributorTableViewCell" bundle:[NSBundle mainBundle]];
+  [self.tableView registerNib:cellNib forCellReuseIdentifier:@"ContributorTableViewCell"];
 }
 
-#pragma mark - UITableViewDataSource
+#pragma mark - Table view data source
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  if (self.songs.count == 0 && self.hasSearched) {
+  if (self.playlists.count == 0 && self.hasSearched) {
     return 1;
   }
-  return self.songs.count;
+  return self.playlists.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -60,27 +59,33 @@
     SearchingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchingCell" forIndexPath:indexPath];
     [cell.activityIndicator startAnimating];
     return cell;
-  } else if (self.songs.count == 0) {
+  } else if (self.playlists.count == 0) {
     NoResultsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoResultsCell" forIndexPath:indexPath];
     return cell;
   } else {
-    SongTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SongCell" forIndexPath:indexPath];
-    Song *song = self.songs[indexPath.row];
-    [cell configureCell:song];
+    ContributorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContributorTableViewCell" forIndexPath:indexPath];
+    Playlist *playlist = self.playlists[indexPath.row];
+    [cell configureCell:playlist];
     return cell;
   }
 }
 
-#pragma mark - UITableViewDelegate
+#pragma mark - Table view delegate
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return 80;
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:true];
-  Song *song = self.songs[indexPath.row];
-  [self.delegate addSongToPlaylist:song];
-  [self.navigationController popViewControllerAnimated:true];
+  PlaylistViewController *playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"Playlist"];
+  playlistVC.currentUser = self.currentUser;
+  playlistVC.currentPlaylist = self.playlists[indexPath.row];
+  [self.navigationController pushViewController:playlistVC animated:true];
+
 }
 
-#pragma mark - UISearchBarDelegate
+#pragma mark - Search Bar delegate
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
   [searchBar resignFirstResponder];
@@ -88,8 +93,8 @@
     self.isLoading = true;
     self.hasSearched = true;
     [self.tableView reloadData];
-    [self.spotifyService getTracksFromSearchTerm:searchBar.text completionHandler:^(NSArray *tracks) {
-      self.songs = tracks;
+    [self.streamifyService findPlaylistsWithSearchTerm:searchBar.text completionHandler:^(NSArray *playlists) {
+      self.playlists = playlists;
       self.isLoading = false;
       [self.tableView reloadData];
     }];

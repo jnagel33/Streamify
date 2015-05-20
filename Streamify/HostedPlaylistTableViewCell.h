@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Playlist;
 
 @interface HostedPlaylistTableViewCell : UITableViewCell
+
+-(void)configureCell:(Playlist *)playlist;
 
 @end

@@ -21,10 +21,8 @@
 
 -(void)getUserProfile: (void (^)(User *user))completionHandler;
 
+-(void)getUserSavedTracks: (void (^)(NSArray *songs))completionHandler;
+
 -(void)getTracksFromSearchTerm:(NSString *)searchTerm completionHandler:(void (^)(NSArray *tracks))completionHandler;
-
--(void)loginApp:(NSString *)username AndPassword:(NSString *)password completionHandler:(void (^)(void))completionHandler;
-
--(void)createUser:(NSString *)username AndPassword:(NSString *)password completionHandler:(void (^)(void))completionHandler;
 
 @end

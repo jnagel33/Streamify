@@ -16,6 +16,7 @@
 #import "ImageService.h"
 #import "ImageResizer.h"
 #import "StreamifyStyleKit.h"
+#import "Playlist.h"
 
 @interface PlaylistViewController () <UITableViewDataSource, UITableViewDelegate, AddSongViewControllerDelegate, SPTAudioStreamingPlaybackDelegate>
 
@@ -25,10 +26,10 @@
 @property(strong,nonatomic)SPTAudioStreamingController *player;
 @property(strong,nonatomic)SPTSession *session;
 @property(nonatomic)NSInteger currentRowPlaying;
-@property (weak, nonatomic) IBOutlet UIImageView *thumbnailNowPlayingImageView;
-@property (weak, nonatomic) IBOutlet UILabel *trackNameNowPlayingLabel;
-@property (weak, nonatomic) IBOutlet UILabel *artistNameNowPlayingLabel;
-@property (weak, nonatomic) IBOutlet UIView *nowPlayingView;
+@property(weak, nonatomic)IBOutlet UIImageView *thumbnailNowPlayingImageView;
+@property(weak, nonatomic)IBOutlet UILabel *trackNameNowPlayingLabel;
+@property(weak, nonatomic)IBOutlet UILabel *artistNameNowPlayingLabel;
+@property(weak, nonatomic)IBOutlet UIView *nowPlayingView;
 
 @end
 
@@ -36,6 +37,9 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
+  self.navigationItem.title = self.currentPlaylist.name;
+  
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   
