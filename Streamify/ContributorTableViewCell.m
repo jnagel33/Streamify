@@ -27,7 +27,7 @@
   self.playlistCreator.text = nil;
   
   self.playlistNameLabel.text = playlist.name;
-  self.numberOfSongsLabel.text = playlist.host.username;
+  self.numberOfSongsLabel.text = playlist.host.displayName;
   
 }
 

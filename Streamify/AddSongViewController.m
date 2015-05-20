@@ -49,7 +49,7 @@
 #pragma mark - UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  if (self.songs.count == 0 && self.hasSearched) {
+  if ((self.songs.count == 0 && self.hasSearched) || self.isLoading) {
     return 1;
   }
   return self.songs.count;

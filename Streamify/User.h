@@ -10,14 +10,15 @@
 
 @interface User : NSObject
 
-@property(strong,nonatomic)NSString *username;
+@property(strong,nonatomic)NSString *userID;
+@property(strong,nonatomic)NSString *displayName;
 @property(strong,nonatomic)NSString *email;
 @property(strong,nonatomic)NSString *userType;
 @property(strong,nonatomic)NSString *profileImageURL;
 @property(strong,nonatomic)UIImage *profileImage;
 @property(strong,nonatomic)NSArray *songs;
 
--(instancetype)initWithUsername:(NSString *)username AndEmail:(NSString *)email WithUserType:(NSString *)userType andProfileImageURL:(NSString *)profileImageURL;
+-(instancetype)initWithUserID:(NSString *)userID displayName:(NSString *)displayName AndEmail:(NSString *)email WithUserType:(NSString *)userType andProfileImageURL:(NSString *)profileImageURL;
 
 
 @end

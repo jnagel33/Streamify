@@ -13,12 +13,13 @@
 @implementation SpotifyJSONParser
 
 +(User *)getUserFromJSON:(NSDictionary *)info {
-  NSString *username = info[@"id"];
+  NSString *userID = info[@"id"];
+  NSString *displayName = info[@"display_name"];
   NSString *email = info[@"email"];
   NSArray *images = info[@"images"];
   NSDictionary *image = images[0];
   NSString *profileImageURL = image[@"url"];
-  return [[User alloc]initWithUsername:username AndEmail:email WithUserType:@"Spotify" andProfileImageURL:profileImageURL];
+  return [[User alloc]initWithUserID:userID displayName:displayName AndEmail:email WithUserType:@"Spotify" andProfileImageURL:profileImageURL];
 }
 
 +(NSArray *)getTracksFromJSON:(NSDictionary *)info {

@@ -57,7 +57,7 @@
 #pragma mark - Table view data source
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  if (self.playlists.count == 0 && self.hasSearched) {
+  if ((self.playlists.count == 0 && self.hasSearched) || self.isLoading) {
     return 1;
   }
   return self.playlists.count;

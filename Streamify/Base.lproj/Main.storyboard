@@ -224,28 +224,40 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28b-MA-Zlg">
-                                        <rect key="frame" x="58" y="29" width="534" height="21"/>
+                                        <rect key="frame" x="58" y="29" width="457" height="21"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                         <color key="textColor" red="0.64939518039999999" green="0.93939537620000002" blue="0.031238322570000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvS-cr-qNk">
-                                        <rect key="frame" x="58" y="4" width="534" height="25"/>
+                                        <rect key="frame" x="58" y="4" width="457" height="25"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                         <color key="textColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="duration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hh9-h3-lgM">
+                                        <rect key="frame" x="523" y="14" width="69" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="69" id="sWA-h4-jeO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.16464120369999999" green="0.16464120369999999" blue="0.16464120369999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="Hh9-h3-lgM" firstAttribute="leading" secondItem="BvS-cr-qNk" secondAttribute="trailing" constant="8" id="2ay-SP-UDL"/>
                                     <constraint firstItem="9Yi-oI-0el" firstAttribute="leading" secondItem="qTw-9d-lVb" secondAttribute="leading" id="H2E-mA-cAM"/>
                                     <constraint firstItem="BvS-cr-qNk" firstAttribute="leading" secondItem="9Yi-oI-0el" secondAttribute="trailing" constant="8" id="SWb-nf-EZZ"/>
                                     <constraint firstItem="28b-MA-Zlg" firstAttribute="top" secondItem="BvS-cr-qNk" secondAttribute="bottom" id="WRQ-sO-ScK"/>
-                                    <constraint firstAttribute="trailing" secondItem="BvS-cr-qNk" secondAttribute="trailing" constant="8" id="WbC-a2-QRa"/>
                                     <constraint firstAttribute="bottom" secondItem="28b-MA-Zlg" secondAttribute="bottom" id="a5w-Dx-A8Z"/>
                                     <constraint firstItem="9Yi-oI-0el" firstAttribute="top" secondItem="qTw-9d-lVb" secondAttribute="top" id="bZK-Bq-jBq"/>
+                                    <constraint firstAttribute="centerY" secondItem="Hh9-h3-lgM" secondAttribute="centerY" id="cR1-4h-AEz"/>
                                     <constraint firstItem="BvS-cr-qNk" firstAttribute="top" secondItem="qTw-9d-lVb" secondAttribute="top" constant="4" id="d7Z-Rr-NWv"/>
                                     <constraint firstItem="BvS-cr-qNk" firstAttribute="leading" secondItem="28b-MA-Zlg" secondAttribute="leading" id="kaO-wg-2Qx"/>
+                                    <constraint firstItem="Hh9-h3-lgM" firstAttribute="leading" secondItem="28b-MA-Zlg" secondAttribute="trailing" constant="8" id="nZU-GL-RYl"/>
+                                    <constraint firstAttribute="trailing" secondItem="Hh9-h3-lgM" secondAttribute="trailing" constant="8" id="pK1-Zr-kvT"/>
                                     <constraint firstAttribute="bottom" secondItem="9Yi-oI-0el" secondAttribute="bottom" id="pgP-ku-XdC"/>
                                     <constraint firstAttribute="height" constant="50" id="ucS-MK-88u"/>
                                     <constraint firstItem="28b-MA-Zlg" firstAttribute="trailing" secondItem="BvS-cr-qNk" secondAttribute="trailing" id="wNn-v4-gVI"/>
@@ -272,6 +284,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="artistNameNowPlayingLabel" destination="28b-MA-Zlg" id="bUM-vp-YRf"/>
+                        <outlet property="durationLabel" destination="Hh9-h3-lgM" id="WkK-s1-u9q"/>
                         <outlet property="nowPlayingView" destination="qTw-9d-lVb" id="alR-wd-Vv9"/>
                         <outlet property="tableView" destination="P0a-mq-tbd" id="270-6C-N66"/>
                         <outlet property="thumbnailNowPlayingImageView" destination="9Yi-oI-0el" id="mBe-oh-cFE"/>
