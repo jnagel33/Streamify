@@ -74,7 +74,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   if (section == 0) {
-    return 1;
+    return 2;
   }
   return self.playlists.count;
 }
@@ -86,6 +86,9 @@
     return cell;
   } else {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchPlaylists" forIndexPath:indexPath];
+    if (indexPath.row == 1) {
+      cell.textLabel.text = @"Discover";
+    }
     return cell;
   }
 }
@@ -126,7 +129,11 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:true];
   if (indexPath.section == 0) {
-    [self performSegueWithIdentifier:@"SearchPlaylists" sender:self];
+    if (indexPath.row == 0) {
+      [self performSegueWithIdentifier:@"SearchPlaylists" sender:self];
+    } else {
+      [self performSegueWithIdentifier:@"ShowDiscover" sender:self];
+    }
   } else {
     PlaylistViewController *playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"Playlist"];
     playlistVC.currentUser = self.currentUser;

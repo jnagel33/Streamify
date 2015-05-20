@@ -8,6 +8,9 @@
 
 #import "StreamifyJSONParser.h"
 #import "Playlist.h"
+#import "Artist.h"
+#import "Song.h"
+
 
 @implementation StreamifyJSONParser
 
@@ -28,6 +31,41 @@
   
   
   return playlists;
+}
+
++(NSArray *)getArtistsFromJSON:(NSDictionary *)artistsInfo {
+  NSMutableArray *artists = [[NSMutableArray alloc]init];
+  
+  NSArray *artistsList = artistsInfo[@"artists"];
+  for (NSDictionary *artistInfo in artistsList) {
+    NSString *artistID = artistInfo[@"id"];
+    NSString *name = artistInfo[@"name"];
+    NSNumber *popularity = artistInfo[@"popularity"];
+    NSString *url = artistInfo[@"url"];
+    
+    Artist *artist = [[Artist alloc]initWithArtistID:artistID name:name popularity:popularity artistImageURL:url];
+    
+    [artists addObject:artist];
+  }
+  return artists;
+}
+
++(NSArray *)getSongsFromJSON:(NSDictionary *)songsInfo {
+  NSMutableArray *songs = [[NSMutableArray alloc]init];
+  
+  NSArray *songList = songsInfo[@"tracks"];
+  for (NSDictionary *songInfo in songList) {
+    NSString *songID = songInfo[@"id"];
+    NSString *name = songInfo[@"name"];
+    NSNumber *popularity = songInfo[@"popularity"];
+    
+    Song *song = [[Song alloc]init];
+    song.trackID = songID;
+    song.trackName = name;
+    song.popularity = popularity;
+    [songs addObject:song];
+  }
+  return songs;
 }
 
 @end

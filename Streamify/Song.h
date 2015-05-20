@@ -11,6 +11,7 @@
 
 @interface Song : NSObject
 
+@property(strong,nonatomic)NSString *trackID;
 @property(strong,nonatomic)NSString *trackName;
 @property(strong,nonatomic)NSString *artistName;
 @property(strong,nonatomic)NSString *albumName;
@@ -19,6 +20,7 @@
 @property(strong,nonatomic)NSString *uri;
 @property(strong,nonatomic)NSNumber *duration;
 @property(strong,nonatomic)User *contributor;
+@property(strong,nonatomic)NSNumber *popularity;
 
 -(instancetype)initWithTrackName:(NSString *)trackName artistName:(NSString *)artistName albumName:(NSString *)albumName albumArtworkURL:(NSString *)albumArtworkURL uri:(NSString *)uri duration:(NSNumber *)duration;
 

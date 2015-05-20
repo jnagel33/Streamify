@@ -30,4 +30,12 @@
 
 -(void)removeSongFromPlaylist:(NSString *)playlistName song:(NSString *)songID completionHandler:(void (^)(NSString *success))completionHandler;
 
+-(void)findArtistsWithSearchTerm:(NSString *)searchTerm completionHandler:(void (^)(NSArray *artists))completionHandler;
+
+-(void)findArtistsWithGenreSearchTerm:(NSString *)searchTerm completionHandler:(void (^)(NSArray *artists))completionHandler;
+
+-(void)findArtistTopTracks:(NSString *)artistID completionHandler:(void (^)(NSArray *songs))completionHandler;
+
+-(void)findRelatedArtists:(NSString *)artistID completionHandler:(void (^)(NSArray *artists))completionHandler;
+
 @end

@@ -238,7 +238,11 @@
 -(void)updateTimer {
   int minutes = floor(self.currentDuration/60);
   int seconds = trunc(self.currentDuration - minutes * 60);
-  self.durationLabel.text = [NSString stringWithFormat:@"%d:%d",minutes,seconds];
+  NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.currentDuration];
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+  dateFormatter.dateFormat = @"mm:ss";
+  self.durationLabel.text = [dateFormatter stringFromDate:date];
+//  self.durationLabel.text = [NSString stringWithFormat:@"%d:%d",minutes,seconds];
 }
 
 @end

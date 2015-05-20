@@ -45,6 +45,13 @@
 		43EA5A6A1B0BCC4200BE2546 /* SearchPlaylistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EA5A691B0BCC4200BE2546 /* SearchPlaylistsTableViewController.m */; };
 		43EA5A6D1B0BD7E300BE2546 /* StreamifyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EA5A6C1B0BD7E300BE2546 /* StreamifyService.m */; };
 		43EA5A701B0BE85500BE2546 /* StreamifyJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EA5A6F1B0BE85500BE2546 /* StreamifyJSONParser.m */; };
+		43F939111B0CF5F30035B878 /* DiscoverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F939101B0CF5F30035B878 /* DiscoverTableViewController.m */; };
+		43F939141B0CF7090035B878 /* SearchArtistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F939131B0CF7090035B878 /* SearchArtistsViewController.m */; };
+		43F939171B0CFBE80035B878 /* ArtistCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F939161B0CFBE80035B878 /* ArtistCollectionViewCell.m */; };
+		43F9391A1B0CFD0D0035B878 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F939191B0CFD0D0035B878 /* Artist.m */; };
+		43F9391D1B0D0C960035B878 /* ArtistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F9391C1B0D0C960035B878 /* ArtistViewController.m */; };
+		43F939201B0D19F20035B878 /* ArtistSongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F9391F1B0D19F20035B878 /* ArtistSongTableViewCell.m */; };
+		43F939231B0D26DE0035B878 /* RelatedArtistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F939221B0D26DE0035B878 /* RelatedArtistsViewController.m */; };
 		ABB4B290386EFF2DC0D37F5B /* libPods-Streamify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 190E1D1FC10ED81E0F409FCB /* libPods-Streamify.a */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +137,20 @@
 		43EA5A6C1B0BD7E300BE2546 /* StreamifyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamifyService.m; sourceTree = "<group>"; };
 		43EA5A6E1B0BE85500BE2546 /* StreamifyJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamifyJSONParser.h; sourceTree = "<group>"; };
 		43EA5A6F1B0BE85500BE2546 /* StreamifyJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamifyJSONParser.m; sourceTree = "<group>"; };
+		43F9390F1B0CF5F30035B878 /* DiscoverTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverTableViewController.h; sourceTree = "<group>"; };
+		43F939101B0CF5F30035B878 /* DiscoverTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverTableViewController.m; sourceTree = "<group>"; };
+		43F939121B0CF7090035B878 /* SearchArtistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchArtistsViewController.h; sourceTree = "<group>"; };
+		43F939131B0CF7090035B878 /* SearchArtistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchArtistsViewController.m; sourceTree = "<group>"; };
+		43F939151B0CFBE80035B878 /* ArtistCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistCollectionViewCell.h; sourceTree = "<group>"; };
+		43F939161B0CFBE80035B878 /* ArtistCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistCollectionViewCell.m; sourceTree = "<group>"; };
+		43F939181B0CFD0D0035B878 /* Artist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Artist.h; sourceTree = "<group>"; };
+		43F939191B0CFD0D0035B878 /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
+		43F9391B1B0D0C960035B878 /* ArtistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistViewController.h; sourceTree = "<group>"; };
+		43F9391C1B0D0C960035B878 /* ArtistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistViewController.m; sourceTree = "<group>"; };
+		43F9391E1B0D19F20035B878 /* ArtistSongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistSongTableViewCell.h; sourceTree = "<group>"; };
+		43F9391F1B0D19F20035B878 /* ArtistSongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistSongTableViewCell.m; sourceTree = "<group>"; };
+		43F939211B0D26DE0035B878 /* RelatedArtistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelatedArtistsViewController.h; sourceTree = "<group>"; };
+		43F939221B0D26DE0035B878 /* RelatedArtistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelatedArtistsViewController.m; sourceTree = "<group>"; };
 		49E819D625B3E27534493D2B /* Pods-Streamify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Streamify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Streamify/Pods-Streamify.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,6 +211,8 @@
 				43EA5A6C1B0BD7E300BE2546 /* StreamifyService.m */,
 				43EA5A6E1B0BE85500BE2546 /* StreamifyJSONParser.h */,
 				43EA5A6F1B0BE85500BE2546 /* StreamifyJSONParser.m */,
+				43F939181B0CFD0D0035B878 /* Artist.h */,
+				43F939191B0CFD0D0035B878 /* Artist.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -280,6 +303,10 @@
 				43E9C4411B09B481008EF44A /* StreamifyStyleKit.m */,
 				436927D91B0A96DB00D1AC17 /* PlaylistSongTableViewCell.h */,
 				436927DA1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m */,
+				43F939151B0CFBE80035B878 /* ArtistCollectionViewCell.h */,
+				43F939161B0CFBE80035B878 /* ArtistCollectionViewCell.m */,
+				43F9391E1B0D19F20035B878 /* ArtistSongTableViewCell.h */,
+				43F9391F1B0D19F20035B878 /* ArtistSongTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -287,6 +314,10 @@
 		43E9C4471B09B864008EF44A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				43F9390F1B0CF5F30035B878 /* DiscoverTableViewController.h */,
+				43F939101B0CF5F30035B878 /* DiscoverTableViewController.m */,
+				43F939121B0CF7090035B878 /* SearchArtistsViewController.h */,
+				43F939131B0CF7090035B878 /* SearchArtistsViewController.m */,
 				43E9C4481B09C46B008EF44A /* PlaylistViewController.h */,
 				43E9C4491B09C46B008EF44A /* PlaylistViewController.m */,
 				43E9C44E1B09C786008EF44A /* AddPlaylistViewController.h */,
@@ -299,6 +330,10 @@
 				43E9C42F1B0995CD008EF44A /* LoginViewController.m */,
 				43EA5A681B0BCC4200BE2546 /* SearchPlaylistsTableViewController.h */,
 				43EA5A691B0BCC4200BE2546 /* SearchPlaylistsTableViewController.m */,
+				43F9391B1B0D0C960035B878 /* ArtistViewController.h */,
+				43F9391C1B0D0C960035B878 /* ArtistViewController.m */,
+				43F939211B0D26DE0035B878 /* RelatedArtistsViewController.h */,
+				43F939221B0D26DE0035B878 /* RelatedArtistsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -454,13 +489,18 @@
 			files = (
 				436927DD1B0B26A000D1AC17 /* SpotifyKeys.m in Sources */,
 				4321FBDB1B0A619300F2573B /* User.m in Sources */,
+				43F939141B0CF7090035B878 /* SearchArtistsViewController.m in Sources */,
+				43F939111B0CF5F30035B878 /* DiscoverTableViewController.m in Sources */,
 				43E9C4331B099B55008EF44A /* MyPlaylistsViewController.m in Sources */,
 				43E9C40E1B097DBA008EF44A /* AppDelegate.m in Sources */,
 				43CDF82F1B0A885D00C2D880 /* ImageResizer.m in Sources */,
+				43F939231B0D26DE0035B878 /* RelatedArtistsViewController.m in Sources */,
+				43F9391D1B0D0C960035B878 /* ArtistViewController.m in Sources */,
 				43E9C44A1B09C46B008EF44A /* PlaylistViewController.m in Sources */,
 				4321FBD21B0A542300F2573B /* LoginService.m in Sources */,
 				4321FBD81B0A618600F2573B /* Playlist.m in Sources */,
 				43E9C40B1B097DBA008EF44A /* main.m in Sources */,
+				43F939171B0CFBE80035B878 /* ArtistCollectionViewCell.m in Sources */,
 				43E9C43E1B09A618008EF44A /* ContributorTableViewCell.m in Sources */,
 				43E9C44D1B09C4E4008EF44A /* AddSongViewController.m in Sources */,
 				43E9C43A1B09A5C1008EF44A /* HostedPlaylistTableViewCell.m in Sources */,
@@ -469,10 +509,12 @@
 				43EA5A701B0BE85500BE2546 /* StreamifyJSONParser.m in Sources */,
 				436927DB1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m in Sources */,
 				43CDF82C1B0A877000C2D880 /* ImageService.m in Sources */,
+				43F9391A1B0CFD0D0035B878 /* Artist.m in Sources */,
 				43EA5A6D1B0BD7E300BE2546 /* StreamifyService.m in Sources */,
 				43CDF8291B0A7B0E00C2D880 /* SongTableViewCell.m in Sources */,
 				43EA5A6A1B0BCC4200BE2546 /* SearchPlaylistsTableViewController.m in Sources */,
 				43E9C4301B0995CD008EF44A /* LoginViewController.m in Sources */,
+				43F939201B0D19F20035B878 /* ArtistSongTableViewCell.m in Sources */,
 				4321FBD51B0A5A7D00F2573B /* SpotifyService.m in Sources */,
 				4321FBDE1B0A61A800F2573B /* Song.m in Sources */,
 				43E9C4501B09C786008EF44A /* AddPlaylistViewController.m in Sources */,
