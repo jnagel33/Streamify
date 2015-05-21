@@ -47,6 +47,10 @@
   UINib *cellNib = [UINib nibWithNibName:@"HostedPlaylistTableViewCell" bundle:[NSBundle mainBundle]];
   [self.tableView registerNib:cellNib forCellReuseIdentifier:@"HostedPlaylistTableViewCell"];
   
+  [self.streamifyService findMyPlaylists:^(NSArray *playlists) {
+    self.playlists = [[NSMutableArray alloc]initWithArray:playlists];
+  }];
+  
 }
 - (IBAction)addPlaylistButton:(UIBarButtonItem *)sender {
   UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Add a Playlist" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -54,11 +58,11 @@
     UITextField *playlistNameTextField = alertController.textFields[0];
 
     Playlist *newPlaylist = [[Playlist alloc]initWithID:nil name:playlistNameTextField.text host:self.currentUser dateCreated:[NSDate date] songs:nil];
-//    Playlist *newPlaylist = [[Playlist alloc]initWithName:playlistNameTextField.text host:self.currentUser dateCreated:[NSDate date] songs:nil];
     [self.playlists addObject:newPlaylist];
     [self.tableView reloadData];
-    [self.streamifyService addPlaylist:newPlaylist completionHandler:^(NSString *success) {
+    [self.streamifyService addPlaylist:newPlaylist completionHandler:^(NSString *playlistID) {
       NSLog(@"DONE");
+      newPlaylist.playlistID = playlistID;
     }];
   }];
   [alertController addAction:saveAction];
@@ -106,7 +110,7 @@
   if (section == 0) {
     return @"";
   } else {
-    return @"Hosting";
+    return @"My Playlists";
   }
 }
 
@@ -146,8 +150,6 @@
   if ([segue.identifier isEqualToString:@"SearchPlaylists"]) {
     SearchPlaylistsTableViewController *destinationVC = segue.destinationViewController;
     destinationVC.currentUser = self.currentUser;
-    
-//    SearchPlaylistsTableViewController *searchPlaylistsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchPlaylistsVC"];
   }
 }
 

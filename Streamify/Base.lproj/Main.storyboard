@@ -316,6 +316,7 @@
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" rowHeight="76" id="6pw-Ob-IXp" customClass="SongTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -359,6 +360,7 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="albumArtworkImageView" destination="dgA-yW-vtN" id="Jyw-4q-O5X"/>
                                             <outlet property="artistNameLabel" destination="SEX-Lg-Q27" id="Sb6-yi-4OS"/>
@@ -389,7 +391,7 @@
             </objects>
             <point key="canvasLocation" x="3864" y="-595"/>
         </scene>
-        <!--My Playlists-->
+        <!--Home-->
         <scene sceneID="swi-7D-IWc">
             <objects>
                 <viewController id="hIt-qY-JUO" customClass="MyPlaylistsViewController" sceneMemberID="viewController">
@@ -433,7 +435,7 @@
                             <constraint firstItem="6Ut-JW-kOT" firstAttribute="top" secondItem="ZSV-DO-fn3" secondAttribute="top" id="k0e-u2-UAZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="My Playlists" id="2Tq-H5-3EA">
+                    <navigationItem key="navigationItem" title="Home" id="2Tq-H5-3EA">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="hFb-uT-E8u"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Kwc-H3-5kc">
                             <connections>
@@ -457,11 +459,12 @@
         <scene sceneID="vxj-G4-gbb">
             <objects>
                 <tableViewController storyboardIdentifier="SearchPlaylistsVC" id="43s-MB-bNq" customClass="SearchPlaylistsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ZOB-JS-5fx">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ZOB-JS-5fx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" barStyle="black" id="aGy-PC-OK3">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -474,7 +477,10 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zz2-SX-K75" id="IBg-lu-WbA">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -499,6 +505,8 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="X1n-h9-HJT">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection headerTitle="Artists" id="tjX-ji-HKx">
                                 <cells>
@@ -713,6 +721,7 @@
                                                 <constraint firstAttribute="centerY" secondItem="UvL-r8-Tz4" secondAttribute="centerY" id="uRN-b7-Ecg"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="popularityLabel" destination="UvL-r8-Tz4" id="tsU-Qk-5pT"/>
                                             <outlet property="trackNameLabel" destination="fEN-bz-dMd" id="pip-VQ-hc7"/>
@@ -721,7 +730,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.010168650755555619" green="0.010168650755555619" blue="0.010168650755555619" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="cf5-wD-Jnm" firstAttribute="leading" secondItem="n35-yp-4uO" secondAttribute="leadingMargin" constant="-16" id="9Ul-Nl-s0X"/>
                             <constraint firstItem="cf5-wD-Jnm" firstAttribute="top" secondItem="zLy-dr-z42" secondAttribute="bottom" constant="8" id="M3p-aN-8NO"/>
@@ -846,6 +855,6 @@
         <image name="StreamifySpotifyLoginButton" width="287" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="r7g-Iz-aTo"/>
+        <segue reference="V3l-sw-uS5"/>
     </inferredMetricsTieBreakers>
 </document>

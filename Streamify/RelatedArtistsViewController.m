@@ -25,6 +25,15 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  
+  UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                 initWithTitle:@"Back"
+                                 style:UIBarButtonItemStylePlain
+                                 target:nil
+                                 action:nil];
+  
+  self.navigationItem.backBarButtonItem=backButton;
+  
   self.streamifyService = [StreamifyService sharedService];
   [self.streamifyService findRelatedArtists:self.selectedArtist.artistID completionHandler:^(NSArray *artists) {
     self.artists = artists;

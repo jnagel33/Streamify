@@ -69,6 +69,12 @@
   self.streamifyService = [StreamifyService sharedService];
   self.spotifyService = [SpotifyService sharedService];
   
+  
+  if (self.currentPlaylist.songs) {
+    [self.streamifyService fetchSongs:self.currentPlaylist.songs completionHandler:^(NSString *success) {
+      
+    }];
+  }
   //Remove later
   self.songs = [[NSMutableArray alloc]init];
 }
@@ -188,10 +194,9 @@
 
 -(void)addSongToPlaylist:(Song *)song {
   song.contributor = self.currentUser;
-  [self.streamifyService addSongToPlaylist:self.currentPlaylist.playlistID song:song.uri completionHandler:^(NSString *success) {
+  [self.streamifyService addSongToPlaylist:self.currentPlaylist.playlistID song:song completionHandler:^(NSString *success) {
     NSLog(@"%@",success);
   }];
-  
   [self.songs addObject:song];
   [self.tableView reloadData];
   if ([self.player isPlaying]) {
@@ -227,17 +232,17 @@
 -(void)updateCurrentTrackDuration {
   self.currentDuration = self.player.currentTrackDuration;
 
-  self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/30.0 target:self selector:@selector(decrementDuration) userInfo:nil repeats:true];
+  self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(decrementDuration) userInfo:nil repeats:true];
 }
 
 -(void)decrementDuration {
-  self.currentDuration -= .01;
+  self.currentDuration -= 1;
   [self updateTimer];
 }
 
 -(void)updateTimer {
-  int minutes = floor(self.currentDuration/60);
-  int seconds = trunc(self.currentDuration - minutes * 60);
+//  int minutes = floor(self.currentDuration/60);
+//  int seconds = trunc(self.currentDuration - minutes * 60);
   NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.currentDuration];
   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
   dateFormatter.dateFormat = @"mm:ss";

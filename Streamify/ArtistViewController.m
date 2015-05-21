@@ -27,6 +27,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.tableView.dataSource = self;
+  self.tableView.delegate = self;
   
   self.navigationItem.title = self.selectedArtist.name;
   
@@ -38,8 +40,7 @@
   self.streamifyService = [StreamifyService sharedService];
   [self.streamifyService findArtistTopTracks:self.selectedArtist.artistID completionHandler:^(NSArray *songs) {
     self.topTracks = songs;
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+    [self.tableView reloadData];
   }];
   
   [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"RelatedArtistCell"];
@@ -79,7 +80,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:true];
-  [self performSegueWithIdentifier:@"ShowRelatedArtists" sender:self];
+  if (indexPath.section == 0) {
+    [self performSegueWithIdentifier:@"ShowRelatedArtists" sender:self];
+  }
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
