@@ -33,6 +33,7 @@
 @property(weak,nonatomic)IBOutlet UILabel *artistNameNowPlayingLabel;
 @property(weak,nonatomic)IBOutlet UIView *nowPlayingView;
 @property (weak,nonatomic)IBOutlet UILabel *durationLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *artistIconImageView;
 @property(nonatomic)double currentDuration;
 @property(strong,nonatomic)NSTimer *timer;
 
@@ -223,6 +224,7 @@
       self.thumbnailNowPlayingImageView.image = resizedImage;
       [UIView animateWithDuration:0.5 animations:^{
         self.thumbnailNowPlayingImageView.transform = CGAffineTransformMakeScale(1, 1);
+        self.artistIconImageView.alpha = 1;
         self.thumbnailNowPlayingImageView.alpha = 1;
       }];
     }

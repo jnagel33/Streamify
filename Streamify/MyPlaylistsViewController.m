@@ -15,6 +15,7 @@
 #import "PlaylistViewController.h"
 #import "SearchPlaylistsTableViewController.h"
 #import "StreamifyService.h"
+#import "IconDetailTableViewCell.h"
 
 @interface MyPlaylistsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -46,6 +47,8 @@
   
   UINib *cellNib = [UINib nibWithNibName:@"HostedPlaylistTableViewCell" bundle:[NSBundle mainBundle]];
   [self.tableView registerNib:cellNib forCellReuseIdentifier:@"HostedPlaylistTableViewCell"];
+  cellNib = [UINib nibWithNibName:@"IconDetailTableViewCell" bundle:[NSBundle mainBundle]];
+  [self.tableView registerNib:cellNib forCellReuseIdentifier:@"HomeIconCell"];
   
   [self.streamifyService findMyPlaylists:^(NSArray *playlists) {
     self.playlists = [[NSMutableArray alloc]initWithArray:playlists];
@@ -89,9 +92,12 @@
     [cell configureCell:self.playlists[indexPath.row]];
     return cell;
   } else {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchPlaylists" forIndexPath:indexPath];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchPlaylists" forIndexPath:indexPath];
+    IconDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeIconCell" forIndexPath:indexPath];
     if (indexPath.row == 1) {
-      cell.textLabel.text = @"Discover";
+      [cell configureCell:[UIImage imageNamed:@"ArtistIcon"] AndDetailText:@"Discover"];
+    } else {
+      [cell configureCell:[UIImage imageNamed:@"PlaylistIcon"] AndDetailText:@"Search Playlists"];
     }
     return cell;
   }

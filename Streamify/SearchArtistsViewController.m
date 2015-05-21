@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property(strong,nonatomic)NSArray *artists;
 @property(strong,nonatomic)StreamifyService *streamifyService;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -74,15 +75,18 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
   [searchBar resignFirstResponder];
   if (searchBar.text) {
+    [self.activityIndicator startAnimating];
     if (!self.isGenreSearch) {
       [self.streamifyService findArtistsWithSearchTerm:searchBar.text completionHandler:^(NSArray *artists) {
         self.artists = artists;
         [self.collectionView reloadData];
+        [self.activityIndicator stopAnimating];
       }];
     } else {
       [self.streamifyService findArtistsWithGenreSearchTerm:searchBar.text completionHandler:^(NSArray *artists) {
         self.artists = artists;
         [self.collectionView reloadData];
+        [self.activityIndicator stopAnimating];
       }];
     }
   }

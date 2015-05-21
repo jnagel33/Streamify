@@ -17,6 +17,7 @@
 @property(strong,nonatomic)NSArray *artists;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property(strong,nonatomic)StreamifyService *streamifyService;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -33,12 +34,13 @@
                                  action:nil];
   
   self.navigationItem.backBarButtonItem=backButton;
-  
+  [self.activityIndicator startAnimating];
   self.streamifyService = [StreamifyService sharedService];
   [self.streamifyService findRelatedArtists:self.selectedArtist.artistID completionHandler:^(NSArray *artists) {
     self.artists = artists;
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    [self.activityIndicator stopAnimating];
   }];
   
 }

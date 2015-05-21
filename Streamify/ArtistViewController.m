@@ -12,6 +12,8 @@
 #import "Artist.h"
 #import "PlaylistHeaderView.h"
 #import "RelatedArtistsViewController.h"
+#import "IconDetailTableViewCell.h"
+
 
 @interface ArtistViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *artistImageView;
@@ -30,6 +32,14 @@
   self.tableView.dataSource = self;
   self.tableView.delegate = self;
   
+  UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                 initWithTitle:@"Back"
+                                 style:UIBarButtonItemStylePlain
+                                 target:nil
+                                 action:nil];
+  
+  self.navigationItem.backBarButtonItem=backButton;
+  
   self.navigationItem.title = self.selectedArtist.name;
   
   self.artistImageView.layer.cornerRadius = 150 / 2;
@@ -43,7 +53,9 @@
     [self.tableView reloadData];
   }];
   
-  [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"RelatedArtistCell"];
+
+  UINib *cellNib = [UINib nibWithNibName:@"IconDetailTableViewCell" bundle:[NSBundle mainBundle]];
+  [self.tableView registerNib:cellNib forCellReuseIdentifier:@"RelatedArtistCell"];
 }
 
 #pragma mark - Table view data source
@@ -57,12 +69,13 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   if (indexPath.section == 0) {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RelatedArtistCell" forIndexPath:indexPath];
-    cell.textLabel.text = @"Find Related Artists";
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.contentView.backgroundColor = [UIColor blackColor];
-    cell.backgroundColor = [UIColor blackColor];
-    cell.textLabel.textColor = [UIColor whiteColor];
+    IconDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RelatedArtistCell" forIndexPath:indexPath];
+    [cell configureCell:[UIImage imageNamed:@"ArtistIcon"] AndDetailText:@"Find Related Artists"];
+//    cell.textLabel.text = @"Find Related Artists";
+//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    cell.contentView.backgroundColor = [UIColor blackColor];
+//    cell.backgroundColor = [UIColor blackColor];
+//    cell.textLabel.textColor = [UIColor whiteColor];
     return cell;
   } else {
     ArtistSongTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ArtistSongCell" forIndexPath:indexPath];
