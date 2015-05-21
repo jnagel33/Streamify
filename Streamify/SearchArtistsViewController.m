@@ -11,12 +11,11 @@
 #import "ArtistCollectionViewCell.h"
 #import "StreamifyService.h"
 #import "ArtistViewController.h"
+#import "ToArtistViewController.h"
 
-@interface SearchArtistsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
+@interface SearchArtistsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, UINavigationControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property(strong,nonatomic)NSArray *artists;
 @property(strong,nonatomic)StreamifyService *streamifyService;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
@@ -49,6 +48,16 @@
   
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  self.navigationController.delegate = self;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  self.navigationController.delegate = nil;
+}
+
 #pragma mark - Collection view data source
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -65,7 +74,7 @@
 #pragma mark - Collection view delegate
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  [collectionView deselectItemAtIndexPath:indexPath animated:true];
+//  [collectionView deselectItemAtIndexPath:indexPath animated:true];
   Artist *artist = self.artists[indexPath.row];
   ArtistViewController *artistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ArtistProfile"];
   artistVC.selectedArtist = artist;
@@ -90,6 +99,17 @@
       }];
     }
   }
+}
+
+-(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
+  if ([toVC isKindOfClass:[ArtistViewController class]]) {
+    return [[ToArtistViewController alloc]init];
+  }
+  return nil;
+}
+
+-(IBAction)prepareForUnwind:(UIStoryboardSegue *)sender {
+  
 }
 
 

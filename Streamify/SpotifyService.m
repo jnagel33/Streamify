@@ -84,7 +84,6 @@
   [dataTask resume];
 }
 
-
 -(void)getTracksFromSearchTerm:(NSString *)searchTerm completionHandler:(void (^)(NSArray *tracks))completionHandler {
   NSString *searchText = [searchTerm stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
   NSString *token = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];

@@ -16,12 +16,17 @@
 #import "SearchPlaylistsTableViewController.h"
 #import "StreamifyService.h"
 #import "IconDetailTableViewCell.h"
+#import "AppDelegate.h"
+#import <Spotify/Spotify.h>
+#import "LoginViewController.h"
 
-@interface MyPlaylistsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MyPlaylistsViewController () <UITableViewDataSource, UITableViewDelegate, SPTAudioStreamingPlaybackDelegate>
 
 @property(weak, nonatomic)IBOutlet UITableView *tableView;
 @property(strong,nonatomic)NSMutableArray *playlists;
 @property(strong,nonatomic)StreamifyService *streamifyService;
+@property(strong,nonatomic)SPTAudioStreamingController *player;
+@property(strong,nonatomic)SPTSession *session;
 
 @end
 
@@ -31,6 +36,10 @@
   [super viewDidLoad];
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
+  
+  AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+  self.session = appDelegate.session;
+//  [self createPlayer];
   
   self.streamifyService = [StreamifyService sharedService];
   
@@ -78,6 +87,29 @@
   }];
   [self presentViewController:alertController animated:true completion:nil];
 }
+- (IBAction)logoutPressed:(UIBarButtonItem *)sender {
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  [defaults removeObjectForKey:@"appToken"];
+  [defaults removeObjectForKey:@"sessionData"];
+  [defaults removeObjectForKey:@"token"];
+  [defaults synchronize];
+  
+  LoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"Login"];
+  [self presentViewController:loginVC animated:true completion:nil];
+}
+
+-(void)createPlayer {
+  self.player = [[SPTAudioStreamingController alloc] initWithClientId:[SPTAuth defaultInstance].clientID];
+  [self.player loginWithSession:self.session callback:^(NSError *error) {
+    if (error != nil) {
+      NSLog(@"*** Logging in got error: %@", error);
+      return;
+    }
+    self.player.playbackDelegate = self;
+  }];
+}
+
+#pragma mark - Table view data source
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   if (section == 0) {
@@ -102,6 +134,7 @@
   }
 }
 
+#pragma mark - Table view delegate
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return 2;
@@ -113,7 +146,7 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
   if (section == 0) {
-    return @"";
+    return @"Browse";
   } else {
     return @"My Playlists";
   }
@@ -121,13 +154,11 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
   PlaylistHeaderView *headerView = [[PlaylistHeaderView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 35)];
-  if (section == 1) {
-    UILabel *headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, self.view.frame.size.width, 25)];
-    headerLabel.textColor = [UIColor whiteColor];
-    headerLabel.font = [UIFont fontWithName:@"Avenir" size:20];
-    headerLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-    [headerView addSubview:headerLabel];
-  }
+  UILabel *headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, self.view.frame.size.width, 25)];
+  headerLabel.textColor = [UIColor whiteColor];
+  headerLabel.font = [UIFont fontWithName:@"Avenir" size:20];
+  headerLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+  [headerView addSubview:headerLabel];
   return headerView;
 }
 

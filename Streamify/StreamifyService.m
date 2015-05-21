@@ -96,16 +96,50 @@
   [dataTask resume];
 }
 
+-(void)checkForExistingSpotifyUser:(NSString *)username completionHandler:(void (^)(User *user))completionHandler {
+  NSString *urlStr = @"http://streamify-team.herokuapp.com/api/user/spotify_user";
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+  NSDictionary *usernamePassword = @{@"username":username, @"password":@"spotify", @"userType":@"spotify"};
+  NSError *error;
+  NSData *data = [NSJSONSerialization dataWithJSONObject:usernamePassword options:0 error:&error];
+  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+  request.HTTPMethod = @"POST";
+  request.HTTPBody = data;
+  NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+    if (error) {
+      NSLog(@"Error: %@", error);
+    } else {
+      if (response)
+        NSLog(@"%@ %@", response, responseObject);
+      [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+        NSLog(@"Success");
+        NSString *appToken = responseObject[@"token"];
+        if (appToken) {
+          [[NSUserDefaults standardUserDefaults]setValue:appToken forKey:@"appToken"];
+        }
+        NSString *username = responseObject[@"username"];
+        NSString *email = responseObject[@"email"];
+        
+        User *user = [[User alloc]initWithUserID:nil displayName:username AndEmail:email WithUserType:@"App" andProfileImageURL:nil];
+        completionHandler(user);
+      }];
+    }
+  }];
+  [dataTask resume];
+}
+
 -(void)findMyPlaylists: (void (^)(NSArray *playlists))completionHandler {
   NSString *appToken = [[NSUserDefaults standardUserDefaults]valueForKey:@"appToken"];
-  NSString *urlStr = [NSString stringWithFormat:@"http://streamify-team.herokuapp.com/api/playlist/mine?eat=%@",appToken];
+  NSString *urlStr = [NSString stringWithFormat:@"http://streamify-team.herokuapp.com/api/playlist/mine"];
+//                      ?eat=%@",appToken];
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
   [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+  request.HTTPMethod = @"POST";
   
-//    NSDictionary *info = @{@"eat":appToken};
-//    NSError *error;
-//    NSData *data = [NSJSONSerialization dataWithJSONObject:info options:0 error:&error];
-//    request.HTTPBody = data;
+    NSDictionary *info = @{@"eat":appToken};
+    NSError *error;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:info options:0 error:&error];
+    request.HTTPBody = data;
   
   NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
     if (error) {
@@ -203,7 +237,7 @@
   NSError *error;
   NSData *data = [NSJSONSerialization dataWithJSONObject:playlistInfo options:0 error:&error];
   
-  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
   request.HTTPMethod = @"POST";
   request.HTTPBody = data;
   NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
@@ -330,6 +364,26 @@
   }];
   [dataTask resume];
 }
+
+//-(void)findVideosBySearch:(NSString *)searchTerm completionHandler:(void (^)(NSArray *artists))completionHandler {
+//  NSString *appToken = [[NSUserDefaults standardUserDefaults]valueForKey:@"appToken"];
+//  NSString *urlStr = [NSString stringWithFormat:@"http://streamify-team.herokuapp.com/api/discovery/related/%@?eat=%@",artistID,appToken];
+//  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+//  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//  
+//  NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+//    if (error) {
+//      NSLog(@"Error: %@", error);
+//    } else {
+//      if (response)
+//        NSLog(@"%@ %@", response, responseObject);
+//      [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+//        completionHandler([StreamifyJSONParser getArtistsFromJSON:responseObject]);
+//      }];
+//    }
+//  }];
+//  [dataTask resume];
+//}
 
 
 @end

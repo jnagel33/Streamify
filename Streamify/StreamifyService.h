@@ -23,6 +23,8 @@
 
 -(void)createUser:(NSString *)username AndPassword:(NSString *)password AndUserType:(NSString *)userType completionHandler:(void (^)(User *user))completionHandler;
 
+-(void)checkForExistingSpotifyUser:(NSString *)username completionHandler:(void (^)(User *user))completionHandler;
+
 -(void)findMyPlaylists: (void (^)(NSArray *playlists))completionHandler;
 
 -(void)findPlaylistsWithSearchTerm:(NSString *)searchTerm completionHandler:(void (^)(NSArray *playlists))completionHandler;

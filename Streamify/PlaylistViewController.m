@@ -65,7 +65,9 @@
   
   AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
   self.session = appDelegate.session;
-  [self createPlayer];
+  if (!self.player) {
+    [self createPlayer];
+  }
   
   self.streamifyService = [StreamifyService sharedService];
   self.spotifyService = [SpotifyService sharedService];
@@ -133,6 +135,7 @@
       NSMutableArray *playlistQueue = [[NSMutableArray alloc]init];
       
       if ([self.player isPlaying]) {
+        [self stopTimer];
         [self.player stop:^(NSError *error) {
           if (error != nil) {
             NSLog(@"*** Stopping playback got error: %@", error);
@@ -154,6 +157,7 @@
         self.currentRowPlaying = indexPath.row;
       }];
     } else {
+      [self stopTimer];
       [self.player stop:^(NSError *error) {
         if (error != nil) {
           NSLog(@"*** Stopping playback got error: %@", error);
@@ -195,15 +199,19 @@
 
 -(void)addSongToPlaylist:(Song *)song {
   song.contributor = self.currentUser;
-  [self.streamifyService addSongToPlaylist:self.currentPlaylist.playlistID song:song completionHandler:^(NSString *success) {
-    NSLog(@"%@",success);
-  }];
+//  [self.streamifyService addSongToPlaylist:self.currentPlaylist.playlistID song:song completionHandler:^(NSString *success) {
+//    NSLog(@"%@",success);
+//  }];
   [self.songs addObject:song];
   [self.tableView reloadData];
   if ([self.player isPlaying]) {
     [self.player queueURIs:@[[NSURL URLWithString:song.uri]] clearQueue:false callback:nil];
   }
   NSLog(@"%d", self.player.trackListSize);
+}
+
+-(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didStartPlayingTrack:(NSURL *)trackUri {
+  NSLog(@"STARTED PLAYING TRACK : %@", trackUri);
 }
 
 -(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didStopPlayingTrack:(NSURL *)trackUri {
@@ -233,8 +241,15 @@
 
 -(void)updateCurrentTrackDuration {
   self.currentDuration = self.player.currentTrackDuration;
+  [self startTimer];
+}
 
+-(void)startTimer {
   self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(decrementDuration) userInfo:nil repeats:true];
+}
+
+-(void)stopTimer {
+  [self.timer invalidate];
 }
 
 -(void)decrementDuration {
@@ -243,13 +258,10 @@
 }
 
 -(void)updateTimer {
-//  int minutes = floor(self.currentDuration/60);
-//  int seconds = trunc(self.currentDuration - minutes * 60);
   NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.currentDuration];
   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
   dateFormatter.dateFormat = @"mm:ss";
   self.durationLabel.text = [dateFormatter stringFromDate:date];
-//  self.durationLabel.text = [NSString stringWithFormat:@"%d:%d",minutes,seconds];
 }
 
 @end

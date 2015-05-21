@@ -8,7 +8,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -181,7 +181,7 @@
                                                     <color key="textColor" red="0.64939518039999999" green="0.93939537620000002" blue="0.031238322570000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bFn-Ae-IH7">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="bFn-Ae-IH7">
                                                     <rect key="frame" x="534" y="13" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="D2k-Uo-LCZ"/>
@@ -486,7 +486,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="2Tq-H5-3EA">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="hFb-uT-E8u"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="hFb-uT-E8u">
+                            <connections>
+                                <action selector="logoutPressed:" destination="hIt-qY-JUO" id="Nrx-ue-UuL"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Kwc-H3-5kc">
                             <connections>
                                 <action selector="addPlaylistButton:" destination="hIt-qY-JUO" id="TTY-yb-YzB"/>
@@ -572,8 +576,8 @@
                                                         <constraint firstAttribute="height" constant="44" id="idC-AA-eEd"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search by Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2V-o1-jFT">
-                                                    <rect key="frame" x="60" y="28" width="119" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search by Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2V-o1-jFT">
+                                                    <rect key="frame" x="60" y="28" width="125" height="24"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -588,10 +592,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle=" " id="uvD-1e-eoP">
-                                <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="80" id="JKs-c8-Ps8">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JKs-c8-Ps8" id="ZWL-ju-r62">
@@ -696,7 +696,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <outlet property="artistImageView" destination="UTu-yV-5zP" id="RX4-93-F8Y"/>
+                                            <outlet property="artistImageView" destination="UTu-yV-5zP" id="6SU-w3-Qr2"/>
                                             <outlet property="artistName" destination="l8a-FA-6AO" id="SqR-eu-jkJ"/>
                                         </connections>
                                     </collectionViewCell>
@@ -729,7 +729,7 @@
                     <navigationItem key="navigationItem" title="Find Artists" id="e10-2f-pkQ"/>
                     <connections>
                         <outlet property="activityIndicator" destination="tua-U6-uhW" id="A4M-ZW-GDq"/>
-                        <outlet property="collectionView" destination="ujl-92-JYv" id="sRu-WI-Wau"/>
+                        <outlet property="collectionView" destination="ujl-92-JYv" id="m0c-Ll-kUM"/>
                         <outlet property="searchBar" destination="WmH-cF-o2K" id="si8-VN-ULi"/>
                         <segue destination="eOt-KS-meb" kind="show" identifier="ShowArtist" id="dLY-TE-SA0"/>
                     </connections>
@@ -816,12 +816,14 @@
                     </view>
                     <navigationItem key="navigationItem" title="Artist Name" id="Gpf-Eb-OZk"/>
                     <connections>
-                        <outlet property="artistImageView" destination="h7U-Rt-8Kr" id="P1R-eh-kEv"/>
+                        <outlet property="artistImageView" destination="h7U-Rt-8Kr" id="7sC-zg-5RZ"/>
                         <outlet property="tableView" destination="cf5-wD-Jnm" id="A5v-E4-Sx9"/>
                         <segue destination="bLs-4D-3Na" kind="show" identifier="ShowRelatedArtists" id="cWT-6k-iG0"/>
+                        <segue destination="aAr-4c-AFi" kind="unwind" identifier="Unwind" unwindAction="prepareForUnwind:" id="5S0-Sj-36r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SH9-ZA-YPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="aAr-4c-AFi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4169" y="1058"/>
         </scene>
@@ -900,7 +902,7 @@
                     <navigationItem key="navigationItem" title="Related Artists" id="J0I-6v-cbe"/>
                     <connections>
                         <outlet property="activityIndicator" destination="j7X-wX-FTU" id="Gnp-8L-QVK"/>
-                        <outlet property="collectionView" destination="OB2-O1-GHG" id="dNO-fV-p2u"/>
+                        <outlet property="collectionView" destination="OB2-O1-GHG" id="gaw-qo-Y1j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hik-0Q-fiT" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -62,10 +62,12 @@ const CGFloat kGlobalNavigationFontSize = 17;
     self.window.rootViewController = myPlaylistsNavVC;
     return YES;
   } else {
+    if (session != nil) {
+      
+    }
     return YES;
   }
 }
-
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
   if ([[SPTAuth defaultInstance]canHandleURL:url]) {

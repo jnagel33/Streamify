@@ -35,6 +35,9 @@ const double kAnimationDuration = 0.3;
   self.usernameTextField.delegate = self;
   self.passwordTextField.delegate = self;
   
+  [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"appToken"];
+  [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"sessionData"];
+  
   AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
   
   self.loginService = appDelegate.loginService;
@@ -50,13 +53,14 @@ const double kAnimationDuration = 0.3;
         UINavigationController *myPlaylistsNavVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];
         MyPlaylistsViewController *myPlaylistsVC = myPlaylistsNavVC.viewControllers[0];
         myPlaylistsVC.currentUser = user;
-        [self.streamifyService createUser:user.userID AndPassword:@"spotify" AndUserType:@"spotify" completionHandler:^(User *user) {
+        [self.streamifyService checkForExistingSpotifyUser:user.userID completionHandler:^(User *user) {
           [self presentViewController:myPlaylistsNavVC animated:true completion:nil];
         }];
       }];
     }];
   }];
 }
+
 - (IBAction)loginPressed:(UIButton *)sender {
   [self.streamifyService loginApp:self.usernameTextField.text AndPassword:self.passwordTextField.text completionHandler:^(User *user) {
     UINavigationController *myPlaylistsNavVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];
@@ -65,6 +69,7 @@ const double kAnimationDuration = 0.3;
     [self presentViewController:myPlaylistsNavVC animated:true completion:nil];
   }];
 }
+
 - (IBAction)createUserButtonPressed:(UIButton *)sender {
   [self.streamifyService createUser:self.usernameTextField.text AndPassword:self.passwordTextField.text AndUserType:@"local" completionHandler:^(User *user) {
     UINavigationController *myPlaylistsNavVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];

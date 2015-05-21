@@ -13,10 +13,11 @@
 #import "PlaylistHeaderView.h"
 #import "RelatedArtistsViewController.h"
 #import "IconDetailTableViewCell.h"
+#import "SearchArtistsViewController.h"
+#import "UnwindSegueBackToSearch.h"
 
 
-@interface ArtistViewController () <UITableViewDataSource, UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *artistImageView;
+@interface ArtistViewController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *artistNameTextField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(strong,nonatomic)StreamifyService *streamifyService;
@@ -53,9 +54,18 @@
     [self.tableView reloadData];
   }];
   
-
   UINib *cellNib = [UINib nibWithNibName:@"IconDetailTableViewCell" bundle:[NSBundle mainBundle]];
   [self.tableView registerNib:cellNib forCellReuseIdentifier:@"RelatedArtistCell"];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  self.navigationController.delegate = self;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  self.navigationController.delegate = nil;
 }
 
 #pragma mark - Table view data source
@@ -71,11 +81,6 @@
   if (indexPath.section == 0) {
     IconDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RelatedArtistCell" forIndexPath:indexPath];
     [cell configureCell:[UIImage imageNamed:@"ArtistIcon"] AndDetailText:@"Find Related Artists"];
-//    cell.textLabel.text = @"Find Related Artists";
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    cell.contentView.backgroundColor = [UIColor blackColor];
-//    cell.backgroundColor = [UIColor blackColor];
-//    cell.textLabel.textColor = [UIColor whiteColor];
     return cell;
   } else {
     ArtistSongTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ArtistSongCell" forIndexPath:indexPath];
@@ -124,6 +129,14 @@
   if ([segue.identifier isEqualToString:@"ShowRelatedArtists"]) {
     RelatedArtistsViewController *destinationVC = segue.destinationViewController;
     destinationVC.selectedArtist = self.selectedArtist;
+  }
+}
+
+-(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
+  if ([toVC isKindOfClass:[SearchArtistsViewController class]]) {
+    return [[UnwindSegueBackToSearch alloc]init];
+  } else {
+    return nil;
   }
 }
 
