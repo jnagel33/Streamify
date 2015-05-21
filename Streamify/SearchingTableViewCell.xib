@@ -27,7 +27,7 @@
                                 <rect key="frame" x="91" y="22" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="E7m-62-0yf" secondAttribute="trailing" constant="8" id="HIW-bI-gFZ"/>
                             <constraint firstAttribute="centerY" secondItem="E7m-62-0yf" secondAttribute="centerY" id="Mqr-tk-jxw"/>
@@ -45,6 +45,7 @@
                     <constraint firstItem="bAV-Nl-Av4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="ru4-xw-NGL"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="activityIndicator" destination="E7m-62-0yf" id="ZEJ-SQ-Euh"/>
             </connections>

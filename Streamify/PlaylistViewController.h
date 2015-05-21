@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "AddSongViewControllerDelegate.h"
+@class User;
+@class Playlist;
 
 @interface PlaylistViewController : UIViewController
+
+@property(strong,nonatomic)User *currentUser;
+@property(strong,nonatomic)Playlist *currentPlaylist;
 
 @end

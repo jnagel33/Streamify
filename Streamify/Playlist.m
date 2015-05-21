@@ -10,4 +10,15 @@
 
 @implementation Playlist
 
+-(instancetype)initWithID:(NSString *)playlistID name:(NSString *)name host:(User *)host dateCreated:(NSDate *)date songs:(NSArray *)songs {
+  if (self == [super init]) {
+    _playlistID = playlistID;
+    _name = name;
+    _host = host;
+    _dateCreated = date;
+    _songs = songs;
+  }
+  return self;
+}
+
 @end

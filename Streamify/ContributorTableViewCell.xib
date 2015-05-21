@@ -15,33 +15,43 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Playlist name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfc-81-KS8">
-                        <rect key="frame" x="8" y="23" width="99" height="24"/>
+                        <rect key="frame" x="56" y="23" width="99" height="24"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creator" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHw-Ir-4DG">
-                        <rect key="frame" x="8" y="48" width="44" height="16"/>
+                        <rect key="frame" x="56" y="48" width="305" height="16"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
-                        <color key="textColor" red="0.64939518039999999" green="0.93939537620000002" blue="0.031238322570000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.62333500890000004" green="1" blue="0.033992709820000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlaylistIcon" translatesAutoresizingMaskIntoConstraints="NO" id="doU-gD-Ye6">
+                        <rect key="frame" x="8" y="20" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="JaJ-pg-Do4"/>
+                            <constraint firstAttribute="width" constant="40" id="rGG-Ow-eoJ"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# songs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSk-sj-5f7">
-                        <rect key="frame" x="115" y="23" width="59" height="24"/>
+                        <rect key="frame" x="163" y="23" width="59" height="24"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.62333500890000004" green="1" blue="0.033992709820000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" red="0.080563822751322789" green="0.080563822751322789" blue="0.080563822751322789" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="dHw-Ir-4DG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="5OC-hn-31u"/>
                     <constraint firstItem="dHw-Ir-4DG" firstAttribute="top" secondItem="cfc-81-KS8" secondAttribute="bottom" constant="1" id="8e6-ga-Ohi"/>
                     <constraint firstItem="cfc-81-KS8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="9eN-CX-EBx"/>
-                    <constraint firstItem="cfc-81-KS8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="K0C-sz-gVT"/>
+                    <constraint firstItem="dHw-Ir-4DG" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="KWh-fg-RxD"/>
+                    <constraint firstItem="dHw-Ir-4DG" firstAttribute="leading" secondItem="cfc-81-KS8" secondAttribute="leading" id="VoO-bl-hs8"/>
                     <constraint firstAttribute="bottomMargin" secondItem="dHw-Ir-4DG" secondAttribute="bottom" constant="7" id="Wnc-Ov-dMJ"/>
+                    <constraint firstItem="doU-gD-Ye6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Ygh-Sl-F5h"/>
                     <constraint firstItem="cfc-81-KS8" firstAttribute="top" secondItem="kSk-sj-5f7" secondAttribute="top" id="hvg-0V-J3C"/>
                     <constraint firstItem="kSk-sj-5f7" firstAttribute="leading" secondItem="cfc-81-KS8" secondAttribute="trailing" constant="8" id="n9e-Bh-e6T"/>
+                    <constraint firstItem="cfc-81-KS8" firstAttribute="leading" secondItem="doU-gD-Ye6" secondAttribute="trailing" constant="8" id="qNg-hd-546"/>
+                    <constraint firstAttribute="centerY" secondItem="doU-gD-Ye6" secondAttribute="centerY" id="qRl-Fa-rzq"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -52,4 +62,7 @@
             <point key="canvasLocation" x="364.5" y="424"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="PlaylistIcon" width="40" height="40"/>
+    </resources>
 </document>

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class User;
 
 @interface MyPlaylistsViewController : UIViewController
+
+@property(strong,nonatomic)User *currentUser;
 
 @end

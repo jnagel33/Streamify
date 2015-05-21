@@ -43,13 +43,16 @@
   cellNib = [UINib nibWithNibName:@"SearchingTableViewCell" bundle:[NSBundle mainBundle]];
   [self.tableView registerNib:cellNib forCellReuseIdentifier:@"SearchingCell"];
   
-  self.spotifyService = [[SpotifyService alloc]init];
+  self.spotifyService = [SpotifyService sharedService];
 }
 
 #pragma mark - UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return self.songs.count == 0 ? 1 : self.songs.count;
+  if ((self.songs.count == 0 && self.hasSearched) || self.isLoading) {
+    return 1;
+  }
+  return self.songs.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

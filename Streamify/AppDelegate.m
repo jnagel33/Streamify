@@ -13,10 +13,14 @@
 #import "SpotifyKeys.h"
 #import "LoginService.h"
 #import "MyPlaylistsViewController.h"
+#import "SpotifyService.h"
+#import "User.h"
 
 const CGFloat kGlobalNavigationFontSize = 17;
 
 @interface AppDelegate ()
+
+@property(strong,nonatomic)SpotifyService *spotifyService;
 
 @end
 
@@ -34,16 +38,32 @@ const CGFloat kGlobalNavigationFontSize = 17;
   [[UINavigationBar appearance] setTitleTextAttributes:attributes];
   self.loginService = [[LoginService alloc]init];
   
+  NSString *appToken = [[NSUserDefaults standardUserDefaults]valueForKey:@"appToken"];
   NSData *sessionData = [[NSUserDefaults standardUserDefaults]valueForKey:@"sessionData"];
   SPTSession *session = [NSKeyedUnarchiver unarchiveObjectWithData:sessionData];
-  if (session) {
+  
+  NSComparisonResult comparison = [session.expirationDate compare:[NSDate date]];
+  
+  if (session && session.isValid && appToken && comparison == NSOrderedDescending) {
     self.session = session;
+    self.spotifyService = [SpotifyService sharedService];
+    [self.spotifyService getUserProfile:^(User *user) {
+      NSLog(@"%@", user.displayName);
+      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+      UINavigationController *myPlaylistsNavVC = [storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];
+      MyPlaylistsViewController *myPlaylistsVC = myPlaylistsNavVC.viewControllers[0];
+      myPlaylistsVC.currentUser = user;
+      self.window.rootViewController = myPlaylistsNavVC;
+    }];
+    return YES;
+  } else if(appToken && !session) {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     UINavigationController *myPlaylistsNavVC = [storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];
     self.window.rootViewController = myPlaylistsNavVC;
+    return YES;
+  } else {
+    return YES;
   }
-  
-  return YES;
 }
 
 
