@@ -92,10 +92,9 @@
     [cell configureCell:self.playlists[indexPath.row]];
     return cell;
   } else {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchPlaylists" forIndexPath:indexPath];
     IconDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeIconCell" forIndexPath:indexPath];
     if (indexPath.row == 1) {
-      [cell configureCell:[UIImage imageNamed:@"ArtistIcon"] AndDetailText:@"Discover"];
+      [cell configureCell:[UIImage imageNamed:@"DiscoverIcon"] AndDetailText:@"Discover"];
     } else {
       [cell configureCell:[UIImage imageNamed:@"PlaylistIcon"] AndDetailText:@"Search Playlists"];
     }
