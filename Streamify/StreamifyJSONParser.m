@@ -19,12 +19,12 @@
   for (NSDictionary *playlist in playlistInfo) {
     NSString *playlistID = playlist[@"_id"];
     NSString *name = playlist[@"name"];
-//    NSArray *songs = playlist[@"songs"];
+    NSMutableArray *songs = playlist[@"songs"];
     NSMutableArray *playlistSongs = [[NSMutableArray alloc]init];
-//    for (NSDictionary *song in songs) {
-//      
-//    }
-    
+    for (NSString *song in songs) {
+      Song *newSong = [[Song alloc]initWithTrackID:nil Name:nil artistName:nil albumName:nil albumArtworkURL:nil uri:nil duration:nil streamifyID:song];
+      [playlistSongs addObject:newSong];
+    }
     Playlist *playlist = [[Playlist alloc]initWithID:playlistID name:name host:nil dateCreated:nil songs:playlistSongs];
     [playlists addObject:playlist];
   }
@@ -55,14 +55,36 @@
   
   NSArray *songList = songsInfo[@"tracks"];
   for (NSDictionary *songInfo in songList) {
+    NSString *uri = songInfo[@"uri"];
     NSString *songID = songInfo[@"id"];
     NSString *name = songInfo[@"name"];
     NSNumber *popularity = songInfo[@"popularity"];
     
     Song *song = [[Song alloc]init];
+    song.uri = uri;
     song.trackID = songID;
     song.trackName = name;
     song.popularity = popularity;
+    [songs addObject:song];
+  }
+  return songs;
+}
+
+
++(NSArray *)getPlaylistSongsFromJSON:(NSDictionary *)songsInfo {
+  NSMutableArray *songs = [[NSMutableArray alloc]init];
+  
+  NSArray *songList = songsInfo[@"msg"];
+  for (NSDictionary *songInfo in songList) {
+    NSString *streamifyID = songInfo[@"_id"];
+    NSString *albumName = songInfo[@"album"];
+    NSString *albumArtworkURL = songInfo[@"album_artwork_url"];
+    NSString *artist = songInfo[@"artist"];
+    NSNumber *duration = songInfo[@"duration"];
+    NSString *trackName = songInfo[@"name"];
+    NSString *spotifyID = songInfo[@"spotifyID"];
+    
+    Song *song = [[Song alloc]initWithTrackID:nil Name:trackName artistName:artist albumName:albumName albumArtworkURL:albumArtworkURL uri:spotifyID duration:duration streamifyID:streamifyID];
     [songs addObject:song];
   }
   return songs;

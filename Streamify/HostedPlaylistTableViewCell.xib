@@ -14,15 +14,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlist name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZC-I0-6az">
-                        <rect key="frame" x="55" y="28" width="184" height="24"/>
+                        <rect key="frame" x="55" y="28" width="169" height="24"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="# songs" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9t9-MM-jsj">
-                        <rect key="frame" x="247" y="29" width="70" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="# song(s)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9t9-MM-jsj">
+                        <rect key="frame" x="232" y="29" width="85" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="0YF-2V-iNk"/>
+                            <constraint firstAttribute="width" constant="85" id="0YF-2V-iNk"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.62333500890000004" green="1" blue="0.033992709820000001" alpha="1" colorSpace="calibratedRGB"/>

@@ -15,4 +15,6 @@
 +(NSArray *)getArtistsFromJSON:(NSDictionary *)artistsInfo;
 
 +(NSArray *)getSongsFromJSON:(NSDictionary *)songsInfo;
+
++(NSArray *)getPlaylistSongsFromJSON:(NSDictionary *)songsInfo;
 @end

@@ -27,7 +27,7 @@
   self.playlistCreator.text = nil;
   
   self.playlistNameLabel.text = playlist.name;
-  self.numberOfSongsLabel.text = playlist.host.displayName;
+  self.numberOfSongsLabel.text = [NSString stringWithFormat:@"%lu song(s)",(unsigned long)playlist.songs.count];
   
 }
 

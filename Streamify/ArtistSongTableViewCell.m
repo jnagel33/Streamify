@@ -8,23 +8,44 @@
 
 #import "ArtistSongTableViewCell.h"
 #import "Song.h"
+#import "StreamifyStyleKit.h"
 
 @interface ArtistSongTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *trackNameLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *popularityLabel;
+@property (weak, nonatomic) IBOutlet UIView *currentTrackIndicatorView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintCurrentTrackIndicatorView;
+
 
 @end
 
 @implementation ArtistSongTableViewCell
 
 
--(void)configureCell:(Song *)song {
+-(void)configureCell:(Song *)song rowPlaying:(bool)rowPlaying {
   self.trackNameLabel.text = nil;
   self.popularityLabel.text = nil;
   
-  self.trackNameLabel.text = song.trackName;
+  
+  if (rowPlaying) {
+    self.currentTrackIndicatorView.backgroundColor = [StreamifyStyleKit spotifyGreen];
+    self.currentTrackIndicatorView.alpha = 1;
+    self.constraintCurrentTrackIndicatorView.constant = 0;
+    [UIView animateWithDuration:0.2 animations:^{
+      [self.contentView layoutIfNeeded];
+    }];
+  } else {
+    self.constraintCurrentTrackIndicatorView.constant = -12;
+    self.currentTrackIndicatorView.alpha = 0;
+    [UIView animateWithDuration:0.2 animations:^{
+      [self.contentView layoutIfNeeded];
+    }];
+  }
+  
+  
+    self.trackNameLabel.text = song.trackName;
   self.popularityLabel.text = [NSString stringWithFormat:@"%@",song.popularity];
 }
 

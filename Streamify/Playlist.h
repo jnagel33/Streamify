@@ -16,6 +16,7 @@
 @property(strong,nonatomic)User *host;
 @property(strong,nonatomic)NSDate *dateCreated;
 @property(strong,nonatomic)NSArray *songs;
+//@property(strong,nonatomic)NSMutableArray *songIDs;
 
 -(instancetype)initWithID:(NSString *)playlistID name:(NSString *)name host:(User *)host dateCreated:(NSDate *)date songs:(NSArray *)songs;
 

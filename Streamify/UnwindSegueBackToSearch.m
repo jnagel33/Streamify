@@ -31,19 +31,13 @@
   
   NSIndexPath *indexPath = fromVC.selectedIndexPath;
   ArtistCollectionViewCell *cell = (ArtistCollectionViewCell *)[toVC.collectionView cellForItemAtIndexPath:indexPath];
-  //    Artist *artist = toVC.artists[indexPath.row];
-  //    UIImageView *snapShot = [[UIImageView alloc]initWithImage:artist.artistImage];
   UIView *snapShot = [fromVC.artistImageView snapshotViewAfterScreenUpdates:false];
   cell.hidden = true;
   
   
   snapShot.frame = [containerView convertRect:fromVC.artistImageView.frame fromCoordinateSpace:fromVC.artistImageView.superview];
-  //    snapShot.layer.cornerRadius = snapShot.frame.size.width / 2;
-  //    snapShot.layer.masksToBounds = true;
   [containerView addSubview:snapShot];
   [toVC.view layoutIfNeeded];
-  
-  //    toVC.artistImageView.hidden = true;
   
   CGRect frame = [containerView convertRect:cell.artistImageView.frame fromView:cell];
   

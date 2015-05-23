@@ -35,9 +35,6 @@ const double kAnimationDuration = 0.3;
   self.usernameTextField.delegate = self;
   self.passwordTextField.delegate = self;
   
-  [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"appToken"];
-  [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"sessionData"];
-  
   AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
   
   self.loginService = appDelegate.loginService;

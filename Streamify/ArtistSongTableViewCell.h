@@ -11,6 +11,6 @@
 
 @interface ArtistSongTableViewCell : UITableViewCell
 
--(void)configureCell:(Song *)song;
+-(void)configureCell:(Song *)song rowPlaying:(bool)rowPlaying;
 
 @end

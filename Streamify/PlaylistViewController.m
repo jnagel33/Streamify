@@ -19,7 +19,7 @@
 #import "Playlist.h"
 #import "StreamifyService.h"
 
-@interface PlaylistViewController () <UITableViewDataSource, UITableViewDelegate, AddSongViewControllerDelegate, SPTAudioStreamingPlaybackDelegate>
+@interface PlaylistViewController () <UITableViewDataSource, UITableViewDelegate, AddSongViewControllerDelegate, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate>
 
 @property(weak,nonatomic)IBOutlet UITableView *tableView;
 @property(strong,nonatomic)NSMutableArray *songs;
@@ -27,13 +27,13 @@
 @property(strong,nonatomic)StreamifyService *streamifyService;
 @property(strong,nonatomic)SPTAudioStreamingController *player;
 @property(strong,nonatomic)SPTSession *session;
-@property(nonatomic)NSInteger currentRowPlaying;
+@property(strong,nonatomic)NSIndexPath *currentRowPlaying;
 @property(weak,nonatomic)IBOutlet UIImageView *thumbnailNowPlayingImageView;
 @property(weak,nonatomic)IBOutlet UILabel *trackNameNowPlayingLabel;
 @property(weak,nonatomic)IBOutlet UILabel *artistNameNowPlayingLabel;
 @property(weak,nonatomic)IBOutlet UIView *nowPlayingView;
-@property (weak,nonatomic)IBOutlet UILabel *durationLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *artistIconImageView;
+@property(weak,nonatomic)IBOutlet UILabel *durationLabel;
+@property(weak, nonatomic)IBOutlet UIImageView *artistIconImageView;
 @property(nonatomic)double currentDuration;
 @property(strong,nonatomic)NSTimer *timer;
 
@@ -63,27 +63,39 @@
   self.durationLabel.text = nil;
   self.artistNameNowPlayingLabel.textColor = [StreamifyStyleKit spotifyGreen];
   
+//  AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+//  self.session = appDelegate.session;
+//  if (!self.player) {
+//    [self createPlayer];
+//  }
+//  self.player.delegate = self;
+  
+  self.streamifyService = [StreamifyService sharedService];
+  self.spotifyService = [SpotifyService sharedService];
+  
+  NSMutableArray *songIDs = [[NSMutableArray alloc]init];
+  for(Song *song in self.currentPlaylist.songs) {
+    [songIDs addObject:song.streamifySongID];
+  }
+  [self.streamifyService fetchSongs:songIDs completionHandler:^(NSArray *songs) {
+    self.songs = [[NSMutableArray alloc]initWithArray:songs];
+    [self.tableView reloadData];
+//    [self.streamifyService findMyFavorites:^(NSArray *songs) {
+//      
+//    }];
+  }];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  
   AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
   self.session = appDelegate.session;
   if (!self.player) {
     [self createPlayer];
   }
+  self.player.delegate = self;
   
-  self.streamifyService = [StreamifyService sharedService];
-  self.spotifyService = [SpotifyService sharedService];
-  
-  
-  if (self.currentPlaylist.songs) {
-    [self.streamifyService fetchSongs:self.currentPlaylist.songs completionHandler:^(NSString *success) {
-      
-    }];
-  }
-  //Remove later
-  self.songs = [[NSMutableArray alloc]init];
-}
-
--(void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
   UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(nowPlayingPressed:)];
   [self.nowPlayingView addGestureRecognizer:tapGestureRecognizer];
 }
@@ -131,7 +143,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   if (self.songs.count != 0) {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
-    if (![self.player isPlaying] || self.currentRowPlaying != indexPath.row) {
+    if ((![self.player isPlaying]) || (self.currentRowPlaying && self.currentRowPlaying != indexPath)) {
       NSMutableArray *playlistQueue = [[NSMutableArray alloc]init];
       
       if ([self.player isPlaying]) {
@@ -154,7 +166,7 @@
           return;
         }
         [self updateCurrentTrackDuration];
-        self.currentRowPlaying = indexPath.row;
+        self.currentRowPlaying = indexPath;
       }];
     } else {
       [self stopTimer];
@@ -170,23 +182,35 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
   Song *song = self.songs[indexPath.row];
-  [self.streamifyService removeSongFromPlaylist:self.currentPlaylist.name song:song.uri completionHandler:^(NSString *success) {
+  [self.streamifyService removeSongFromPlaylist:self.currentPlaylist.playlistID song:song.streamifySongID completionHandler:^(NSString *success) {
     NSLog(@"%@",success);
   }];
-  if (self.currentRowPlaying == indexPath.row) {
+  if (self.currentRowPlaying == indexPath) {
     [self.player stop:^(NSError *error) {
       if (error != nil) {
         NSLog(@"*** Stopping playback got error: %@", error);
         return;
       }
     }];
-  } else {
-    if (self.songs.count > (self.currentRowPlaying + 1)) {
-      NSArray *songs = [self.songs subarrayWithRange:NSMakeRange(self.currentRowPlaying + 1, self.songs.count - self.currentRowPlaying + 1)];
-      [self.player queueURIs:songs clearQueue:true callback:nil];
+  } else if(![self.player isPlaying]) {
+    if (self.songs.count > (self.currentRowPlaying.row + 1)) {
+      NSArray *songs = [self.songs subarrayWithRange:NSMakeRange(self.currentRowPlaying.row + 1, self.songs.count - (self.currentRowPlaying.row + 1))];
+      NSMutableArray *uris = [[NSMutableArray alloc]init];
+      for (Song *song in songs) {
+        NSURL *url = [NSURL URLWithString:song.uri];
+        [uris addObject:url];
+      }
+      [self.player queueURIs:uris clearQueue:true callback:nil];
+      [self.player stop:^(NSError *error) {
+        if (error != nil) {
+          NSLog(@"*** Stopping playback got error: %@", error);
+          return;
+        }
+      }];
     }
   }
-  [self.songs removeObject:song];
+  [self.songs removeObjectAtIndex:indexPath.row];
+  [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
   [self.tableView reloadData];
 }
 
@@ -199,9 +223,18 @@
 
 -(void)addSongToPlaylist:(Song *)song {
   song.contributor = self.currentUser;
-//  [self.streamifyService addSongToPlaylist:self.currentPlaylist.playlistID song:song completionHandler:^(NSString *success) {
-//    NSLog(@"%@",success);
-//  }];
+  
+  
+  PlaylistViewController* __weak weakSelf = self;
+  
+  [self.streamifyService addSong:song completionHandler:^(NSString *streamifyID) {
+    song.streamifySongID = streamifyID;
+    
+    [weakSelf.streamifyService addSongToPlaylist:weakSelf.currentPlaylist.playlistID song:streamifyID completionHandler:^(NSString *success) {
+      NSLog(@"%@",success);
+    }];
+  }];
+  
   [self.songs addObject:song];
   [self.tableView reloadData];
   if ([self.player isPlaying]) {
@@ -246,22 +279,41 @@
 
 -(void)startTimer {
   self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(decrementDuration) userInfo:nil repeats:true];
+//  if (!self.thumbnailNowPlayingImageView.image && [self.player isPlaying]) {
+//    Song *song = self.songs[self.currentRowPlaying.row];
+//    self.thumbnailNowPlayingImageView.transform = CGAffineTransformMakeScale(2, 2);
+//    self.thumbnailNowPlayingImageView.alpha = 0;
+//    UIImage *resizedImage = [ImageResizer resizeImage:song.albumArtwork withSize:CGSizeMake(50, 50)];
+//    self.thumbnailNowPlayingImageView.image = resizedImage;
+//    [UIView animateWithDuration:0.5 animations:^{
+//      self.thumbnailNowPlayingImageView.transform = CGAffineTransformMakeScale(1, 1);
+//      self.artistIconImageView.alpha = 1;
+//      self.thumbnailNowPlayingImageView.alpha = 1;
+//    }];
+//
+//  }
 }
 
 -(void)stopTimer {
   [self.timer invalidate];
+  self.timer = nil;
 }
 
 -(void)decrementDuration {
-  self.currentDuration -= 1;
+//  self.currentDuration -= 1;
   [self updateTimer];
 }
 
 -(void)updateTimer {
-  NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.currentDuration];
-  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-  dateFormatter.dateFormat = @"mm:ss";
-  self.durationLabel.text = [dateFormatter stringFromDate:date];
+//  if (self.currentDuration < 1) {
+//    self.durationLabel.text = @"0:00";
+//  } else {
+//    NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.currentDuration];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.player.currentPlaybackPosition];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    dateFormatter.dateFormat = @"mm:ss";
+    self.durationLabel.text = [dateFormatter stringFromDate:date];
+//  }
 }
 
 @end

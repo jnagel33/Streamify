@@ -20,7 +20,7 @@
 #import <Spotify/Spotify.h>
 #import "LoginViewController.h"
 
-@interface MyPlaylistsViewController () <UITableViewDataSource, UITableViewDelegate, SPTAudioStreamingPlaybackDelegate>
+@interface MyPlaylistsViewController () <UITableViewDataSource, UITableViewDelegate, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate>
 
 @property(weak, nonatomic)IBOutlet UITableView *tableView;
 @property(strong,nonatomic)NSMutableArray *playlists;
@@ -39,6 +39,7 @@
   
   AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
   self.session = appDelegate.session;
+//  self.player.delegate = self;
 //  [self createPlayer];
   
   self.streamifyService = [StreamifyService sharedService];
@@ -58,12 +59,16 @@
   [self.tableView registerNib:cellNib forCellReuseIdentifier:@"HostedPlaylistTableViewCell"];
   cellNib = [UINib nibWithNibName:@"IconDetailTableViewCell" bundle:[NSBundle mainBundle]];
   [self.tableView registerNib:cellNib forCellReuseIdentifier:@"HomeIconCell"];
-  
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
   [self.streamifyService findMyPlaylists:^(NSArray *playlists) {
     self.playlists = [[NSMutableArray alloc]initWithArray:playlists];
+    [self.tableView reloadData];
   }];
-  
 }
+
 - (IBAction)addPlaylistButton:(UIBarButtonItem *)sender {
   UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Add a Playlist" message:nil preferredStyle:UIAlertControllerStyleAlert];
   UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -180,6 +185,23 @@
     playlistVC.currentPlaylist = self.playlists[indexPath.row];
     [self.navigationController pushViewController:playlistVC animated:true];
   }
+}
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (indexPath.section == 1) {
+    return UITableViewCellEditingStyleDelete;
+  } else {
+    return UITableViewCellEditingStyleNone;
+  }
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  Playlist *playlist = self.playlists[indexPath.row];
+  [self.playlists removeObjectAtIndex:indexPath.row];
+  [self.streamifyService removePlaylist:playlist.playlistID completionHandler:^(NSString *success) {
+    NSLog(@"%@",success);
+  }];
+  [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
