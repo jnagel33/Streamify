@@ -84,7 +84,6 @@
   [dataTask resume];
 }
 
-
 -(void)getTracksFromSearchTerm:(NSString *)searchTerm completionHandler:(void (^)(NSArray *tracks))completionHandler {
   NSString *searchText = [searchTerm stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
   NSString *token = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
@@ -106,47 +105,27 @@
   [dataTask resume];
 }
 
-//-(void)loginApp:(NSString *)username AndPassword:(NSString *)password completionHandler:(void (^)(void))completionHandler {
-//  NSString *urlStr = @"http://streamify-team.herokuapp.com/api/user/sign_in";
-//  self.operationManager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:urlStr]];
-//  self.operationManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-//  [self.operationManager.requestSerializer setAuthorizationHeaderFieldWithUsername:username password:password];
-//  [self.operationManager GET:@"" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//    NSString *appToken = responseObject[@"token"];
-//    if (appToken) {
-//      [[NSUserDefaults standardUserDefaults]setValue:appToken forKey:@"appToken"];
-//    }
-//  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//    
-//  }];
-//}
-//
-//-(void)createUser:(NSString *)username AndPassword:(NSString *)password completionHandler:(void (^)(void))completionHandler {
-//  NSString *urlStr = @"http://streamify-team.herokuapp.com/api/user/create_user";
+//-(void)getTracksByID:(NSString *)trackID completionHandler:(void (^)(NSArray *tracks))completionHandler {
+////  NSString *searchText = [trackID stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//  NSString *token = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
+//  NSString *urlStr = [NSString stringWithFormat:@"https://api.spotify.com/v1/search?type=track&q=%@",searchText];
 //  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-//  NSDictionary *usernamePassword = @{@"username":username, @"password":password};
-//  NSError *error;
-//  NSData *data = [NSJSONSerialization dataWithJSONObject:usernamePassword options:0 error:&error];
-//  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//  request.HTTPMethod = @"POST";
-//  request.HTTPBody = data;
+//  if (token) {
+//    [request setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
+//  }
 //  NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
 //    if (error) {
 //      NSLog(@"Error: %@", error);
 //    } else {
-//      if (response)
 //      NSLog(@"%@ %@", response, responseObject);
 //      [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-//        NSLog(@"Success");
-//        NSString *appToken = responseObject[@"token"];
-//        if (appToken) {
-//          [[NSUserDefaults standardUserDefaults]setValue:appToken forKey:@"appToken"];
-//        }
+//        completionHandler([SpotifyJSONParser getTracksFromJSON:responseObject]);
 //      }];
 //    }
 //  }];
 //  [dataTask resume];
 //}
+
 
 
 @end

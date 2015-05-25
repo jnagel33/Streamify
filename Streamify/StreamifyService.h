@@ -23,17 +23,27 @@
 
 -(void)createUser:(NSString *)username AndPassword:(NSString *)password AndUserType:(NSString *)userType completionHandler:(void (^)(User *user))completionHandler;
 
+-(void)checkForExistingSpotifyUser:(NSString *)username completionHandler:(void (^)(User *user))completionHandler;
+
+-(void)addFavoriteSongForUser:(Song *)song completionHandler:(void (^)(NSString *success))completionHandler;
+
+-(void)findMyFavorites: (void (^)(NSArray *songs))completionHandler;
+
 -(void)findMyPlaylists: (void (^)(NSArray *playlists))completionHandler;
 
 -(void)findPlaylistsWithSearchTerm:(NSString *)searchTerm completionHandler:(void (^)(NSArray *playlists))completionHandler;
 
 -(void)addPlaylist:(Playlist *)playlist completionHandler:(void (^)(NSString *success))completionHandler;
 
--(void)fetchSongs:(NSArray *)songs completionHandler:(void (^)(NSString *success))completionHandler;
+-(void)fetchSongs:(NSArray *)songs completionHandler:(void (^)(NSArray *songs))completionHandler;
 
--(void)addSongToPlaylist:(NSString *)playlistID song:(Song *)song completionHandler:(void (^)(NSString *playlistID))completionHandler;
+-(void)addSong:(Song *)song completionHandler:(void (^)(NSString *streamifyID))completionHandler;
 
--(void)removeSongFromPlaylist:(NSString *)playlistName song:(NSString *)songID completionHandler:(void (^)(NSString *success))completionHandler;
+-(void)addSongToPlaylist:(NSString *)playlistID song:(NSString *)streamifyID completionHandler:(void (^)(NSString *playlistID))completionHandler;
+
+-(void)removePlaylist:(NSString *)playlistID completionHandler:(void (^)(NSString *success))completionHandler;
+
+-(void)removeSongFromPlaylist:(NSString *)playlistID song:(NSString *)songID completionHandler:(void (^)(NSString *success))completionHandler;
 
 -(void)findArtistsWithSearchTerm:(NSString *)searchTerm completionHandler:(void (^)(NSArray *artists))completionHandler;
 

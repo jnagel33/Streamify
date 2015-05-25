@@ -11,11 +11,11 @@
 #import "ArtistViewController.h"
 #import "StreamifyService.h"
 #import "Artist.h"
+#import "ToArtistViewController.h"
 
-@interface RelatedArtistsViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property(strong,nonatomic)NSArray *artists;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@interface RelatedArtistsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UINavigationControllerDelegate>
+
 @property(strong,nonatomic)StreamifyService *streamifyService;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
@@ -25,7 +25,6 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
   
   UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
                                  initWithTitle:@"Back"
@@ -42,7 +41,16 @@
     self.collectionView.delegate = self;
     [self.activityIndicator stopAnimating];
   }];
-  
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  self.navigationController.delegate = self;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  self.navigationController.delegate = nil;
 }
 
 #pragma mark - Collection view data source
@@ -61,11 +69,19 @@
 #pragma mark - Collection view delegate
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  [collectionView deselectItemAtIndexPath:indexPath animated:true];
   Artist *artist = self.artists[indexPath.row];
   ArtistViewController *artistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ArtistProfile"];
   artistVC.selectedArtist = artist;
   [self.navigationController pushViewController:artistVC animated:true];
+}
+
+-(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
+  if ([toVC isKindOfClass:[ArtistViewController class]]) {
+    ToArtistViewController *toArtistVC = [[ToArtistViewController alloc]init];
+    toArtistVC.relatedArtistTransition = true;
+    return [[ToArtistViewController alloc]init];
+  }
+  return nil;
 }
 
 @end

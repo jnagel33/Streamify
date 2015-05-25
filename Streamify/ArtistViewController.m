@@ -13,15 +13,21 @@
 #import "PlaylistHeaderView.h"
 #import "RelatedArtistsViewController.h"
 #import "IconDetailTableViewCell.h"
+#import "SearchArtistsViewController.h"
+#import "UnwindSegueBackToSearch.h"
+#import "AppDelegate.h"
+#import <Spotify/Spotify.h>
+#import "Song.h"
 
 
-@interface ArtistViewController () <UITableViewDataSource, UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *artistImageView;
+@interface ArtistViewController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, SPTAudioStreamingPlaybackDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *artistNameTextField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(strong,nonatomic)StreamifyService *streamifyService;
-
 @property(strong,nonatomic)NSArray *topTracks;
+@property(strong,nonatomic)SPTAudioStreamingController *player;
+@property(strong,nonatomic)SPTSession *session;
+@property(nonatomic)NSInteger rowPlaying;
 
 @end
 
@@ -38,6 +44,7 @@
                                  target:nil
                                  action:nil];
   
+  
   self.navigationItem.backBarButtonItem=backButton;
   
   self.navigationItem.title = self.selectedArtist.name;
@@ -53,9 +60,42 @@
     [self.tableView reloadData];
   }];
   
-
   UINib *cellNib = [UINib nibWithNibName:@"IconDetailTableViewCell" bundle:[NSBundle mainBundle]];
   [self.tableView registerNib:cellNib forCellReuseIdentifier:@"RelatedArtistCell"];
+  
+  AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+  self.session = appDelegate.session;
+  [self createPlayer];
+  
+  self.rowPlaying = 99;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  self.navigationController.delegate = self;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  self.navigationController.delegate = nil;
+  if (self.player) {
+    [self.player stop:^(NSError *error) {
+      if (error) {
+        NSLog(@"%@",error.localizedDescription);
+      }
+    }];    
+  }
+}
+
+-(void)createPlayer {
+  self.player = [[SPTAudioStreamingController alloc] initWithClientId:[SPTAuth defaultInstance].clientID];
+  [self.player loginWithSession:self.session callback:^(NSError *error) {
+    if (error != nil) {
+      NSLog(@"*** Logging in got error: %@", error);
+      return;
+    }
+    self.player.playbackDelegate = self;
+  }];
 }
 
 #pragma mark - Table view data source
@@ -71,16 +111,16 @@
   if (indexPath.section == 0) {
     IconDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RelatedArtistCell" forIndexPath:indexPath];
     [cell configureCell:[UIImage imageNamed:@"ArtistIcon"] AndDetailText:@"Find Related Artists"];
-//    cell.textLabel.text = @"Find Related Artists";
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    cell.contentView.backgroundColor = [UIColor blackColor];
-//    cell.backgroundColor = [UIColor blackColor];
-//    cell.textLabel.textColor = [UIColor whiteColor];
     return cell;
   } else {
     ArtistSongTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ArtistSongCell" forIndexPath:indexPath];
     Song *song = self.topTracks[indexPath.row];
-    [cell configureCell:song];
+    
+    if (self.rowPlaying == indexPath.row) {
+      [cell configureCell:song rowPlaying:true];
+    } else {
+      [cell configureCell:song rowPlaying:false];
+    }
     return cell;
   }
 }
@@ -95,6 +135,17 @@
   [tableView deselectRowAtIndexPath:indexPath animated:true];
   if (indexPath.section == 0) {
     [self performSegueWithIdentifier:@"ShowRelatedArtists" sender:self];
+  } else {
+    Song *song = self.topTracks[indexPath.row];
+    self.rowPlaying = indexPath.row;
+    [self.tableView reloadData];
+    NSArray *uris = [[NSArray alloc]initWithObjects:[NSURL URLWithString:song.uri], nil];
+    [self.player playURIs:uris fromIndex:0 callback:^(NSError *error) {
+      if (error != nil) {
+        NSLog(@"*** Starting playback got error: %@", error);
+        return;
+      }
+    }];
   }
 }
 
@@ -124,6 +175,14 @@
   if ([segue.identifier isEqualToString:@"ShowRelatedArtists"]) {
     RelatedArtistsViewController *destinationVC = segue.destinationViewController;
     destinationVC.selectedArtist = self.selectedArtist;
+  }
+}
+
+-(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
+  if ([toVC isKindOfClass:[SearchArtistsViewController class]]) {
+    return [[UnwindSegueBackToSearch alloc]init];
+  } else {
+    return nil;
   }
 }
 

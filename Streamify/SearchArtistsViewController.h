@@ -11,5 +11,6 @@
 @interface SearchArtistsViewController : UIViewController
 
 @property(nonatomic)bool isGenreSearch;
-
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property(strong,nonatomic)NSArray *artists;
 @end

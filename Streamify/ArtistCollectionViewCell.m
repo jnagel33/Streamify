@@ -13,7 +13,6 @@
 
 @interface ArtistCollectionViewCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *artistImageView;
 @property (weak, nonatomic) IBOutlet UILabel *artistName;
 
 @end

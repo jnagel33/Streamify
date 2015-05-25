@@ -11,6 +11,8 @@
 
 @interface ArtistCollectionViewCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *artistImageView;
+
 -(void)configureCell:(Artist *)artist;
 
 @end

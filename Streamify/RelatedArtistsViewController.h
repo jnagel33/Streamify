@@ -12,5 +12,7 @@
 @interface RelatedArtistsViewController : UIViewController
 
 @property(strong,nonatomic)Artist *selectedArtist;
+@property(strong,nonatomic)NSArray *artists;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end

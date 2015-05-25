@@ -12,5 +12,7 @@
 @interface ArtistViewController : UIViewController
 
 @property(strong,nonatomic)Artist *selectedArtist;
+@property (weak, nonatomic) IBOutlet UIImageView *artistImageView;
+@property(strong,nonatomic)NSIndexPath *selectedIndexPath;
 
 @end

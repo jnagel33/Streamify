@@ -8,7 +8,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -181,7 +181,7 @@
                                                     <color key="textColor" red="0.64939518039999999" green="0.93939537620000002" blue="0.031238322570000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bFn-Ae-IH7">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="bFn-Ae-IH7">
                                                     <rect key="frame" x="534" y="13" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="D2k-Uo-LCZ"/>
@@ -486,7 +486,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="2Tq-H5-3EA">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="hFb-uT-E8u"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="hFb-uT-E8u">
+                            <connections>
+                                <action selector="logoutPressed:" destination="hIt-qY-JUO" id="Nrx-ue-UuL"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Kwc-H3-5kc">
                             <connections>
                                 <action selector="addPlaylistButton:" destination="hIt-qY-JUO" id="TTY-yb-YzB"/>
@@ -572,8 +576,8 @@
                                                         <constraint firstAttribute="height" constant="44" id="idC-AA-eEd"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search by Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2V-o1-jFT">
-                                                    <rect key="frame" x="60" y="28" width="119" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search by Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2V-o1-jFT">
+                                                    <rect key="frame" x="60" y="28" width="125" height="24"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -588,10 +592,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle=" " id="uvD-1e-eoP">
-                                <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="80" id="JKs-c8-Ps8">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JKs-c8-Ps8" id="ZWL-ju-r62">
@@ -696,7 +696,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <outlet property="artistImageView" destination="UTu-yV-5zP" id="RX4-93-F8Y"/>
+                                            <outlet property="artistImageView" destination="UTu-yV-5zP" id="6SU-w3-Qr2"/>
                                             <outlet property="artistName" destination="l8a-FA-6AO" id="SqR-eu-jkJ"/>
                                         </connections>
                                     </collectionViewCell>
@@ -729,7 +729,7 @@
                     <navigationItem key="navigationItem" title="Find Artists" id="e10-2f-pkQ"/>
                     <connections>
                         <outlet property="activityIndicator" destination="tua-U6-uhW" id="A4M-ZW-GDq"/>
-                        <outlet property="collectionView" destination="ujl-92-JYv" id="sRu-WI-Wau"/>
+                        <outlet property="collectionView" destination="ujl-92-JYv" id="m0c-Ll-kUM"/>
                         <outlet property="searchBar" destination="WmH-cF-o2K" id="si8-VN-ULi"/>
                         <segue destination="eOt-KS-meb" kind="show" identifier="ShowArtist" id="dLY-TE-SA0"/>
                     </connections>
@@ -753,11 +753,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h7U-Rt-8Kr">
                                 <rect key="frame" x="225" y="72" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="XbB-Ez-Eu4"/>
-                                    <constraint firstAttribute="width" constant="150" id="hYl-WH-iqR"/>
+                                    <constraint firstAttribute="width" constant="150" id="4jN-my-qCR"/>
+                                    <constraint firstAttribute="height" constant="150" id="zX6-Wm-WBW"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cf5-wD-Jnm">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cf5-wD-Jnm">
                                 <rect key="frame" x="0.0" y="230" width="600" height="370"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -769,13 +769,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Track name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEN-bz-dMd">
-                                                    <rect key="frame" x="56" y="21" width="497" height="24"/>
+                                                    <rect key="frame" x="56" y="21" width="475" height="24"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Pop" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvL-r8-Tz4">
-                                                    <rect key="frame" x="561" y="21" width="31" height="24"/>
+                                                    <rect key="frame" x="539" y="21" width="53" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="53" id="QIO-bk-7Df"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -783,20 +786,38 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="SongIcon" translatesAutoresizingMaskIntoConstraints="NO" id="TxH-vv-VHP">
                                                     <rect key="frame" x="8" y="13" width="40" height="40"/>
                                                 </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PSu-Mv-yK2">
+                                                    <rect key="frame" x="600" y="8" width="12" height="50"/>
+                                                    <color key="backgroundColor" red="0.60347988718300294" green="0.94215880796763152" blue="0.0094682020241991325" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="12" id="tjT-uA-cdg"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstItem="PSu-Mv-yK2" firstAttribute="top" secondItem="Gg7-Gs-cXx" secondAttribute="topMargin" id="235-SV-1Kd"/>
                                                 <constraint firstAttribute="centerY" secondItem="fEN-bz-dMd" secondAttribute="centerY" id="8dy-I8-Eqj"/>
+                                                <constraint firstItem="PSu-Mv-yK2" firstAttribute="leading" secondItem="UvL-r8-Tz4" secondAttribute="trailing" constant="8" id="QF5-Kd-Jnb"/>
                                                 <constraint firstItem="fEN-bz-dMd" firstAttribute="leading" secondItem="TxH-vv-VHP" secondAttribute="trailing" constant="8" id="Y8O-bu-Ha7"/>
-                                                <constraint firstItem="UvL-r8-Tz4" firstAttribute="leading" secondItem="fEN-bz-dMd" secondAttribute="trailing" constant="8" id="c69-PZ-EU3"/>
                                                 <constraint firstAttribute="centerY" secondItem="TxH-vv-VHP" secondAttribute="centerY" id="e5x-aN-adq"/>
+                                                <constraint firstItem="PSu-Mv-yK2" firstAttribute="centerY" secondItem="UvL-r8-Tz4" secondAttribute="centerY" id="fI3-JN-qwg"/>
+                                                <constraint firstItem="UvL-r8-Tz4" firstAttribute="leading" secondItem="fEN-bz-dMd" secondAttribute="trailing" constant="8" id="il1-zD-4kQ"/>
                                                 <constraint firstItem="TxH-vv-VHP" firstAttribute="leading" secondItem="Gg7-Gs-cXx" secondAttribute="leadingMargin" id="mie-hp-Wty"/>
                                                 <constraint firstItem="UvL-r8-Tz4" firstAttribute="trailing" secondItem="Gg7-Gs-cXx" secondAttribute="trailingMargin" id="o0s-8a-hMH"/>
+                                                <constraint firstAttribute="trailing" secondItem="PSu-Mv-yK2" secondAttribute="trailing" constant="-12" id="pjO-o6-EMV"/>
                                                 <constraint firstAttribute="centerY" secondItem="UvL-r8-Tz4" secondAttribute="centerY" id="uRN-b7-Ecg"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="o0s-8a-hMH"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="constraintCurrentTrackIndicatorView" destination="pjO-o6-EMV" id="Jga-eF-uxU"/>
+                                            <outlet property="currentTrackIndicatorView" destination="PSu-Mv-yK2" id="6br-tM-NhT"/>
                                             <outlet property="popularityLabel" destination="UvL-r8-Tz4" id="tsU-Qk-5pT"/>
                                             <outlet property="trackNameLabel" destination="fEN-bz-dMd" id="pip-VQ-hc7"/>
                                         </connections>
@@ -806,22 +827,24 @@
                         </subviews>
                         <color key="backgroundColor" red="0.010168650755555619" green="0.010168650755555619" blue="0.010168650755555619" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="cf5-wD-Jnm" firstAttribute="leading" secondItem="n35-yp-4uO" secondAttribute="leadingMargin" constant="-16" id="9Ul-Nl-s0X"/>
-                            <constraint firstItem="cf5-wD-Jnm" firstAttribute="top" secondItem="h7U-Rt-8Kr" secondAttribute="bottom" constant="8" id="Z6n-jY-PZf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="cf5-wD-Jnm" secondAttribute="trailing" constant="-16" id="aqh-8N-L57"/>
-                            <constraint firstItem="h7U-Rt-8Kr" firstAttribute="top" secondItem="j39-Cv-O08" secondAttribute="bottom" constant="8" id="ccs-iT-bEw"/>
-                            <constraint firstAttribute="centerX" secondItem="h7U-Rt-8Kr" secondAttribute="centerX" id="m87-2L-KhI"/>
-                            <constraint firstItem="nMp-pd-ebW" firstAttribute="top" secondItem="cf5-wD-Jnm" secondAttribute="bottom" id="mvU-Ze-oG9"/>
+                            <constraint firstItem="h7U-Rt-8Kr" firstAttribute="top" secondItem="j39-Cv-O08" secondAttribute="bottom" constant="8" symbolic="YES" id="J1N-iP-VOL"/>
+                            <constraint firstItem="cf5-wD-Jnm" firstAttribute="bottom" secondItem="nMp-pd-ebW" secondAttribute="top" id="i4C-eB-fAs"/>
+                            <constraint firstItem="h7U-Rt-8Kr" firstAttribute="centerX" secondItem="cf5-wD-Jnm" secondAttribute="centerX" id="lZ6-0h-PPY"/>
+                            <constraint firstItem="cf5-wD-Jnm" firstAttribute="leading" secondItem="n35-yp-4uO" secondAttribute="leading" id="lt7-sd-sTw"/>
+                            <constraint firstAttribute="trailing" secondItem="cf5-wD-Jnm" secondAttribute="trailing" id="syT-gt-7Vv"/>
+                            <constraint firstItem="cf5-wD-Jnm" firstAttribute="top" secondItem="h7U-Rt-8Kr" secondAttribute="bottom" constant="8" symbolic="YES" id="vue-A1-hz3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Artist Name" id="Gpf-Eb-OZk"/>
                     <connections>
-                        <outlet property="artistImageView" destination="h7U-Rt-8Kr" id="P1R-eh-kEv"/>
+                        <outlet property="artistImageView" destination="h7U-Rt-8Kr" id="7sC-zg-5RZ"/>
                         <outlet property="tableView" destination="cf5-wD-Jnm" id="A5v-E4-Sx9"/>
                         <segue destination="bLs-4D-3Na" kind="show" identifier="ShowRelatedArtists" id="cWT-6k-iG0"/>
+                        <segue destination="aAr-4c-AFi" kind="unwind" identifier="Unwind" unwindAction="prepareForUnwind:" id="5S0-Sj-36r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SH9-ZA-YPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="aAr-4c-AFi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4169" y="1058"/>
         </scene>
@@ -900,7 +923,7 @@
                     <navigationItem key="navigationItem" title="Related Artists" id="J0I-6v-cbe"/>
                     <connections>
                         <outlet property="activityIndicator" destination="j7X-wX-FTU" id="Gnp-8L-QVK"/>
-                        <outlet property="collectionView" destination="OB2-O1-GHG" id="dNO-fV-p2u"/>
+                        <outlet property="collectionView" destination="OB2-O1-GHG" id="gaw-qo-Y1j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hik-0Q-fiT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -935,6 +958,6 @@
         <image name="StreamifySpotifyLoginButton" width="287" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="r7g-Iz-aTo"/>
+        <segue reference="V3l-sw-uS5"/>
     </inferredMetricsTieBreakers>
 </document>

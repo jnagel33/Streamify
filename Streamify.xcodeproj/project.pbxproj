@@ -17,11 +17,19 @@
 		4321FBDE1B0A61A800F2573B /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBDD1B0A61A800F2573B /* Song.m */; };
 		4321FBE11B0A693500F2573B /* SpotifyJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4321FBE01B0A693500F2573B /* SpotifyJSONParser.m */; };
 		436927DB1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 436927DA1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m */; };
-		436927DD1B0B26A000D1AC17 /* SpotifyKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 436927DC1B0B26A000D1AC17 /* SpotifyKeys.m */; };
 		436927E11B0B2D3000D1AC17 /* SearchingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 436927DF1B0B2D3000D1AC17 /* SearchingTableViewCell.m */; };
 		436927E21B0B2D3000D1AC17 /* SearchingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 436927E01B0B2D3000D1AC17 /* SearchingTableViewCell.xib */; };
 		436927E61B0B2ED900D1AC17 /* NoResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 436927E41B0B2ED900D1AC17 /* NoResultsTableViewCell.m */; };
 		436927E71B0B2ED900D1AC17 /* NoResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 436927E51B0B2ED900D1AC17 /* NoResultsTableViewCell.xib */; };
+		43C129BA1B10550500E287F5 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C129B91B10550500E287F5 /* InterfaceController.m */; };
+		43C129BD1B10550500E287F5 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C129BC1B10550500E287F5 /* NotificationController.m */; };
+		43C129C01B10550500E287F5 /* GlanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C129BF1B10550500E287F5 /* GlanceController.m */; };
+		43C129C21B10550500E287F5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C129C11B10550500E287F5 /* Images.xcassets */; };
+		43C129C61B10550500E287F5 /* Streamify WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 43C129C51B10550500E287F5 /* Streamify WatchKit App.app */; };
+		43C129CE1B10550500E287F5 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43C129CC1B10550500E287F5 /* Interface.storyboard */; };
+		43C129D01B10550500E287F5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43C129CF1B10550500E287F5 /* Images.xcassets */; };
+		43C129D31B10550500E287F5 /* Streamify WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 43C129B31B10550500E287F5 /* Streamify WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		43C129DE1B105D1700E287F5 /* PlaylistRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C129DD1B105D1700E287F5 /* PlaylistRow.m */; };
 		43CDF8291B0A7B0E00C2D880 /* SongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CDF8281B0A7B0E00C2D880 /* SongTableViewCell.m */; };
 		43CDF82C1B0A877000C2D880 /* ImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CDF82B1B0A877000C2D880 /* ImageService.m */; };
 		43CDF82F1B0A885D00C2D880 /* ImageResizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CDF82E1B0A885D00C2D880 /* ImageResizer.m */; };
@@ -54,10 +62,28 @@
 		43F939231B0D26DE0035B878 /* RelatedArtistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F939221B0D26DE0035B878 /* RelatedArtistsViewController.m */; };
 		43F939261B0D7E600035B878 /* IconDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F939251B0D7E600035B878 /* IconDetailTableViewCell.m */; };
 		43F939281B0D7E9E0035B878 /* IconDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43F939271B0D7E9E0035B878 /* IconDetailTableViewCell.xib */; };
+		43F9392A1B0D9CC50035B878 /* SpotifyKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F939291B0D9CC50035B878 /* SpotifyKeys.m */; };
+		43F9392D1B0D9DEB0035B878 /* ToArtistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F9392C1B0D9DEB0035B878 /* ToArtistViewController.m */; };
+		43F939301B0DD2D10035B878 /* UnwindSegueBackToSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F9392F1B0DD2D10035B878 /* UnwindSegueBackToSearch.m */; };
+		8878C512BBEC4E1D5085BA93 /* libPods-Streamify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 190E1D1FC10ED81E0F409FCB /* libPods-Streamify.a */; };
 		ABB4B290386EFF2DC0D37F5B /* libPods-Streamify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 190E1D1FC10ED81E0F409FCB /* libPods-Streamify.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		43C129C71B10550500E287F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43E9C3FD1B097DBA008EF44A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43C129C41B10550500E287F5;
+			remoteInfo = "Streamify WatchKit App";
+		};
+		43C129D11B10550500E287F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43E9C3FD1B097DBA008EF44A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43C129B21B10550500E287F5;
+			remoteInfo = "Streamify WatchKit Extension";
+		};
 		43E9C41F1B097DBA008EF44A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 43E9C3FD1B097DBA008EF44A /* Project object */;
@@ -66,6 +92,20 @@
 			remoteInfo = Streamify;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		43C129DA1B10550500E287F5 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				43C129D31B10550500E287F5 /* Streamify WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		190E1D1FC10ED81E0F409FCB /* libPods-Streamify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Streamify.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,13 +128,30 @@
 		4321FBE01B0A693500F2573B /* SpotifyJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyJSONParser.m; sourceTree = "<group>"; };
 		436927D91B0A96DB00D1AC17 /* PlaylistSongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistSongTableViewCell.h; sourceTree = "<group>"; };
 		436927DA1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistSongTableViewCell.m; sourceTree = "<group>"; };
-		436927DC1B0B26A000D1AC17 /* SpotifyKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyKeys.m; sourceTree = "<group>"; };
 		436927DE1B0B2D3000D1AC17 /* SearchingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchingTableViewCell.h; sourceTree = "<group>"; };
 		436927DF1B0B2D3000D1AC17 /* SearchingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchingTableViewCell.m; sourceTree = "<group>"; };
 		436927E01B0B2D3000D1AC17 /* SearchingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchingTableViewCell.xib; sourceTree = "<group>"; };
 		436927E31B0B2ED900D1AC17 /* NoResultsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoResultsTableViewCell.h; sourceTree = "<group>"; };
 		436927E41B0B2ED900D1AC17 /* NoResultsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoResultsTableViewCell.m; sourceTree = "<group>"; };
 		436927E51B0B2ED900D1AC17 /* NoResultsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoResultsTableViewCell.xib; sourceTree = "<group>"; };
+		43C129B31B10550500E287F5 /* Streamify WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Streamify WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43C129B61B10550500E287F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43C129B71B10550500E287F5 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		43C129B81B10550500E287F5 /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
+		43C129B91B10550500E287F5 /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
+		43C129BB1B10550500E287F5 /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
+		43C129BC1B10550500E287F5 /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
+		43C129BE1B10550500E287F5 /* GlanceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlanceController.h; sourceTree = "<group>"; };
+		43C129BF1B10550500E287F5 /* GlanceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlanceController.m; sourceTree = "<group>"; };
+		43C129C11B10550500E287F5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		43C129C51B10550500E287F5 /* Streamify WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Streamify WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43C129CB1B10550500E287F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43C129CD1B10550500E287F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		43C129CF1B10550500E287F5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		43C129DC1B105D1700E287F5 /* PlaylistRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaylistRow.h; path = "../Streamify WatchKit App/PlaylistRow.h"; sourceTree = "<group>"; };
+		43C129DD1B105D1700E287F5 /* PlaylistRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaylistRow.m; path = "../Streamify WatchKit App/PlaylistRow.m"; sourceTree = "<group>"; };
+		43C129E11B1064B900E287F5 /* libPods-Streamify.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Streamify.a"; path = "Pods/../build/Debug-iphoneos/libPods-Streamify.a"; sourceTree = "<group>"; };
+		43C129E31B1064C500E287F5 /* libPods-Streamify-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Streamify-AFNetworking.a"; path = "Pods/../build/Debug-iphoneos/libPods-Streamify-AFNetworking.a"; sourceTree = "<group>"; };
 		43CDF8271B0A7B0E00C2D880 /* SongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableViewCell.h; sourceTree = "<group>"; };
 		43CDF8281B0A7B0E00C2D880 /* SongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewCell.m; sourceTree = "<group>"; };
 		43CDF82A1B0A877000C2D880 /* ImageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageService.h; sourceTree = "<group>"; };
@@ -156,10 +213,22 @@
 		43F939241B0D7E600035B878 /* IconDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDetailTableViewCell.h; sourceTree = "<group>"; };
 		43F939251B0D7E600035B878 /* IconDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDetailTableViewCell.m; sourceTree = "<group>"; };
 		43F939271B0D7E9E0035B878 /* IconDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconDetailTableViewCell.xib; sourceTree = "<group>"; };
+		43F939291B0D9CC50035B878 /* SpotifyKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyKeys.m; sourceTree = "<group>"; };
+		43F9392B1B0D9DEB0035B878 /* ToArtistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToArtistViewController.h; sourceTree = "<group>"; };
+		43F9392C1B0D9DEB0035B878 /* ToArtistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToArtistViewController.m; sourceTree = "<group>"; };
+		43F9392E1B0DD2D10035B878 /* UnwindSegueBackToSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnwindSegueBackToSearch.h; sourceTree = "<group>"; };
+		43F9392F1B0DD2D10035B878 /* UnwindSegueBackToSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnwindSegueBackToSearch.m; sourceTree = "<group>"; };
 		49E819D625B3E27534493D2B /* Pods-Streamify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Streamify.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Streamify/Pods-Streamify.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		43C129B01B10550500E287F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		43E9C4021B097DBA008EF44A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -175,6 +244,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98A8B32398E53ECB239D45CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8878C512BBEC4E1D5085BA93 /* libPods-Streamify.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,7 +273,7 @@
 				4321FBD01B0A542300F2573B /* LoginService.h */,
 				4321FBD11B0A542300F2573B /* LoginService.m */,
 				4321FBCC1B09DC0100F2573B /* SpotifyKeys.h */,
-				436927DC1B0B26A000D1AC17 /* SpotifyKeys.m */,
+				43F939291B0D9CC50035B878 /* SpotifyKeys.m */,
 				4321FBD31B0A5A7D00F2573B /* SpotifyService.h */,
 				4321FBD41B0A5A7D00F2573B /* SpotifyService.m */,
 				4321FBD61B0A618600F2573B /* Playlist.h */,
@@ -222,12 +299,58 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		43C129B41B10550500E287F5 /* Streamify WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				43C129B81B10550500E287F5 /* InterfaceController.h */,
+				43C129B91B10550500E287F5 /* InterfaceController.m */,
+				43C129BB1B10550500E287F5 /* NotificationController.h */,
+				43C129BC1B10550500E287F5 /* NotificationController.m */,
+				43C129DC1B105D1700E287F5 /* PlaylistRow.h */,
+				43C129DD1B105D1700E287F5 /* PlaylistRow.m */,
+				43C129BE1B10550500E287F5 /* GlanceController.h */,
+				43C129BF1B10550500E287F5 /* GlanceController.m */,
+				43C129C11B10550500E287F5 /* Images.xcassets */,
+				43C129B51B10550500E287F5 /* Supporting Files */,
+			);
+			path = "Streamify WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		43C129B51B10550500E287F5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				43C129B61B10550500E287F5 /* Info.plist */,
+				43C129B71B10550500E287F5 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		43C129C91B10550500E287F5 /* Streamify WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				43C129CC1B10550500E287F5 /* Interface.storyboard */,
+				43C129CF1B10550500E287F5 /* Images.xcassets */,
+				43C129CA1B10550500E287F5 /* Supporting Files */,
+			);
+			path = "Streamify WatchKit App";
+			sourceTree = "<group>";
+		};
+		43C129CA1B10550500E287F5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				43C129CB1B10550500E287F5 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		43E9C3FC1B097DBA008EF44A = {
 			isa = PBXGroup;
 			children = (
 				4321FBC61B09D87700F2573B /* Spotify.framework */,
 				43E9C4071B097DBA008EF44A /* Streamify */,
 				43E9C4211B097DBA008EF44A /* StreamifyTests */,
+				43C129B41B10550500E287F5 /* Streamify WatchKit Extension */,
+				43C129C91B10550500E287F5 /* Streamify WatchKit App */,
 				43E9C4061B097DBA008EF44A /* Products */,
 				0BCAAB8F70B9D40EF4F0B29C /* Pods */,
 				B1BAB5541BF0F8B0C8A67099 /* Frameworks */,
@@ -239,6 +362,8 @@
 			children = (
 				43E9C4051B097DBA008EF44A /* Streamify.app */,
 				43E9C41E1B097DBA008EF44A /* StreamifyTests.xctest */,
+				43C129B31B10550500E287F5 /* Streamify WatchKit Extension.appex */,
+				43C129C51B10550500E287F5 /* Streamify WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -322,10 +447,14 @@
 		43E9C4471B09B864008EF44A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				43F9392E1B0DD2D10035B878 /* UnwindSegueBackToSearch.h */,
+				43F9392F1B0DD2D10035B878 /* UnwindSegueBackToSearch.m */,
 				43F9390F1B0CF5F30035B878 /* DiscoverTableViewController.h */,
 				43F939101B0CF5F30035B878 /* DiscoverTableViewController.m */,
 				43F939121B0CF7090035B878 /* SearchArtistsViewController.h */,
 				43F939131B0CF7090035B878 /* SearchArtistsViewController.m */,
+				43F9392B1B0D9DEB0035B878 /* ToArtistViewController.h */,
+				43F9392C1B0D9DEB0035B878 /* ToArtistViewController.m */,
 				43E9C4481B09C46B008EF44A /* PlaylistViewController.h */,
 				43E9C4491B09C46B008EF44A /* PlaylistViewController.m */,
 				43E9C44E1B09C786008EF44A /* AddPlaylistViewController.h */,
@@ -349,6 +478,8 @@
 		B1BAB5541BF0F8B0C8A67099 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43C129E31B1064C500E287F5 /* libPods-Streamify-AFNetworking.a */,
+				43C129E11B1064B900E287F5 /* libPods-Streamify.a */,
 				4321FBCA1B09DB0300F2573B /* SystemConfiguration.framework */,
 				4321FBC81B09DAF600F2573B /* AVFoundation.framework */,
 				190E1D1FC10ED81E0F409FCB /* libPods-Streamify.a */,
@@ -359,6 +490,44 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		43C129B21B10550500E287F5 /* Streamify WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43C129D71B10550500E287F5 /* Build configuration list for PBXNativeTarget "Streamify WatchKit Extension" */;
+			buildPhases = (
+				7E091892341C2CA33FB0DCBB /* Check Pods Manifest.lock */,
+				43C129AF1B10550500E287F5 /* Sources */,
+				43C129B01B10550500E287F5 /* Frameworks */,
+				43C129B11B10550500E287F5 /* Resources */,
+				C965CD15F57E7250B68D928A /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				43C129C81B10550500E287F5 /* PBXTargetDependency */,
+			);
+			name = "Streamify WatchKit Extension";
+			productName = "Streamify WatchKit Extension";
+			productReference = 43C129B31B10550500E287F5 /* Streamify WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		43C129C41B10550500E287F5 /* Streamify WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43C129D41B10550500E287F5 /* Build configuration list for PBXNativeTarget "Streamify WatchKit App" */;
+			buildPhases = (
+				9B10E8EEBAF0A62F356212F6 /* Check Pods Manifest.lock */,
+				43C129C31B10550500E287F5 /* Resources */,
+				98A8B32398E53ECB239D45CF /* Frameworks */,
+				F01557B4AA5F8591385A3AA5 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Streamify WatchKit App";
+			productName = "Streamify WatchKit App";
+			productReference = 43C129C51B10550500E287F5 /* Streamify WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 		43E9C4041B097DBA008EF44A /* Streamify */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43E9C4281B097DBA008EF44A /* Build configuration list for PBXNativeTarget "Streamify" */;
@@ -368,10 +537,12 @@
 				43E9C4021B097DBA008EF44A /* Frameworks */,
 				43E9C4031B097DBA008EF44A /* Resources */,
 				2719CD20F2607B3FE148BE7B /* Copy Pods Resources */,
+				43C129DA1B10550500E287F5 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				43C129D21B10550500E287F5 /* PBXTargetDependency */,
 			);
 			name = Streamify;
 			productName = Streamify;
@@ -405,6 +576,12 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = jnagel;
 				TargetAttributes = {
+					43C129B21B10550500E287F5 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					43C129C41B10550500E287F5 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
 					43E9C4041B097DBA008EF44A = {
 						CreatedOnToolsVersion = 6.3.1;
 					};
@@ -429,11 +606,31 @@
 			targets = (
 				43E9C4041B097DBA008EF44A /* Streamify */,
 				43E9C41D1B097DBA008EF44A /* StreamifyTests */,
+				43C129B21B10550500E287F5 /* Streamify WatchKit Extension */,
+				43C129C41B10550500E287F5 /* Streamify WatchKit App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		43C129B11B10550500E287F5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43C129C21B10550500E287F5 /* Images.xcassets in Resources */,
+				43C129C61B10550500E287F5 /* Streamify WatchKit App.app in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43C129C31B10550500E287F5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43C129CE1B10550500E287F5 /* Interface.storyboard in Resources */,
+				43C129D01B10550500E287F5 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		43E9C4031B097DBA008EF44A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -474,6 +671,51 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Streamify/Pods-Streamify-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7E091892341C2CA33FB0DCBB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9B10E8EEBAF0A62F356212F6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C965CD15F57E7250B68D928A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Streamify/Pods-Streamify-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E60E0E0FA147BD8E9ABA9CFE /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -489,14 +731,38 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		F01557B4AA5F8591385A3AA5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Streamify/Pods-Streamify-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		43C129AF1B10550500E287F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43C129BD1B10550500E287F5 /* NotificationController.m in Sources */,
+				43C129BA1B10550500E287F5 /* InterfaceController.m in Sources */,
+				43C129C01B10550500E287F5 /* GlanceController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		43E9C4011B097DBA008EF44A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				436927DD1B0B26A000D1AC17 /* SpotifyKeys.m in Sources */,
 				4321FBDB1B0A619300F2573B /* User.m in Sources */,
 				43F939141B0CF7090035B878 /* SearchArtistsViewController.m in Sources */,
 				43F939111B0CF5F30035B878 /* DiscoverTableViewController.m in Sources */,
@@ -506,10 +772,12 @@
 				43F939231B0D26DE0035B878 /* RelatedArtistsViewController.m in Sources */,
 				43F9391D1B0D0C960035B878 /* ArtistViewController.m in Sources */,
 				43E9C44A1B09C46B008EF44A /* PlaylistViewController.m in Sources */,
+				43F9392A1B0D9CC50035B878 /* SpotifyKeys.m in Sources */,
 				4321FBD21B0A542300F2573B /* LoginService.m in Sources */,
 				4321FBD81B0A618600F2573B /* Playlist.m in Sources */,
 				43E9C40B1B097DBA008EF44A /* main.m in Sources */,
 				43F939261B0D7E600035B878 /* IconDetailTableViewCell.m in Sources */,
+				43F939301B0DD2D10035B878 /* UnwindSegueBackToSearch.m in Sources */,
 				43F939171B0CFBE80035B878 /* ArtistCollectionViewCell.m in Sources */,
 				43E9C43E1B09A618008EF44A /* ContributorTableViewCell.m in Sources */,
 				43E9C44D1B09C4E4008EF44A /* AddSongViewController.m in Sources */,
@@ -528,8 +796,10 @@
 				4321FBD51B0A5A7D00F2573B /* SpotifyService.m in Sources */,
 				4321FBDE1B0A61A800F2573B /* Song.m in Sources */,
 				43E9C4501B09C786008EF44A /* AddPlaylistViewController.m in Sources */,
+				43F9392D1B0D9DEB0035B878 /* ToArtistViewController.m in Sources */,
 				436927E61B0B2ED900D1AC17 /* NoResultsTableViewCell.m in Sources */,
 				4321FBE11B0A693500F2573B /* SpotifyJSONParser.m in Sources */,
+				43C129DE1B105D1700E287F5 /* PlaylistRow.m in Sources */,
 				436927E11B0B2D3000D1AC17 /* SearchingTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,6 +815,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		43C129C81B10550500E287F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43C129C41B10550500E287F5 /* Streamify WatchKit App */;
+			targetProxy = 43C129C71B10550500E287F5 /* PBXContainerItemProxy */;
+		};
+		43C129D21B10550500E287F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43C129B21B10550500E287F5 /* Streamify WatchKit Extension */;
+			targetProxy = 43C129D11B10550500E287F5 /* PBXContainerItemProxy */;
+		};
 		43E9C4201B097DBA008EF44A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 43E9C4041B097DBA008EF44A /* Streamify */;
@@ -553,6 +833,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		43C129CC1B10550500E287F5 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				43C129CD1B10550500E287F5 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		43E9C4121B097DBA008EF44A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -572,6 +860,66 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		43C129D51B10550500E287F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49E819D625B3E27534493D2B /* Pods-Streamify.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = Streamify_WatchKit_Extension;
+				INFOPLIST_FILE = "Streamify WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		43C129D61B10550500E287F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31B2B441651D0F7DF25DD03F /* Pods-Streamify.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				IBSC_MODULE = Streamify_WatchKit_Extension;
+				INFOPLIST_FILE = "Streamify WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
+		43C129D81B10550500E287F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49E819D625B3E27534493D2B /* Pods-Streamify.debug.xcconfig */;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Streamify WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		43C129D91B10550500E287F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31B2B441651D0F7DF25DD03F /* Pods-Streamify.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "Streamify WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		43E9C4261B097DBA008EF44A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -721,6 +1069,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		43C129D41B10550500E287F5 /* Build configuration list for PBXNativeTarget "Streamify WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43C129D51B10550500E287F5 /* Debug */,
+				43C129D61B10550500E287F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43C129D71B10550500E287F5 /* Build configuration list for PBXNativeTarget "Streamify WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43C129D81B10550500E287F5 /* Debug */,
+				43C129D91B10550500E287F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		43E9C4001B097DBA008EF44A /* Build configuration list for PBXProject "Streamify" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
