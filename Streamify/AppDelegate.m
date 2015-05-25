@@ -14,6 +14,7 @@
 #import "LoginService.h"
 #import "MyPlaylistsViewController.h"
 #import "SpotifyService.h"
+#import "StreamifyService.h"
 #import "User.h"
 
 const CGFloat kGlobalNavigationFontSize = 17;
@@ -91,6 +92,21 @@ const CGFloat kGlobalNavigationFontSize = 17;
   }
   
   return NO;
+}
+
+-(void)application:(UIApplication *)application handleWatchKitExtensionRequest:(NSDictionary *)userInfo reply:(void (^)(NSDictionary *))reply {
+  UIApplication *app= [UIApplication sharedApplication];
+  __block UIBackgroundTaskIdentifier task = [app beginBackgroundTaskWithName:@"test" expirationHandler:^{
+    [[UIApplication sharedApplication]endBackgroundTask:task];
+    task = UIBackgroundTaskInvalid;
+  }];
+  
+  [[StreamifyService sharedService]findMyPlaylists:^(NSArray *playlists) {
+    reply(@{@"playlists":playlists});
+  }];
+  
+  [app endBackgroundTask:task];
+  task = UIBackgroundTaskInvalid;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

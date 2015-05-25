@@ -4,6 +4,21 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Glance - Streamify WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>Notification - Streamify WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>Streamify WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Streamify.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +27,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>43C129C41B10550500E287F5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>43E9C4041B097DBA008EF44A</key>
 		<dict>
 			<key>primary</key>
