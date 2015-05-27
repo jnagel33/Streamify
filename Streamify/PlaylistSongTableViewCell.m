@@ -13,7 +13,7 @@
 #import "User.h"
 #import "StreamifyStyleKit.h"
 
-CGFloat const kArtworkPlaylistImageHeightWidth = 50;
+CGFloat const kArtworkPlaylistImageHeightWidth = 75;
 CGFloat const kProfilePlaylistImageHeightWidth = 50;
 
 @interface PlaylistSongTableViewCell ()

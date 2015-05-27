@@ -103,16 +103,16 @@
   [self presentViewController:loginVC animated:true completion:nil];
 }
 
--(void)createPlayer {
-  self.player = [[SPTAudioStreamingController alloc] initWithClientId:[SPTAuth defaultInstance].clientID];
-  [self.player loginWithSession:self.session callback:^(NSError *error) {
-    if (error != nil) {
-      NSLog(@"*** Logging in got error: %@", error);
-      return;
-    }
-    self.player.playbackDelegate = self;
-  }];
-}
+//-(void)createPlayer {
+//  self.player = [[SPTAudioStreamingController alloc] initWithClientId:[SPTAuth defaultInstance].clientID];
+//  [self.player loginWithSession:self.session callback:^(NSError *error) {
+//    if (error != nil) {
+//      NSLog(@"*** Logging in got error: %@", error);
+//      return;
+//    }
+//    self.player.playbackDelegate = self;
+//  }];
+//}
 
 #pragma mark - Table view data source
 
