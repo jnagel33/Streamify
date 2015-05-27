@@ -25,6 +25,10 @@ CGFloat const kArtworkImageHeightWidth = 75;
 @implementation SongTableViewCell
 
 -(void)configureCell:(Song *)song {
+  UIView *cellSelecetedView = [[UIView alloc]init];
+  cellSelecetedView.backgroundColor = [UIColor darkGrayColor];
+  [self setSelectedBackgroundView:cellSelecetedView];
+  
   self.albumArtworkImageView.image = nil;
   self.artistNameLabel.text = nil;
   self.trackNameLabel.text = nil;

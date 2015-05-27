@@ -20,7 +20,7 @@
 #import "Song.h"
 
 
-@interface ArtistViewController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, SPTAudioStreamingPlaybackDelegate>
+@interface ArtistViewController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *artistNameTextField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(strong,nonatomic)StreamifyService *streamifyService;
@@ -65,7 +65,7 @@
   
   AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
   self.session = appDelegate.session;
-  [self createPlayer];
+  self.player = appDelegate.player;
   
   self.rowPlaying = 99;
 }
@@ -78,24 +78,6 @@
 -(void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   self.navigationController.delegate = nil;
-  if (self.player) {
-    [self.player stop:^(NSError *error) {
-      if (error) {
-        NSLog(@"%@",error.localizedDescription);
-      }
-    }];    
-  }
-}
-
--(void)createPlayer {
-  self.player = [[SPTAudioStreamingController alloc] initWithClientId:[SPTAuth defaultInstance].clientID];
-  [self.player loginWithSession:self.session callback:^(NSError *error) {
-    if (error != nil) {
-      NSLog(@"*** Logging in got error: %@", error);
-      return;
-    }
-    self.player.playbackDelegate = self;
-  }];
 }
 
 #pragma mark - Table view data source

@@ -19,7 +19,7 @@
 
 const CGFloat kGlobalNavigationFontSize = 17;
 
-@interface AppDelegate ()
+@interface AppDelegate () <SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate>
 
 @property(strong,nonatomic)SpotifyService *spotifyService;
 
@@ -29,6 +29,8 @@ const CGFloat kGlobalNavigationFontSize = 17;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  
+  
   
   NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:100 * 1024 * 1024 diskCapacity:100 * 1024 * 1024 diskPath:nil];
   [NSURLCache setSharedURLCache:sharedCache];
@@ -47,27 +49,38 @@ const CGFloat kGlobalNavigationFontSize = 17;
   
   if (session && session.isValid && appToken && comparison == NSOrderedDescending) {
     self.session = session;
+    [self createPlayer];
     self.spotifyService = [SpotifyService sharedService];
     [self.spotifyService getUserProfile:^(User *user) {
       NSLog(@"%@", user.displayName);
-      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-      UINavigationController *myPlaylistsNavVC = [storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];
-      MyPlaylistsViewController *myPlaylistsVC = myPlaylistsNavVC.viewControllers[0];
-      myPlaylistsVC.currentUser = user;
-      self.window.rootViewController = myPlaylistsNavVC;
+      [self makeHomePageRootController];
     }];
     return YES;
   } else if(appToken && !session) {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    UINavigationController *myPlaylistsNavVC = [storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];
-    self.window.rootViewController = myPlaylistsNavVC;
+    [self makeHomePageRootController];
     return YES;
   } else {
     if (session != nil) {
-      
+      [[SPTAuth defaultInstance]renewSession:session callback:^(NSError *error, SPTSession *session) {
+        if (!error) {
+          self.session = session;
+          [self createPlayer];
+          self.spotifyService = [SpotifyService sharedService];
+          [self.spotifyService getUserProfile:^(User *user) {
+            NSLog(@"%@", user.displayName);
+            [self makeHomePageRootController];
+          }];
+        }
+      }];
     }
     return YES;
   }
+}
+
+-(void)makeHomePageRootController {
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+  UINavigationController *myPlaylistsNavVC = [storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];
+  self.window.rootViewController = myPlaylistsNavVC;
 }
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
@@ -90,7 +103,6 @@ const CGFloat kGlobalNavigationFontSize = 17;
     }];
     return YES;
   }
-  
   return NO;
 }
 
@@ -129,6 +141,36 @@ const CGFloat kGlobalNavigationFontSize = 17;
 
 - (void)applicationWillTerminate:(UIApplication *)application {
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didStartPlayingTrack:(NSURL *)trackUri {
+  NSLog(@"STARTED PLAYING TRACK : %@", trackUri);
+}
+
+-(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didStopPlayingTrack:(NSURL *)trackUri {
+  NSLog(@"%@", [trackUri relativeString]);
+}
+
+-(void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangeToTrack:(NSDictionary *)trackMetadata {
+  NSLog(@"%@", trackMetadata);
+  if (trackMetadata) {
+    NSDictionary *trackInfo = @{
+          @"artist":trackMetadata[@"SPTAudioStreamingMetadataArtistName"],
+          @"track":trackMetadata[@"SPTAudioStreamingMetadataTrackName"],
+          @"album":trackMetadata[@"SPTAudioStreamingMetadataAlbumName"]};
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"trackChange" object:nil userInfo:trackInfo];
+  }
+}
+
+-(void)createPlayer {
+  self.player = [[SPTAudioStreamingController alloc] initWithClientId:[SPTAuth defaultInstance].clientID];
+  [self.player loginWithSession:self.session callback:^(NSError *error) {
+    if (error != nil) {
+      NSLog(@"*** Logging in got error: %@", error);
+      return;
+    }
+    self.player.playbackDelegate = self;
+  }];
 }
 
 @end

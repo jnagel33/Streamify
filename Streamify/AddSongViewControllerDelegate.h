@@ -11,6 +11,6 @@
 
 @protocol AddSongViewControllerDelegate <NSObject>
 
--(void)addSongToPlaylist:(Song *)song;
+-(void)addSongsToPlaylist:(NSArray *)songs;
 
 @end

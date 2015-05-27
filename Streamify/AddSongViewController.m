@@ -31,6 +31,7 @@
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   self.searchBar.delegate = self;
+  self.tableView.allowsMultipleSelectionDuringEditing = true;
   
   self.isLoading = false;
   self.hasSearched = false;
@@ -45,6 +46,41 @@
   
   self.spotifyService = [SpotifyService sharedService];
 }
+
+-(void)updateButtonsToMatchTableState {
+  if (self.hasSearched && self.songs.count > 1) {
+    if (!self.tableView.editing) {
+      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Multi-Add" style:UIBarButtonItemStylePlain target:self action:@selector(enterMultiAddMode)];
+      self.navigationItem.leftBarButtonItem = nil;
+    } else {
+      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Add" style:UIBarButtonItemStylePlain target:self action:@selector(addItemsToPlaylist)];
+      self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(exitMultiAddMode)];
+      self.navigationItem.leftBarButtonItem.tintColor = [UIColor redColor];
+    }
+  }
+}
+
+-(void)enterMultiAddMode {
+  [self.tableView setEditing:true animated:true];
+  [self updateButtonsToMatchTableState];
+}
+
+-(void)exitMultiAddMode {
+  [self.tableView setEditing:false animated:false];
+  [self updateButtonsToMatchTableState];
+}
+
+-(void)addItemsToPlaylist {
+  NSArray *indexPaths = self.tableView.indexPathsForSelectedRows;
+  NSMutableArray *songsToAdd = [[NSMutableArray alloc]init];
+  for (NSIndexPath *indexPath in indexPaths) {
+    Song *song = self.songs[indexPath.row];
+    [songsToAdd addObject:song];
+  }
+  [self.delegate addSongsToPlaylist:songsToAdd];
+  [self.navigationController popViewControllerAnimated:true];
+}
+
 
 #pragma mark - UITableViewDataSource
 
@@ -74,10 +110,12 @@
 #pragma mark - UITableViewDelegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  [tableView deselectRowAtIndexPath:indexPath animated:true];
-  Song *song = self.songs[indexPath.row];
-  [self.delegate addSongToPlaylist:song];
-  [self.navigationController popViewControllerAnimated:true];
+//  [tableView deselectRowAtIndexPath:indexPath animated:true];
+  if (!self.tableView.editing) {
+    Song *song = self.songs[indexPath.row];
+    [self.delegate addSongsToPlaylist:@[song]];
+    [self.navigationController popViewControllerAnimated:true];
+  }
 }
 
 #pragma mark - UISearchBarDelegate
@@ -91,6 +129,7 @@
     [self.spotifyService getTracksFromSearchTerm:searchBar.text completionHandler:^(NSArray *tracks) {
       self.songs = tracks;
       self.isLoading = false;
+      [self updateButtonsToMatchTableState];
       [self.tableView reloadData];
     }];
   }
