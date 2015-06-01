@@ -14,17 +14,17 @@
 #import "User.h"
 #import "PlaylistViewController.h"
 #import "SearchPlaylistsTableViewController.h"
-#import "StreamifyService.h"
 #import "IconDetailTableViewCell.h"
 #import "AppDelegate.h"
 #import <Spotify/Spotify.h>
 #import "LoginViewController.h"
+#import "ParseNetworkService.h"
 
 @interface MyPlaylistsViewController () <UITableViewDataSource, UITableViewDelegate, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate>
 
 @property(weak, nonatomic)IBOutlet UITableView *tableView;
 @property(strong,nonatomic)NSMutableArray *playlists;
-@property(strong,nonatomic)StreamifyService *streamifyService;
+@property(strong,nonatomic)ParseNetworkService *parseService;
 @property(strong,nonatomic)SPTAudioStreamingController *player;
 @property(strong,nonatomic)SPTSession *session;
 
@@ -39,10 +39,7 @@
   
   AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
   self.session = appDelegate.session;
-//  self.player.delegate = self;
-//  [self createPlayer];
-  
-  self.streamifyService = [StreamifyService sharedService];
+  self.parseService = [ParseNetworkService sharedService];
   
   //remove later
   self.playlists = [[NSMutableArray alloc]init];
@@ -53,7 +50,7 @@
                                  target:nil
                                  action:nil];
   
-  self.navigationItem.backBarButtonItem=backButton;
+  self.navigationItem.backBarButtonItem = backButton;
   
   UINib *cellNib = [UINib nibWithNibName:@"HostedPlaylistTableViewCell" bundle:[NSBundle mainBundle]];
   [self.tableView registerNib:cellNib forCellReuseIdentifier:@"HostedPlaylistTableViewCell"];
@@ -63,7 +60,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  [self.streamifyService findMyPlaylists:^(NSArray *playlists) {
+  [self.parseService findMyPlaylists:^(NSArray *playlists) {
     self.playlists = [[NSMutableArray alloc]initWithArray:playlists];
     [self.tableView reloadData];
   }];
@@ -77,7 +74,7 @@
     Playlist *newPlaylist = [[Playlist alloc]initWithID:nil name:playlistNameTextField.text host:self.currentUser dateCreated:[NSDate date] songs:nil];
     [self.playlists addObject:newPlaylist];
     [self.tableView reloadData];
-    [self.streamifyService addPlaylist:newPlaylist completionHandler:^(NSString *playlistID) {
+    [self.parseService addPlaylist:newPlaylist completionHandler:^(NSString *playlistID) {
       NSLog(@"DONE");
       newPlaylist.playlistID = playlistID;
     }];
@@ -94,25 +91,18 @@
 }
 - (IBAction)logoutPressed:(UIBarButtonItem *)sender {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  [defaults removeObjectForKey:@"appToken"];
   [defaults removeObjectForKey:@"sessionData"];
   [defaults removeObjectForKey:@"token"];
   [defaults synchronize];
   
+  AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+  [appDelegate.player stop:^(NSError *error) {
+    appDelegate.session = nil;
+  }];
   LoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"Login"];
   [self presentViewController:loginVC animated:true completion:nil];
+  
 }
-
-//-(void)createPlayer {
-//  self.player = [[SPTAudioStreamingController alloc] initWithClientId:[SPTAuth defaultInstance].clientID];
-//  [self.player loginWithSession:self.session callback:^(NSError *error) {
-//    if (error != nil) {
-//      NSLog(@"*** Logging in got error: %@", error);
-//      return;
-//    }
-//    self.player.playbackDelegate = self;
-//  }];
-//}
 
 #pragma mark - Table view data source
 
@@ -198,7 +188,7 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
   Playlist *playlist = self.playlists[indexPath.row];
   [self.playlists removeObjectAtIndex:indexPath.row];
-  [self.streamifyService removePlaylist:playlist.playlistID completionHandler:^(NSString *success) {
+  [self.parseService removePlaylist:playlist.playlistID completionHandler:^(NSString *success) {
     NSLog(@"%@",success);
   }];
   [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];

@@ -105,27 +105,95 @@
   [dataTask resume];
 }
 
-//-(void)getTracksByID:(NSString *)trackID completionHandler:(void (^)(NSArray *tracks))completionHandler {
-////  NSString *searchText = [trackID stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//  NSString *token = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
-//  NSString *urlStr = [NSString stringWithFormat:@"https://api.spotify.com/v1/search?type=track&q=%@",searchText];
-//  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-//  if (token) {
-//    [request setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
-//  }
-//  NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-//    if (error) {
-//      NSLog(@"Error: %@", error);
-//    } else {
-//      NSLog(@"%@ %@", response, responseObject);
-//      [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-//        completionHandler([SpotifyJSONParser getTracksFromJSON:responseObject]);
-//      }];
-//    }
-//  }];
-//  [dataTask resume];
-//}
+-(void)findArtistsWithSearchTerm:(NSString *)searchTerm completionHandler:(void (^)(NSArray *artists))completionHandler {
+  NSString *token = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
+  NSString *searchText = [searchTerm stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  NSString *urlStr = [NSString stringWithFormat:@"https://api.spotify.com/v1/search?type=artist&q=%@",searchText];
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+  if (token) {
+    [request setValue:[NSString stringWithFormat:@"Bearer %@",token ] forHTTPHeaderField:@"Authorization"];
+  }
+  NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+    if (error) {
+      NSLog(@"Error: %@", error);
+    } else {
+      if (response)
+        NSLog(@"%@ %@", response, responseObject);
+      [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+        completionHandler([SpotifyJSONParser getSearchArtistsFromJSON:responseObject]);
+      }];
+    }
+  }];
+  [dataTask resume];
+}
+
+-(void)findArtistsWithGenreSearchTerm:(NSString *)searchTerm completionHandler:(void (^)(NSArray *artists))completionHandler {
+  NSString *token = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
+  NSString *searchText = [searchTerm stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  NSString *urlStr = [NSString stringWithFormat:@"https://api.spotify.com/v1/search?type=artist&q=%@",searchText];
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+  if (token) {
+    [request setValue:[NSString stringWithFormat:@"Bearer %@",token ] forHTTPHeaderField:@"Authorization"];
+  }
+  NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+    if (error) {
+      NSLog(@"Error: %@", error);
+    } else {
+      if (response)
+        NSLog(@"%@ %@", response, responseObject);
+      [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+        completionHandler([SpotifyJSONParser getSearchArtistsFromJSON:responseObject]);
+      }];
+    }
+  }];
+  [dataTask resume];
+}
 
 
+-(void)findArtistTopTracks:(NSString *)artistID completionHandler:(void (^)(NSArray *songs))completionHandler {
+  NSString *token = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
+  NSString *urlStr = [NSString stringWithFormat:@"https://api.spotify.com/v1/artists/%@/top-tracks?country=US",artistID];
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+  if (token) {
+    [request setValue:[NSString stringWithFormat:@"Bearer %@",token ] forHTTPHeaderField:@"Authorization"];
+  }
+  NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+    if (error) {
+      NSLog(@"Error: %@", error);
+    } else {
+      if (response)
+        NSLog(@"%@ %@", response, responseObject);
+      [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+        completionHandler([SpotifyJSONParser getSongsFromJSON:responseObject]);
+      }];
+    }
+  }];
+  [dataTask resume];
+}
+
+-(void)findRelatedArtists:(NSString *)artistID completionHandler:(void (^)(NSArray *artists))completionHandler {
+  NSString *token = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
+  NSString *urlStr = [NSString stringWithFormat:@"https://api.spotify.com/v1/artists/%@/related-artists",artistID];
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+  if (token) {
+    [request setValue:[NSString stringWithFormat:@"Bearer %@",token ] forHTTPHeaderField:@"Authorization"];
+  }
+  NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+    if (error) {
+      NSLog(@"Error: %@", error);
+    } else {
+      if (response)
+        NSLog(@"%@ %@", response, responseObject);
+      [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+        completionHandler([SpotifyJSONParser getRelatedArtistsFromJSON:responseObject]);
+      }];
+    }
+  }];
+  [dataTask resume];
+}
 
 @end

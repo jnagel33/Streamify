@@ -16,6 +16,7 @@
 #import "SpotifyService.h"
 #import "StreamifyService.h"
 #import "User.h"
+#import <Parse/Parse.h>
 
 const CGFloat kGlobalNavigationFontSize = 17;
 
@@ -30,7 +31,7 @@ const CGFloat kGlobalNavigationFontSize = 17;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
-  
+  [Parse setApplicationId:@"rfRbVcuFzpn4IsCOwvAZAPtMVCoHBfpvj0ofcnIP" clientKey:@"ptez2tuBEQdrxpYu9c6kOZ1VD7maEiZpTqiyKEyd"];
   
   NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:100 * 1024 * 1024 diskCapacity:100 * 1024 * 1024 diskPath:nil];
   [NSURLCache setSharedURLCache:sharedCache];
@@ -43,12 +44,12 @@ const CGFloat kGlobalNavigationFontSize = 17;
   
   NSString *appToken = [[NSUserDefaults standardUserDefaults]valueForKey:@"appToken"];
   NSData *sessionData = [[NSUserDefaults standardUserDefaults]valueForKey:@"sessionData"];
-  SPTSession *session = [NSKeyedUnarchiver unarchiveObjectWithData:sessionData];
+  SPTSession *oldSession = [NSKeyedUnarchiver unarchiveObjectWithData:sessionData];
   
-  NSComparisonResult comparison = [session.expirationDate compare:[NSDate date]];
+  NSComparisonResult comparison = [oldSession.expirationDate compare:[NSDate date]];
   
-  if (session && session.isValid && appToken && comparison == NSOrderedDescending) {
-    self.session = session;
+  if (oldSession && oldSession.isValid && comparison == NSOrderedDescending) {
+    self.session = oldSession;
     [self createPlayer];
     self.spotifyService = [SpotifyService sharedService];
     [self.spotifyService getUserProfile:^(User *user) {
@@ -56,12 +57,12 @@ const CGFloat kGlobalNavigationFontSize = 17;
       [self makeHomePageRootController];
     }];
     return YES;
-  } else if(appToken && !session) {
+  } else if(appToken && !oldSession) {
     [self makeHomePageRootController];
     return YES;
   } else {
-    if (session != nil) {
-      [[SPTAuth defaultInstance]renewSession:session callback:^(NSError *error, SPTSession *session) {
+    if (oldSession != nil) {
+      [[SPTAuth defaultInstance]renewSession:oldSession callback:^(NSError *error, SPTSession *session) {
         if (!error) {
           self.session = session;
           [self createPlayer];
@@ -88,6 +89,7 @@ const CGFloat kGlobalNavigationFontSize = 17;
     [[SPTAuth defaultInstance]handleAuthCallbackWithTriggeredAuthURL:url callback:^(NSError *error, SPTSession *session) {
       
       self.session = session;
+      [self createPlayer];
       NSData *sessionData = [NSKeyedArchiver archivedDataWithRootObject:session];
       [[NSUserDefaults standardUserDefaults]setValue:sessionData forKey:@"sessionData"];
       

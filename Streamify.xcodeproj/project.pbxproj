@@ -53,6 +53,7 @@
 		43EA5A6A1B0BCC4200BE2546 /* SearchPlaylistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EA5A691B0BCC4200BE2546 /* SearchPlaylistsTableViewController.m */; };
 		43EA5A6D1B0BD7E300BE2546 /* StreamifyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EA5A6C1B0BD7E300BE2546 /* StreamifyService.m */; };
 		43EA5A701B0BE85500BE2546 /* StreamifyJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EA5A6F1B0BE85500BE2546 /* StreamifyJSONParser.m */; };
+		43ECC0A91B191A51006EDB62 /* ParseNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ECC0A81B191A51006EDB62 /* ParseNetworkService.m */; };
 		43F939111B0CF5F30035B878 /* DiscoverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F939101B0CF5F30035B878 /* DiscoverTableViewController.m */; };
 		43F939141B0CF7090035B878 /* SearchArtistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F939131B0CF7090035B878 /* SearchArtistsViewController.m */; };
 		43F939171B0CFBE80035B878 /* ArtistCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F939161B0CFBE80035B878 /* ArtistCollectionViewCell.m */; };
@@ -196,6 +197,8 @@
 		43EA5A6C1B0BD7E300BE2546 /* StreamifyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamifyService.m; sourceTree = "<group>"; };
 		43EA5A6E1B0BE85500BE2546 /* StreamifyJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamifyJSONParser.h; sourceTree = "<group>"; };
 		43EA5A6F1B0BE85500BE2546 /* StreamifyJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamifyJSONParser.m; sourceTree = "<group>"; };
+		43ECC0A71B191A51006EDB62 /* ParseNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseNetworkService.h; sourceTree = "<group>"; };
+		43ECC0A81B191A51006EDB62 /* ParseNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseNetworkService.m; sourceTree = "<group>"; };
 		43F9390F1B0CF5F30035B878 /* DiscoverTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverTableViewController.h; sourceTree = "<group>"; };
 		43F939101B0CF5F30035B878 /* DiscoverTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverTableViewController.m; sourceTree = "<group>"; };
 		43F939121B0CF7090035B878 /* SearchArtistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchArtistsViewController.h; sourceTree = "<group>"; };
@@ -295,6 +298,8 @@
 				43EA5A6F1B0BE85500BE2546 /* StreamifyJSONParser.m */,
 				43F939181B0CFD0D0035B878 /* Artist.h */,
 				43F939191B0CFD0D0035B878 /* Artist.m */,
+				43ECC0A71B191A51006EDB62 /* ParseNetworkService.h */,
+				43ECC0A81B191A51006EDB62 /* ParseNetworkService.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -788,6 +793,7 @@
 				436927DB1B0A96DB00D1AC17 /* PlaylistSongTableViewCell.m in Sources */,
 				43CDF82C1B0A877000C2D880 /* ImageService.m in Sources */,
 				43F9391A1B0CFD0D0035B878 /* Artist.m in Sources */,
+				43ECC0A91B191A51006EDB62 /* ParseNetworkService.m in Sources */,
 				43EA5A6D1B0BD7E300BE2546 /* StreamifyService.m in Sources */,
 				43CDF8291B0A7B0E00C2D880 /* SongTableViewCell.m in Sources */,
 				43EA5A6A1B0BCC4200BE2546 /* SearchPlaylistsTableViewController.m in Sources */,

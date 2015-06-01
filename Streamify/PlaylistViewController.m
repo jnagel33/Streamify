@@ -17,14 +17,14 @@
 #import "ImageResizer.h"
 #import "StreamifyStyleKit.h"
 #import "Playlist.h"
-#import "StreamifyService.h"
+#import "ParseNetworkService.h"
 
 @interface PlaylistViewController () <UITableViewDataSource, UITableViewDelegate, AddSongViewControllerDelegate>
 
 @property(weak,nonatomic)IBOutlet UITableView *tableView;
 @property(strong,nonatomic)NSMutableArray *songs;
 @property(strong,nonatomic)SpotifyService *spotifyService;
-@property(strong,nonatomic)StreamifyService *streamifyService;
+@property(strong,nonatomic)ParseNetworkService *parseService;
 @property(strong,nonatomic)SPTAudioStreamingController *player;
 @property(strong,nonatomic)SPTSession *session;
 @property(strong,nonatomic)NSIndexPath *currentRowPlaying;
@@ -67,42 +67,38 @@
   self.session = appDelegate.session;
   self.player = appDelegate.player;
   
-  self.streamifyService = [StreamifyService sharedService];
+  self.parseService = [ParseNetworkService sharedService];
   self.spotifyService = [SpotifyService sharedService];
   
-  NSMutableArray *songIDs = [[NSMutableArray alloc]init];
-  for(Song *song in self.currentPlaylist.songs) {
-    [songIDs addObject:song.streamifySongID];
-  }
-  [self.streamifyService fetchSongs:songIDs completionHandler:^(NSArray *songs) {
+  [self.parseService fetchSongs:self.currentPlaylist.playlistID completionHandler:^(NSArray *songs) {
     self.songs = [[NSMutableArray alloc]initWithArray:songs];
     [self.tableView reloadData];
-    
-    if ([self.player isPlaying]) {
-      for (Song *song in self.songs) {
-        if ([self.player.currentTrackURI.description isEqualToString:song.uri]) {
-          self.trackNameNowPlayingLabel.text = song.trackName;
-          self.artistNameNowPlayingLabel.text = song.artistName;
-          [self updateCurrentTrackDuration];
-          
-          // resize for playlist then resize for nowPlaying section
-          UIImage *artworkImage = [[ImageService sharedService]getImageFromURL:song.albumArtworkURL];
-          UIImage *resizedImage = [ImageResizer resizeImage:artworkImage withSize:CGSizeMake(75, 75)];
-          song.albumArtwork = resizedImage;
-          
-          self.thumbnailNowPlayingImageView.transform = CGAffineTransformMakeScale(2, 2);
-          self.thumbnailNowPlayingImageView.alpha = 0;
-          resizedImage = [ImageResizer resizeImage:artworkImage withSize:CGSizeMake(50, 50)];
-          self.thumbnailNowPlayingImageView.image = resizedImage;
-          [UIView animateWithDuration:0.5 animations:^{
-            self.thumbnailNowPlayingImageView.transform = CGAffineTransformMakeScale(1, 1);
-            self.artistIconImageView.alpha = 1;
-            self.thumbnailNowPlayingImageView.alpha = 1;
-          }];
-        }
+  }];
+  
+  if ([self.player isPlaying]) {
+    for (Song *song in self.songs) {
+      if ([self.player.currentTrackURI.description isEqualToString:song.uri]) {
+        self.trackNameNowPlayingLabel.text = song.trackName;
+        self.artistNameNowPlayingLabel.text = song.artistName;
+        [self updateCurrentTrackDuration];
+        
+        // resize for playlist then resize for nowPlaying section
+        UIImage *artworkImage = [[ImageService sharedService]getImageFromURL:song.albumArtworkURL];
+        UIImage *resizedImage = [ImageResizer resizeImage:artworkImage withSize:CGSizeMake(75, 75)];
+        song.albumArtwork = resizedImage;
+        
+        self.thumbnailNowPlayingImageView.transform = CGAffineTransformMakeScale(2, 2);
+        self.thumbnailNowPlayingImageView.alpha = 0;
+        resizedImage = [ImageResizer resizeImage:artworkImage withSize:CGSizeMake(50, 50)];
+        self.thumbnailNowPlayingImageView.image = resizedImage;
+        [UIView animateWithDuration:0.5 animations:^{
+          self.thumbnailNowPlayingImageView.transform = CGAffineTransformMakeScale(1, 1);
+          self.artistIconImageView.alpha = 1;
+          self.thumbnailNowPlayingImageView.alpha = 1;
+        }];
       }
     }
-  }];
+  }
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -218,7 +214,7 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
   Song *song = self.songs[indexPath.row];
-  [self.streamifyService removeSongFromPlaylist:self.currentPlaylist.playlistID song:song.streamifySongID completionHandler:^(NSString *success) {
+  [self.parseService removeSongFromPlaylist:self.currentPlaylist.playlistID song:song.trackID completionHandler:^(NSString *success) {
     NSLog(@"%@",success);
   }];
   if (self.currentRowPlaying == indexPath) {
@@ -258,17 +254,11 @@
 }
 
 -(void)addSongsToPlaylist:(NSArray *)songs {
+  [self.parseService addSongsToPlaylist:songs playlistID:self.currentPlaylist.playlistID completionHandler:^(NSString *playlistID) {
+    NSLog(@"%@",playlistID);
+  }];
   for (Song *song in songs) {
     song.contributor = self.currentUser;
-    PlaylistViewController* __weak weakSelf = self;
-    
-    [self.streamifyService addSong:song completionHandler:^(NSString *streamifyID) {
-      song.streamifySongID = streamifyID;
-      [weakSelf.streamifyService addSongToPlaylist:weakSelf.currentPlaylist.playlistID song:streamifyID completionHandler:^(NSString *success) {
-        NSLog(@"%@",success);
-      }];
-    }];
-    
     [self.songs addObject:song];
     [self.tableView reloadData];
     if ([self.player isPlaying]) {
