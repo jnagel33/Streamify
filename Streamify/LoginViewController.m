@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "MyPlaylistsViewController.h"
 #import "StreamifyService.h"
+#import "ParseNetworkService.h"
 
 const CGFloat kBufferCenterYLoginContainer = 70;
 const double kAnimationDuration = 0.3;
@@ -24,7 +25,7 @@ const double kAnimationDuration = 0.3;
 @property(weak, nonatomic)IBOutlet NSLayoutConstraint *constraintContainerCenterY;
 @property(strong, nonatomic)SpotifyService *spotifyService;
 @property(strong,nonatomic)LoginService *loginService;
-@property(strong,nonatomic)StreamifyService *streamifyService;
+@property(strong,nonatomic)ParseNetworkService *parseService;
 
 @end
 
@@ -39,7 +40,7 @@ const double kAnimationDuration = 0.3;
   
   self.loginService = appDelegate.loginService;
   self.spotifyService = [SpotifyService sharedService];
-  self.streamifyService = [StreamifyService sharedService];
+  self.parseService = [ParseNetworkService sharedService];
 }
 - (IBAction)loginSpotifyPressed:(UIButton *)sender {
   [self.loginService loginWithSpotify:^{
@@ -50,7 +51,7 @@ const double kAnimationDuration = 0.3;
         UINavigationController *myPlaylistsNavVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];
         MyPlaylistsViewController *myPlaylistsVC = myPlaylistsNavVC.viewControllers[0];
         myPlaylistsVC.currentUser = user;
-        [self.streamifyService checkForExistingSpotifyUser:user.userID completionHandler:^(User *user) {
+        [self.parseService checkForExistingSpotifyUser:user.userID completionHandler:^(User *user) {
           [self presentViewController:myPlaylistsNavVC animated:true completion:nil];
         }];
       }];
@@ -59,7 +60,7 @@ const double kAnimationDuration = 0.3;
 }
 
 - (IBAction)loginPressed:(UIButton *)sender {
-  [self.streamifyService loginApp:self.usernameTextField.text AndPassword:self.passwordTextField.text completionHandler:^(User *user) {
+  [self.parseService loginApp:self.usernameTextField.text AndPassword:self.passwordTextField.text completionHandler:^(User *user) {
     UINavigationController *myPlaylistsNavVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];
     MyPlaylistsViewController *myPlaylistsVC = myPlaylistsNavVC.viewControllers[0];
     myPlaylistsVC.currentUser = user;
@@ -68,7 +69,7 @@ const double kAnimationDuration = 0.3;
 }
 
 - (IBAction)createUserButtonPressed:(UIButton *)sender {
-  [self.streamifyService createUser:self.usernameTextField.text AndPassword:self.passwordTextField.text AndUserType:@"local" completionHandler:^(User *user) {
+  [self.parseService createUser:self.usernameTextField.text AndPassword:self.passwordTextField.text AndUserType:@"local" completionHandler:^(User *user) {
     UINavigationController *myPlaylistsNavVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];
     MyPlaylistsViewController *myPlaylistsVC = myPlaylistsNavVC.viewControllers[0];
     myPlaylistsVC.currentUser = user;

@@ -8,18 +8,18 @@
 
 #import "SearchPlaylistsTableViewController.h"
 #import "ContributorTableViewCell.h"
-#import "StreamifyService.h"
 #import "Playlist.h"
 #import "SearchingTableViewCell.h"
 #import "NoResultsTableViewCell.h"
 #import "PlaylistViewController.h"
 #import "User.h"
+#import "ParseNetworkService.h"
 
 @interface SearchPlaylistsTableViewController () <UISearchBarDelegate>
 
 @property(strong,nonatomic)NSArray *playlists;
 @property(weak, nonatomic)IBOutlet UISearchBar *searchBar;
-@property(strong,nonatomic)StreamifyService *streamifyService;
+@property(strong,nonatomic)ParseNetworkService *parseService;
 @property(nonatomic)bool isLoading;
 @property(nonatomic)bool hasSearched;
 
@@ -31,7 +31,7 @@
   [super viewDidLoad];
   self.searchBar.delegate = self;
   
-  self.streamifyService = [StreamifyService sharedService];
+  self.parseService = [ParseNetworkService sharedService];
   self.isLoading = false;
   self.hasSearched = false;
   
@@ -102,7 +102,7 @@
     self.isLoading = true;
     self.hasSearched = true;
     [self.tableView reloadData];
-    [self.streamifyService findPlaylistsWithSearchTerm:searchBar.text completionHandler:^(NSArray *playlists) {
+    [self.parseService findPlaylistsWithSearchTerm:searchBar.text completionHandler:^(NSArray *playlists) {
       self.playlists = playlists;
       self.isLoading = false;
       [self.tableView reloadData];

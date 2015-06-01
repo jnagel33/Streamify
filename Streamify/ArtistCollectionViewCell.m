@@ -23,7 +23,6 @@
   self.artistName.text = nil;
   self.artistImageView.image = nil;
   
-  
   self.artistName.text = artist.name;
   self.artistImageView.layer.cornerRadius = 150 / 2;
   self.artistImageView.layer.masksToBounds = true;
@@ -42,7 +41,6 @@
       self.artistImageView.transform = CGAffineTransformMakeScale(1.0, 1.0);
     }];
   }
-
 }
 
 @end

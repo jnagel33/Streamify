@@ -9,14 +9,14 @@
 #import "SearchArtistsViewController.h"
 #import "Artist.h"
 #import "ArtistCollectionViewCell.h"
-#import "StreamifyService.h"
 #import "ArtistViewController.h"
 #import "ToArtistViewController.h"
+#import "SpotifyService.h"
 
 @interface SearchArtistsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property(strong,nonatomic)StreamifyService *streamifyService;
+@property(strong,nonatomic)SpotifyService *spotifyService;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
@@ -44,7 +44,7 @@
   
   self.navigationItem.backBarButtonItem = backButton;
   
-  self.streamifyService = [StreamifyService sharedService];
+  self.spotifyService = [SpotifyService sharedService];
   
 }
 
@@ -74,7 +74,6 @@
 #pragma mark - Collection view delegate
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//  [collectionView deselectItemAtIndexPath:indexPath animated:true];
   Artist *artist = self.artists[indexPath.row];
   ArtistViewController *artistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ArtistProfile"];
   artistVC.selectedArtist = artist;
@@ -86,13 +85,13 @@
   if (searchBar.text) {
     [self.activityIndicator startAnimating];
     if (!self.isGenreSearch) {
-      [self.streamifyService findArtistsWithSearchTerm:searchBar.text completionHandler:^(NSArray *artists) {
+      [self.spotifyService findArtistsWithSearchTerm:searchBar.text completionHandler:^(NSArray *artists) {
         self.artists = artists;
         [self.collectionView reloadData];
         [self.activityIndicator stopAnimating];
       }];
     } else {
-      [self.streamifyService findArtistsWithGenreSearchTerm:searchBar.text completionHandler:^(NSArray *artists) {
+      [self.spotifyService findArtistsWithGenreSearchTerm:searchBar.text completionHandler:^(NSArray *artists) {
         self.artists = artists;
         [self.collectionView reloadData];
         [self.activityIndicator stopAnimating];

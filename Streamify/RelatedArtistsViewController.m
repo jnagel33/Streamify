@@ -9,14 +9,14 @@
 #import "RelatedArtistsViewController.h"
 #import "ArtistCollectionViewCell.h"
 #import "ArtistViewController.h"
-#import "StreamifyService.h"
+#import "SpotifyService.h"
 #import "Artist.h"
 #import "ToArtistViewController.h"
 
 
 @interface RelatedArtistsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UINavigationControllerDelegate>
 
-@property(strong,nonatomic)StreamifyService *streamifyService;
+@property(strong,nonatomic)SpotifyService *spotifyService;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
@@ -34,8 +34,8 @@
   
   self.navigationItem.backBarButtonItem=backButton;
   [self.activityIndicator startAnimating];
-  self.streamifyService = [StreamifyService sharedService];
-  [self.streamifyService findRelatedArtists:self.selectedArtist.artistID completionHandler:^(NSArray *artists) {
+  self.spotifyService = [SpotifyService sharedService];
+  [self.spotifyService findRelatedArtists:self.selectedArtist.artistID completionHandler:^(NSArray *artists) {
     self.artists = artists;
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;

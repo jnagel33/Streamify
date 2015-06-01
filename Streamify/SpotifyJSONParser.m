@@ -9,6 +9,7 @@
 #import "SpotifyJSONParser.h"
 #import "User.h"
 #import "Song.h"
+#import "Artist.h"
 
 @implementation SpotifyJSONParser
 
@@ -44,6 +45,57 @@
     NSString *uri = item[@"uri"];
     NSString *trackName = item[@"name"];
     Song *song = [[Song alloc]initWithTrackID:trackID Name:trackName artistName:artistName albumName:albumName albumArtworkURL:albumArtworkURL uri:uri duration:duration streamifyID:nil];
+    [songs addObject:song];
+  }
+  return songs;
+}
+
++(NSArray *)getSearchArtistsFromJSON:(NSDictionary *)artistsInfo {
+  NSDictionary *artistsDictionary = artistsInfo[@"artists"];
+  NSArray *items = artistsDictionary[@"items"];
+  return [self getArtistsFromJSON:items];
+}
+
++(NSArray *)getRelatedArtistsFromJSON:(NSDictionary *)artistsInfo {
+  NSArray *artists = artistsInfo[@"artists"];
+  return [self getArtistsFromJSON:artists];
+}
+
+
++(NSArray *)getArtistsFromJSON:(NSArray *)artists {
+  NSMutableArray *artistsList = [[NSMutableArray alloc]init];
+  for (NSDictionary *artistInfo in artists) {
+    NSString *artistID = artistInfo[@"id"];
+    NSString *name = artistInfo[@"name"];
+    NSNumber *popularity = artistInfo[@"popularity"];
+    NSArray *imageURLs = artistInfo[@"images"];
+    NSString *url;
+    if (imageURLs.count > 1) {
+      NSDictionary *imageDictionary = imageURLs[1];
+      url = imageDictionary[@"url"];
+    }
+    Artist *artist = [[Artist alloc]initWithArtistID:artistID name:name popularity:popularity artistImageURL:url];
+    
+    [artistsList addObject:artist];
+  }
+  return artistsList;
+}
+
++(NSArray *)getSongsFromJSON:(NSDictionary *)songsInfo {
+  NSMutableArray *songs = [[NSMutableArray alloc]init];
+  
+  NSArray *songList = songsInfo[@"tracks"];
+  for (NSDictionary *songInfo in songList) {
+    NSString *uri = songInfo[@"uri"];
+    NSString *songID = songInfo[@"id"];
+    NSString *name = songInfo[@"name"];
+    NSNumber *popularity = songInfo[@"popularity"];
+    
+    Song *song = [[Song alloc]init];
+    song.uri = uri;
+    song.trackID = songID;
+    song.trackName = name;
+    song.popularity = popularity;
     [songs addObject:song];
   }
   return songs;

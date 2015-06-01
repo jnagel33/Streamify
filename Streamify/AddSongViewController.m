@@ -110,7 +110,6 @@
 #pragma mark - UITableViewDelegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//  [tableView deselectRowAtIndexPath:indexPath animated:true];
   if (!self.tableView.editing) {
     Song *song = self.songs[indexPath.row];
     [self.delegate addSongsToPlaylist:@[song]];

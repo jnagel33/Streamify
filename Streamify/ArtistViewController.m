@@ -8,7 +8,6 @@
 
 #import "ArtistViewController.h"
 #import "ArtistSongTableViewCell.h"
-#import "StreamifyService.h"
 #import "Artist.h"
 #import "PlaylistHeaderView.h"
 #import "RelatedArtistsViewController.h"
@@ -18,12 +17,13 @@
 #import "AppDelegate.h"
 #import <Spotify/Spotify.h>
 #import "Song.h"
+#import "SpotifyService.h"
 
 
 @interface ArtistViewController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *artistNameTextField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property(strong,nonatomic)StreamifyService *streamifyService;
+@property(strong,nonatomic)SpotifyService *spotifyService;
 @property(strong,nonatomic)NSArray *topTracks;
 @property(strong,nonatomic)SPTAudioStreamingController *player;
 @property(strong,nonatomic)SPTSession *session;
@@ -54,8 +54,8 @@
   self.artistImageView.image = self.selectedArtist.artistImage;
   self.artistNameTextField.text = self.selectedArtist.name;
   
-  self.streamifyService = [StreamifyService sharedService];
-  [self.streamifyService findArtistTopTracks:self.selectedArtist.artistID completionHandler:^(NSArray *songs) {
+  self.spotifyService = [SpotifyService sharedService];
+  [self.spotifyService findArtistTopTracks:self.selectedArtist.artistID completionHandler:^(NSArray *songs) {
     self.topTracks = songs;
     [self.tableView reloadData];
   }];
