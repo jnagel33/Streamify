@@ -10,7 +10,7 @@
 
 @implementation Song
 
--(instancetype)initWithTrackID:(NSString *)trackID Name:(NSString *)trackName artistName:(NSString *)artistName albumName:(NSString *)albumName albumArtworkURL:(NSString *)albumArtworkURL uri:(NSString *)uri duration:(NSNumber *)duration streamifyID:(NSString *)streamifyID {
+-(instancetype)initWithTrackID:(NSString *)trackID Name:(NSString *)trackName artistName:(NSString *)artistName albumName:(NSString *)albumName albumArtworkURL:(NSString *)albumArtworkURL uri:(NSString *)uri contributor:(User *)contributor {
   if (self == [super init]) {
     _trackID = trackID;
     _trackName = trackName;
@@ -18,8 +18,7 @@
     _albumName = albumName;
     _albumArtworkURL = albumArtworkURL;
     _uri = uri;
-    _duration = duration;
-    _streamifySongID = streamifyID;
+    _contributor = contributor;
   }
   return self;
 }

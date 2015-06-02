@@ -73,32 +73,32 @@
   [self.parseService fetchSongs:self.currentPlaylist.playlistID completionHandler:^(NSArray *songs) {
     self.songs = [[NSMutableArray alloc]initWithArray:songs];
     [self.tableView reloadData];
-  }];
-  
-  if ([self.player isPlaying]) {
-    for (Song *song in self.songs) {
-      if ([self.player.currentTrackURI.description isEqualToString:song.uri]) {
-        self.trackNameNowPlayingLabel.text = song.trackName;
-        self.artistNameNowPlayingLabel.text = song.artistName;
-        [self updateCurrentTrackDuration];
-        
-        // resize for playlist then resize for nowPlaying section
-        UIImage *artworkImage = [[ImageService sharedService]getImageFromURL:song.albumArtworkURL];
-        UIImage *resizedImage = [ImageResizer resizeImage:artworkImage withSize:CGSizeMake(75, 75)];
-        song.albumArtwork = resizedImage;
-        
-        self.thumbnailNowPlayingImageView.transform = CGAffineTransformMakeScale(2, 2);
-        self.thumbnailNowPlayingImageView.alpha = 0;
-        resizedImage = [ImageResizer resizeImage:artworkImage withSize:CGSizeMake(50, 50)];
-        self.thumbnailNowPlayingImageView.image = resizedImage;
-        [UIView animateWithDuration:0.5 animations:^{
-          self.thumbnailNowPlayingImageView.transform = CGAffineTransformMakeScale(1, 1);
-          self.artistIconImageView.alpha = 1;
-          self.thumbnailNowPlayingImageView.alpha = 1;
-        }];
+    if ([self.player isPlaying]) {
+      for (Song *song in self.songs) {
+        if ([self.player.currentTrackURI.description isEqualToString:song.uri]) {
+          self.trackNameNowPlayingLabel.text = song.trackName;
+          self.artistNameNowPlayingLabel.text = song.artistName;
+          [self updateCurrentTrackDuration];
+          
+          // resize for playlist then resize for nowPlaying section
+          UIImage *artworkImage = [[ImageService sharedService]getImageFromURL:song.albumArtworkURL];
+          UIImage *resizedImage = [ImageResizer resizeImage:artworkImage withSize:CGSizeMake(75, 75)];
+          song.albumArtwork = resizedImage;
+          
+          self.thumbnailNowPlayingImageView.transform = CGAffineTransformMakeScale(2, 2);
+          self.thumbnailNowPlayingImageView.alpha = 0;
+          resizedImage = [ImageResizer resizeImage:artworkImage withSize:CGSizeMake(50, 50)];
+          self.thumbnailNowPlayingImageView.image = resizedImage;
+          [UIView animateWithDuration:0.5 animations:^{
+            self.thumbnailNowPlayingImageView.transform = CGAffineTransformMakeScale(1, 1);
+            self.artistIconImageView.alpha = 1;
+            self.thumbnailNowPlayingImageView.alpha = 1;
+          }];
+        }
       }
     }
-  }
+  }];
+  
 }
 
 -(void)viewDidAppear:(BOOL)animated {

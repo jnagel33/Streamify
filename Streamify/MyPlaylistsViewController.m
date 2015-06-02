@@ -19,6 +19,7 @@
 #import <Spotify/Spotify.h>
 #import "LoginViewController.h"
 #import "ParseNetworkService.h"
+#import <Parse/Parse.h>
 
 @interface MyPlaylistsViewController () <UITableViewDataSource, UITableViewDelegate, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate>
 
@@ -94,6 +95,8 @@
   [defaults removeObjectForKey:@"sessionData"];
   [defaults removeObjectForKey:@"token"];
   [defaults synchronize];
+  [PFUser logOut];
+  
   
   AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
   [appDelegate.player stop:^(NSError *error) {
