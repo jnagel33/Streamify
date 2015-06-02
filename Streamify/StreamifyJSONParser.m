@@ -16,20 +16,20 @@
 
 +(NSArray *)getPlaylistsFromJSON:(NSArray *)playlistInfo {
   NSMutableArray *playlists = [[NSMutableArray alloc]init];
-  for (NSDictionary *playlist in playlistInfo) {
-    NSString *playlistID = playlist[@"_id"];
-    NSString *name = playlist[@"name"];
-    NSMutableArray *songs = playlist[@"songs"];
-    NSMutableArray *playlistSongs = [[NSMutableArray alloc]init];
-    for (NSString *song in songs) {
-      Song *newSong = [[Song alloc]initWithTrackID:nil Name:nil artistName:nil albumName:nil albumArtworkURL:nil uri:nil duration:nil streamifyID:song];
-      [playlistSongs addObject:newSong];
-    }
-    Playlist *playlist = [[Playlist alloc]initWithID:playlistID name:name host:nil dateCreated:nil songs:playlistSongs];
-    [playlists addObject:playlist];
-  }
-  
-  
+//  for (NSDictionary *playlist in playlistInfo) {
+//    NSString *playlistID = playlist[@"_id"];
+//    NSString *name = playlist[@"name"];
+//    NSMutableArray *songs = playlist[@"songs"];
+//    NSMutableArray *playlistSongs = [[NSMutableArray alloc]init];
+//    for (NSString *song in songs) {
+//      Song *newSong = [[Song alloc]initWithTrackID:nil Name:nil artistName:nil albumName:nil albumArtworkURL:nil uri:nil contributor:<#(User *)#>;
+//      [playlistSongs addObject:newSong];
+//    }
+//    Playlist *playlist = [[Playlist alloc]initWithID:playlistID name:name host:nil dateCreated:nil songs:playlistSongs];
+//    [playlists addObject:playlist];
+//  }
+//  
+//  
   return playlists;
 }
 
@@ -74,19 +74,19 @@
 +(NSArray *)getPlaylistSongsFromJSON:(NSDictionary *)songsInfo {
   NSMutableArray *songs = [[NSMutableArray alloc]init];
   
-  NSArray *songList = songsInfo[@"msg"];
-  for (NSDictionary *songInfo in songList) {
-    NSString *streamifyID = songInfo[@"_id"];
-    NSString *albumName = songInfo[@"album"];
-    NSString *albumArtworkURL = songInfo[@"album_artwork_url"];
-    NSString *artist = songInfo[@"artist"];
-    NSNumber *duration = songInfo[@"duration"];
-    NSString *trackName = songInfo[@"name"];
-    NSString *spotifyID = songInfo[@"spotifyID"];
-    
-    Song *song = [[Song alloc]initWithTrackID:nil Name:trackName artistName:artist albumName:albumName albumArtworkURL:albumArtworkURL uri:spotifyID duration:duration streamifyID:streamifyID];
-    [songs addObject:song];
-  }
+//  NSArray *songList = songsInfo[@"msg"];
+//  for (NSDictionary *songInfo in songList) {
+//    NSString *streamifyID = songInfo[@"_id"];
+//    NSString *albumName = songInfo[@"album"];
+//    NSString *albumArtworkURL = songInfo[@"album_artwork_url"];
+//    NSString *artist = songInfo[@"artist"];
+//    NSNumber *duration = songInfo[@"duration"];
+//    NSString *trackName = songInfo[@"name"];
+//    NSString *spotifyID = songInfo[@"spotifyID"];
+//    
+//    Song *song = [[Song alloc]initWithTrackID:nil Name:trackName artistName:artist albumName:albumName albumArtworkURL:albumArtworkURL uri:spotifyID duration:duration streamifyID:streamifyID];
+//    [songs addObject:song];
+//  }
   return songs;
 }
 

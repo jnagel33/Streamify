@@ -40,11 +40,11 @@
     NSArray *artists = item[@"artists"];
     NSDictionary *artist = artists[0];
     NSString *artistName = artist[@"name"];
-    NSNumber *duration = item[@"duration_ms"];
+//    NSNumber *duration = item[@"duration_ms"];
     NSString *trackID = item[@"id"];
     NSString *uri = item[@"uri"];
     NSString *trackName = item[@"name"];
-    Song *song = [[Song alloc]initWithTrackID:trackID Name:trackName artistName:artistName albumName:albumName albumArtworkURL:albumArtworkURL uri:uri duration:duration streamifyID:nil];
+    Song *song = [[Song alloc]initWithTrackID:trackID Name:trackName artistName:artistName albumName:albumName albumArtworkURL:albumArtworkURL uri:uri contributor:nil];
     [songs addObject:song];
   }
   return songs;

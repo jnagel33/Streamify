@@ -51,7 +51,7 @@ const double kAnimationDuration = 0.3;
         UINavigationController *myPlaylistsNavVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyPlaylistsNav"];
         MyPlaylistsViewController *myPlaylistsVC = myPlaylistsNavVC.viewControllers[0];
         myPlaylistsVC.currentUser = user;
-        [self.parseService checkForExistingSpotifyUser:user.userID completionHandler:^(User *user) {
+        [self.parseService checkForExistingSpotifyUser:user.userID profileImageURL:user.profileImageURL completionHandler:^(User *user) {
           [self presentViewController:myPlaylistsNavVC animated:true completion:nil];
         }];
       }];

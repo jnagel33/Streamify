@@ -18,11 +18,9 @@
 @property(strong,nonatomic)NSString *albumArtworkURL;
 @property(strong,nonatomic)UIImage *albumArtwork;
 @property(strong,nonatomic)NSString *uri;
-@property(strong,nonatomic)NSNumber *duration;
 @property(strong,nonatomic)User *contributor;
 @property(strong,nonatomic)NSNumber *popularity;
-@property(strong,nonatomic)NSString *streamifySongID;
 
--(instancetype)initWithTrackID:(NSString *)trackID Name:(NSString *)trackName artistName:(NSString *)artistName albumName:(NSString *)albumName albumArtworkURL:(NSString *)albumArtworkURL uri:(NSString *)uri duration:(NSNumber *)duration streamifyID:(NSString *)streamifyID;
+-(instancetype)initWithTrackID:(NSString *)trackID Name:(NSString *)trackName artistName:(NSString *)artistName albumName:(NSString *)albumName albumArtworkURL:(NSString *)albumArtworkURL uri:(NSString *)uri contributor:(User *)contributor;
 
 @end

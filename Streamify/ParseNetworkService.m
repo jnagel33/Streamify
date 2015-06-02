@@ -52,16 +52,17 @@
   }];
 }
 
--(void)checkForExistingSpotifyUser:(NSString *)username completionHandler:(void (^)(User *user))completionHandler {
+-(void)checkForExistingSpotifyUser:(NSString *)username profileImageURL:(NSString *)profileImageURL completionHandler:(void (^)(User *user))completionHandler {
   [PFUser logInWithUsernameInBackground:username password:@"spotify" block:^(PFUser *user, NSError *error) {
     if (error) {
       PFUser *user = [[PFUser alloc]init];
       user.username = username;
       user.password = @"spotify";
+      user[@"profileImageURL"] = profileImageURL;
       user[@"userType"] = @"spotify";
       [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         PFUser *currentUser = [PFUser currentUser];
-        User *user = [[User alloc]initWithUserID:currentUser[@"objectId"] displayName:currentUser[@"username"] AndEmail:nil WithUserType:currentUser[@"userType"] andProfileImageURL:nil];
+        User *user = [[User alloc]initWithUserID:currentUser[@"objectId"] displayName:currentUser[@"username"] AndEmail:nil WithUserType:currentUser[@"userType"] andProfileImageURL:currentUser[@"profileImageURL"]];
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
           completionHandler(user);
         }];
@@ -109,11 +110,18 @@
 -(void)findPlaylistsWithSearchTerm:(NSString *)searchTerm completionHandler:(void (^)(NSArray *playlists))completionHandler {
   NSString *searchText = [searchTerm stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
   PFQuery *query = [PFQuery queryWithClassName:@"Playlist"];
+  [query includeKey:@"Track"];
   [query whereKey:@"name" containsString:searchText];
   [query findObjectsInBackgroundWithBlock:^(NSArray *playlists, NSError *error) {
     NSMutableArray *playlistList = [[NSMutableArray alloc]init];
     for (PFObject *playlist in playlists) {
-      Playlist *searchPlaylist = [[Playlist alloc]initWithID:playlist.objectId name:playlist[@"name"] host:nil dateCreated:playlist[@"dateCreated"] songs:nil];
+      NSMutableArray *songs = [[NSMutableArray alloc]init];
+      for (PFObject *song in playlist[@"tracks"]) {
+        Song *playlistSong = [[Song alloc]init];
+        playlistSong.trackID = song.objectId;
+        [songs addObject:playlistSong];
+      }
+      Playlist *searchPlaylist = [[Playlist alloc]initWithID:playlist.objectId name:playlist[@"name"] host:nil dateCreated:playlist[@"dateCreated"] songs:songs];
       [playlistList addObject:searchPlaylist];
     }
     [[NSOperationQueue mainQueue]addOperationWithBlock:^{
@@ -137,16 +145,25 @@
 
 -(void)fetchSongs:(NSString *)playlistID completionHandler:(void (^)(NSArray *songs))completionHandler {
   PFQuery *query = [PFQuery queryWithClassName:@"Playlist"];
+  [query includeKey:@"tracks.contributor"];
   [query getObjectInBackgroundWithId:playlistID block:^(PFObject *playlist, NSError *error) {
     NSMutableArray *playlistTracks = [[NSMutableArray alloc]init];
     [PFObject fetchAllInBackground:playlist[@"tracks"] block:^(NSArray *songs, NSError *error) {
       for (PFObject *track in songs) {
-        Song *song = [[Song alloc]initWithTrackID:track.objectId Name:track[@"name"] artistName:track[@"artist"] albumName:track[@"album"] albumArtworkURL:track[@"artwork_url"] uri:track[@"uri"] duration:nil streamifyID:nil];
-        [playlistTracks addObject:song];
+        PFUser *userObj = track[@"contributor"];
+        [userObj fetchInBackgroundWithBlock:^(PFObject *userObj, NSError *error) {
+          if (!error) {
+            User *contributor = [[User alloc]initWithUserID:userObj.objectId displayName:userObj[@"username"] AndEmail:nil WithUserType:userObj[@"userType"] andProfileImageURL:userObj[@"profileImageURL"]];
+            Song *song = [[Song alloc]initWithTrackID:track.objectId Name:track[@"name"] artistName:track[@"artist"] albumName:track[@"album"] albumArtworkURL:track[@"artwork_url"] uri:track[@"uri"] contributor:contributor];
+            [playlistTracks addObject:song];
+            if ((songs.count == [playlistTracks indexOfObject:song] + 1)) {
+              [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                completionHandler(playlistTracks);
+              }];
+            }
+          }
+        }];
       }
-      [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-        completionHandler(playlistTracks);
-      }];
     }];
   }];
 }

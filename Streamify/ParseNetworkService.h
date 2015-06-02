@@ -20,7 +20,7 @@
 
 -(void)createUser:(NSString *)username AndPassword:(NSString *)password AndUserType:(NSString *)userType completionHandler:(void (^)(User *user))completionHandler;
 
--(void)checkForExistingSpotifyUser:(NSString *)username completionHandler:(void (^)(User *user))completionHandler;
+-(void)checkForExistingSpotifyUser:(NSString *)username profileImageURL:(NSString *)profileImageURL completionHandler:(void (^)(User *user))completionHandler;
 
 -(void)addFavoriteSongForUser:(Song *)song completionHandler:(void (^)(NSString *success))completionHandler;
 

@@ -279,33 +279,33 @@
 }
 
 -(void)addSong:(Song *)song completionHandler:(void (^)(NSString *streamifyID))completionHandler {
-  NSString *appToken = [[NSUserDefaults standardUserDefaults]valueForKey:@"appToken"];
-  NSString *urlStr = [NSString stringWithFormat:@"http://streamify-team.herokuapp.com/api/songs"];
-  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-  
-  NSDictionary *playlistInfo = @{@"artist": song.artistName,@"name":song.trackName, @"album": song.albumName, @"album_artwork_url":song.albumArtworkURL, @"spotifyID": song.uri, @"duration":song.duration, @"eat": appToken};
-  
-  NSError *error;
-  NSData *data = [NSJSONSerialization dataWithJSONObject:playlistInfo options:0 error:&error];
-  
-  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-  request.HTTPMethod = @"POST";
-  request.HTTPBody = data;
-  NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-    if (error) {
-      NSLog(@"Error: %@", error);
-    } else {
-      if (response)
-        NSLog(@"%@ %@", response, responseObject);
-      [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-        NSDictionary *songInfo = responseObject;
-        NSDictionary *message = songInfo[@"msg"];
-        NSString *streamifyID = message[@"_id"];
-        completionHandler(streamifyID);
-      }];
-    }
-  }];
-  [dataTask resume];
+//  NSString *appToken = [[NSUserDefaults standardUserDefaults]valueForKey:@"appToken"];
+//  NSString *urlStr = [NSString stringWithFormat:@"http://streamify-team.herokuapp.com/api/songs"];
+//  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+//  
+//  NSDictionary *playlistInfo = @{@"artist": song.artistName,@"name":song.trackName, @"album": song.albumName, @"album_artwork_url":song.albumArtworkURL, @"spotifyID": song.uri, @"duration":song.duration, @"eat": appToken};
+//  
+//  NSError *error;
+//  NSData *data = [NSJSONSerialization dataWithJSONObject:playlistInfo options:0 error:&error];
+//  
+//  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//  request.HTTPMethod = @"POST";
+//  request.HTTPBody = data;
+//  NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+//    if (error) {
+//      NSLog(@"Error: %@", error);
+//    } else {
+//      if (response)
+//        NSLog(@"%@ %@", response, responseObject);
+//      [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+//        NSDictionary *songInfo = responseObject;
+//        NSDictionary *message = songInfo[@"msg"];
+//        NSString *streamifyID = message[@"_id"];
+//        completionHandler(streamifyID);
+//      }];
+//    }
+//  }];
+//  [dataTask resume];
 }
 
 -(void)addSongToPlaylist:(NSString *)playlistID song:(NSString *)streamifyID completionHandler:(void (^)(NSString *playlistID))completionHandler {
